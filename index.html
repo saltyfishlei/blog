@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="leihy">
+    
+    <title>
+        
+        leihy&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/blog/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/blog/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"saltyfishlei.github.io","root":"/blog/","language":"cn","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"leihy's blog","author":"leihy","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"面朝大海，春暖花开。","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":false,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"jsdelivr"},"pjax":{"enable":false},"footer":{"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"/blog","version":"4.0.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+        
+<div class="first-screen-container border-box flex-center fade-in-down-animation">
+    <div class="first-screen-content border-box">
+        <div class="top-placeholder border-box"></div>
+
+        <div class="middle-placeholder border-box">
+            
+                <div class="description border-box">
+                    
+                        
+                            
+                                <div class="desc-item border-box"><span class="desc">面朝大海，春暖花开。</span><span class="cursor">｜</span></div>
+                            
+                        
+                    
+                </div>
+            
+
+            
+        </div>
+
+        <div class="bottom-placeholder border-box">
+            
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box is-home">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper transparent-1">
+
+    <div class="border-box header-content has-first-screen">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/blog/">
+                    <img src="/blog/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/blog/">
+               leihy&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class="active"
+                           href="/blog/"
+                        >首頁</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/archives"
+                            >歸檔</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/tags"
+                            >標籤</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/about"
+                            >關於</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class="active"
+                   href="/blog/"
+                >首頁</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/archives"
+                    >歸檔</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/tags"
+                    >標籤</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/about"
+                    >關於</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    <div class="home-content-container fade-in-down-animation">
+    
+    <ul class="home-post-list border-box">
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2024/03/02/vue3%E5%90%8E%E5%8F%B0%E7%BB%BC%E5%90%88%E6%96%B9%E6%A1%88/2.%20%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E4%B9%8B%E6%90%AD%E5%BB%BA%E7%99%BB%E5%BD%95%E6%9E%B6%E6%9E%84/">
+                            项目架构之搭建登录架构解决方案与实现
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            
+准备工作：引入 ElementUI plus , 全局应用 normalize.css 等
+
+Icon 图标处理方案：SvgIcon在上一小节中我们完成了登陆页面的基本样式 。但是现在在登录页面中，还存在着最后一个样式问题，那就是 icon 图标。...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Sat Mar 02 2024 22:31:13 GMT+0800">2024-03-02 22:31:13</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2024/03/02/vue3%E5%90%8E%E5%8F%B0%E7%BB%BC%E5%90%88%E6%96%B9%E6%A1%88/2.%20%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E4%B9%8B%E6%90%AD%E5%BB%BA%E7%99%BB%E5%BD%95%E6%9E%B6%E6%9E%84/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2024/02/25/vue3%E5%90%8E%E5%8F%B0%E7%BB%BC%E5%90%88%E6%96%B9%E6%A1%88/1.%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8BESLint%20+%20Git%20Hooks%20/">
+                            编程规范解决方案之ESLint + Git Hooks
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            编程规范解决方案之 ESLint + Git Hooks本章节中讲解如何自动化的对代码进行规范，其中主要包括两大类：
+
+编码规范
+git 规范
+
+代码检测工具 ESLint
+ESLint 是一个用于识别和报告在 ECMAScript&#x2F;Jav...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Thu Mar 07 2024 21:15:58 GMT+0800">2024-03-07 21:15:58</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2024/02/25/vue3%E5%90%8E%E5%8F%B0%E7%BB%BC%E5%90%88%E6%96%B9%E6%A1%88/1.%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8BESLint%20+%20Git%20Hooks%20/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2023/12/30/typescript/ts%E7%9A%84%E6%84%8F%E4%B9%89%E4%B8%8E%E9%BA%BB%E7%83%A6/">
+                            ts的意义与麻烦
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            意义最大的意义就是避免写错变量名，方法名，屏蔽掉低级错误
+
+编写一些公用方法和全局配置对象，用于提醒使用者传参的key值和value类型等
+12345678//apis/users.tsexport interface ListParamsType ...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Sat Dec 30 2023 21:49:54 GMT+0800">2023-12-30 21:49:54</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2023/12/30/typescript/ts%E7%9A%84%E6%84%8F%E4%B9%89%E4%B8%8E%E9%BA%BB%E7%83%A6/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2023/12/15/%E6%90%9E%E6%87%82%E5%89%8D%E7%AB%AF%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%8E%9F%E7%90%86/">
+                            前端变量的使用和原理
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            不同的环境使用不同的服务器
+开发环境请求的是公司局域网的服务器
+生产环境请求的是真正的服务器，比如云服务
+使用使用 .env.环境名字 定义，运行命令的时候指定环境
+Vite + vue3 项目存值：VITE_变量名 &#x3D; xxx
+12345...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Wed Feb 28 2024 21:01:56 GMT+0800">2024-02-28 21:01:56</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2023/12/15/%E6%90%9E%E6%87%82%E5%89%8D%E7%AB%AF%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%8E%9F%E7%90%86/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2023/06/17/webpack/webpack%E5%AE%9E%E6%88%98/">
+                            webpack实战
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            环境为什么需要区分环境?
+生产模式：
+
+需要：代码压缩、tree-shaking、代码混淆等
+不需要：详细的 source-map、开启开发模式
+
+开发模式则相反。
+区分要点：
+
+根据不同环境进行不同的打包，一般在 process.env 中设置
+有...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Wed Feb 28 2024 20:57:11 GMT+0800">2024-02-28 20:57:11</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2023/06/17/webpack/webpack%E5%AE%9E%E6%88%98/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2023/06/15/webpack/webpack%E6%8A%80%E5%B7%A7%E6%80%A7%E9%85%8D%E7%BD%AE/">
+                            webpack的技巧性配置
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            hash 值的意义
+浏览器加载了文件后会缓存资源，每次去加载时如果发现文件名一样就会直接使用缓存资源，这就会导致我们重新打包后的文件如果跟之前同名，就会出现浏览器还是读取的以前缓存的问题。
+
+如果我们每次为生成的文件名中附带当次打包的 hash 值，...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Wed Feb 28 2024 20:59:07 GMT+0800">2024-02-28 20:59:07</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2023/06/15/webpack/webpack%E6%8A%80%E5%B7%A7%E6%80%A7%E9%85%8D%E7%BD%AE/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2023/06/14/webpack/%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2/">
+                            webpack的技巧性配置
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            单入口文件的处理
+单入口意味着所有代码在一个文件里，这样会导致代码过大，所以我们需要把一些不是马上用到并且体积过大的代码拆分出来，以加快首屏渲染速度
+
+这里以引入loadsh为例子：
+12345678import _ from &quot;lodas...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Wed Feb 28 2024 20:56:47 GMT+0800">2024-02-28 20:56:47</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2023/06/14/webpack/%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2023/06/12/webpack/loader%E7%9A%84%E6%9C%AC%E8%B4%A8/">
+                            loader的本质
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            本质
+Loader 本质是一个方法，该方法接受到要处理的资源的内容，处理完后给出内容，作为打包结果
+
+这里手写一个简易的 css-loader 为例：
+123456//index.jsmodules.exports = function (conte...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Wed Feb 28 2024 20:53:37 GMT+0800">2024-02-28 20:53:37</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2023/06/12/webpack/loader%E7%9A%84%E6%9C%AC%E8%B4%A8/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2023/06/10/webpack/webpack%E5%9F%BA%E7%A1%80/">
+                            webpack基础
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            初识 webpack
+本质上，webpack 是一个用于现代 JavaScript 应用程序的 _静态模块打包工具_。当 webpack 处理应用程序时，它会在内部从一个或多个入口点构建一个 依赖图(dependency graph)，然后将你项目中...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Wed Feb 28 2024 20:52:12 GMT+0800">2024-02-28 20:52:12</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2023/06/10/webpack/webpack%E5%9F%BA%E7%A1%80/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2023/01/30/koa2/koa%E5%9F%BA%E7%A1%80%E6%96%B9%E6%A1%88/">
+                            koa基础方案
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            一. 项目的初始化1 npm 初始化1npm init -y
+
+生成package.json文件:
+
+记录项目的依赖
+
+2 git 初始化1git init
+
+生成’.git’隐藏文件夹, git 的本地仓库
+3 创建 ReadMe 文件二. 搭建项...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Wed Feb 28 2024 21:55:02 GMT+0800">2024-02-28 21:55:02</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2023/01/30/koa2/koa%E5%9F%BA%E7%A1%80%E6%96%B9%E6%A1%88/">繼續閱讀...&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+    </ul>
+    
+
+
+
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/blog/">leihy</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box side-tools-show-handle">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+</main>
+
+
+
+
+<!-- common -->
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/header-shrink.js"></script>
+
+<script src="/blog/js/back2top.js"></script>
+
+<script src="/blog/js/toggle-theme.js"></script>
+
+<script src="/blog/js/code-block.js"></script>
+
+<script src="/blog/js/main.js"></script>
+
+<script src="/blog/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/blog/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/blog/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

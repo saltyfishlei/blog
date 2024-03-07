@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="leihy">
+    
+    <title>
+        
+            项目架构之搭建登录架构解决方案与实现 |
+        
+        leihy&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/blog/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/blog/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"saltyfishlei.github.io","root":"/blog/","language":"cn","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"leihy's blog","author":"leihy","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"面朝大海，春暖花开。","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":false,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"jsdelivr"},"pjax":{"enable":false},"footer":{"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"/blog","version":"4.0.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/blog/">
+                    <img src="/blog/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/blog/">
+               leihy&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/blog/"
+                        >首頁</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/archives"
+                            >歸檔</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/tags"
+                            >標籤</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/about"
+                            >關於</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/blog/"
+                >首頁</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/archives"
+                    >歸檔</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/tags"
+                    >標籤</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/about"
+                    >關於</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        项目架构之搭建登录架构解决方案与实现
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">leihy</span>
+                                
+                                    <span class="author-badge">Lv2</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2024-03-02 00:00:00</span>
+                <span class="mobile">2024-03-02 00:00</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Sat Mar 02 2024 22:31:13 GMT+0800">2024-03-02 22:31:13</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/blog/tags/Vue3-TS%E5%90%8E%E5%8F%B0%E6%96%B9%E6%A1%88/">Vue3+TS后台方案</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <blockquote>
+<p>准备工作：引入 ElementUI plus , 全局应用 normalize.css 等</p>
+</blockquote>
+<h2 id="Icon-图标处理方案：SvgIcon"><a href="#Icon-图标处理方案：SvgIcon" class="headerlink" title="Icon 图标处理方案：SvgIcon"></a>Icon 图标处理方案：SvgIcon</h2><p>在上一小节中我们完成了登陆页面的基本样式 。但是现在在登录页面中，还存在着最后一个样式问题，那就是 <code>icon</code> 图标。</p>
+<p>在我们的项目中所使用的 <code>icon</code> 图标，一共分为两类：</p>
+<ol>
+<li><code>element-plus</code> 的图标</li>
+<li>自定义的 <code>svg</code> 图标</li>
+</ol>
+<p>这也是通常情况下企业级项目开发时，所遇到的一种常见情况。</p>
+<p>对于 <code>element-plus</code> 的图标我们可以直接通过 <code>el-icon</code> 来进行显示，但是自定义图标的话，我们暂时还缺少显示的方式，所以说我们需要一个自定义的组件，来显示我们自定义的 <code>svg</code> 图标。</p>
+<p>那么这种自定义组件处理 <strong>自定义 <code>svg</code> 图标的形式</strong>，就是我们在面临这种问题时的通用解决方案。</p>
+<p>那么对于这个组件的话，它就需要拥有两种能力：</p>
+<ol>
+<li>显示外部 <code>svg</code> 图标</li>
+<li>显示项目内的 <code>svg</code> 图标</li>
+</ol>
+<p>基于以上概念，我们可以创建出以下对应代码：</p>
+<p>创建 <code>components/SvgIcon/index.vue</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;!-- 展示外部图标 --&gt;</span><br><span class="line">  &lt;div</span><br><span class="line">    v-if=&quot;isExternal&quot;</span><br><span class="line">    class=&quot;external-icon svg-icon&quot;</span><br><span class="line">    :style=&quot;styleExternalIcon&quot;</span><br><span class="line">    :class=&quot;className&quot;</span><br><span class="line">  &gt;&lt;/div&gt;</span><br><span class="line">  &lt;!-- 展示内部图标 --&gt;</span><br><span class="line">  &lt;svg v-else :class=&quot;className&quot; aria-hidden=&quot;true&quot; class=&quot;svg-icon&quot;&gt;</span><br><span class="line">    &lt;use :xlink:href=&quot;symbolId&quot; :fill=&quot;color&quot; /&gt;</span><br><span class="line">  &lt;/svg&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; computed &#125; from &quot;vue&quot;;</span><br><span class="line">import &#123; isExternal as external &#125; from &quot;@/util/validate&quot;;</span><br><span class="line"></span><br><span class="line">interface Props &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  color?: string;</span><br><span class="line">  className?: string;</span><br><span class="line">&#125;</span><br><span class="line">const props = withDefaults(defineProps&lt;Props&gt;(), &#123;</span><br><span class="line">  color: &quot;#000&quot;,</span><br><span class="line">  className: &quot;&quot;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const isExternal = computed(() =&gt; &#123;</span><br><span class="line">  return external(props.name);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const styleExternalIcon = computed(() =&gt; (&#123;</span><br><span class="line">  mask: `url($&#123;props.name&#125;) no-repeat 50% 50%`,</span><br><span class="line">  &quot;-webkit-mask&quot;: `url($&#123;props.name&#125;) no-repeat 50% 50%`,</span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line">const symbolId = computed(() =&gt; &#123;</span><br><span class="line">  return `#icon-$&#123;props.name&#125;`;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line">.svg-icon &#123;</span><br><span class="line">  width: 1em;</span><br><span class="line">  height: 1em;</span><br><span class="line">&#125;</span><br><span class="line">.external-icon &#123;</span><br><span class="line">  background-color: currentColor;</span><br><span class="line">  mask-size: cover !important;</span><br><span class="line">  display: inline-block;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>创建 <code>utils/validate.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断是否为外部资源</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">isExternal</span>(<span class="params">path</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="regexp">/^(https?:|mailto:|tel:)/</span>.<span class="title function_">test</span>(path);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>views/login/index.vue</code> 中使用 外部 <code>svg</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;svg-container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">svg-icon</span> <span class="attr">icon</span>=<span class="string">&quot;https://res.lgdsunday.club/user.svg&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">svg-icon</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>外部图标可正常展示。</p>
+<h2 id="处理内部-svg-图标显示"><a href="#处理内部-svg-图标显示" class="headerlink" title="处理内部 svg 图标显示"></a>处理内部 svg 图标显示</h2><p>在上一章中，我们创建了 <code>SvgIcon</code> 组件用于显示 <strong>非 Element-ui</strong> 的图标。但是目前我们只处理了 <strong>外部 <code>svg</code> 的图标展示</strong>，内部的图标还无法展示。</p>
+<p>所以这一小节，我们就需要处理 <strong>内部的 <code>svg</code> 图标展示。</strong></p>
+<ol>
+<li><p>首先导入所有的 <code>svg</code> 图标到项目中<code>/src/icons/index.js</code></p>
+</li>
+<li><p>在 <code>icons</code> 下创建 <code>index.js</code> 文件，该文件中需要完成两件事情：</p>
+<ol>
+<li>导入所有的 <code>svg</code> 图标</li>
+<li>完成 <code>SvgIcon</code> 的全局注册</li>
+</ol>
+</li>
+<li><p>得出以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">SvgIcon</span> <span class="keyword">from</span> <span class="string">&quot;@/components/SvgIcon/index.vue&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">componentsGroup</span>: any = &#123; <span class="title class_">SvgIcon</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">install</span>(<span class="params">app: any</span>) &#123;</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">keys</span>(componentsGroup).<span class="title function_">forEach</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line">      app.<span class="title function_">component</span>(key, componentsGroup[key]);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>main.js</code> 中引入该文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">// 导入 svgIcon</span></span><br><span class="line"><span class="keyword">import</span> icons <span class="keyword">from</span> <span class="string">&#x27;@/icons/index.ts&#x27;</span>;</span><br><span class="line">...</span><br><span class="line">app.<span class="title function_">use</span>(icons);</span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>打开浏览器，我们发现 <strong>图标依然无法展示！</strong> 这又是因为什么原因呢？</p>
+</li>
+</ol>
+<h3 id="vite-plugin-svg-icons"><a href="#vite-plugin-svg-icons" class="headerlink" title="vite-plugin-svg-icons"></a>vite-plugin-svg-icons</h3><p>那么想要使用该插件， 我们需要做两件事情：</p>
+<ol>
+<li><p>下载该插件，执行<code>npm i --save-dev vite-plugin-svg-icons</code></p>
+</li>
+<li><p>打开 <code>vite.config.ts</code> 文件，新增如下配置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">import</span> &#123; createSvgIconsPlugin &#125; <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-svg-icons&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> path <span class="keyword">from</span> <span class="string">&#x27;path&#x27;</span>;</span><br><span class="line"><span class="comment">// https://vitejs.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    ...,</span><br><span class="line">    <span class="title function_">createSvgIconsPlugin</span>(&#123;</span><br><span class="line">      <span class="comment">// Specify the icon folder to be cached</span></span><br><span class="line">      <span class="attr">iconDirs</span>: [path.<span class="title function_">resolve</span>(process.<span class="title function_">cwd</span>(), <span class="string">&#x27;src/icons/svg&#x27;</span>)],</span><br><span class="line">      <span class="comment">// Specify symbolId format</span></span><br><span class="line">      <span class="attr">symbolId</span>: <span class="string">&#x27;icon-[dir]-[name]&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>处理完以上配置之后，图标即可显示！</p>
+<h2 id="完善登录表单校验"><a href="#完善登录表单校验" class="headerlink" title="完善登录表单校验"></a>完善登录表单校验</h2><p>表单校验是表单使用的一个通用能力，在 <code>element-plus</code> 中想要为表单进行表单校验那么我们需要关注以下三点：</p>
+<ol>
+<li>为 <code>el-form</code> 绑定 <code>model</code> 属性</li>
+<li>为 <code>el-form</code> 绑定 <code>rules</code> 属性</li>
+<li>为 <code>el-form-item</code> 绑定 <code>prop</code> 属性</li>
+</ol>
+<p>保证以上三点即可为 <code>el-from</code> 添加表单校验功能。</p>
+<p>以下为对应的代码实现：</p>
+<p><strong>views&#x2F;login</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;login-container&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;el-form class=&quot;login-form&quot; :model=&quot;loginForm&quot; :rules=&quot;loginRules&quot; ref=“form&#x27;&gt;</span><br><span class="line">      ...</span><br><span class="line">      &lt;el-form-item prop=&quot;username&quot;&gt;</span><br><span class="line">        ...</span><br><span class="line">        &lt;el-input</span><br><span class="line">         ...</span><br><span class="line">          v-model=&quot;loginForm.username&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/el-form-item&gt;</span><br><span class="line"></span><br><span class="line">      &lt;el-form-item prop=&quot;password&quot;&gt;</span><br><span class="line">        ...</span><br><span class="line">        &lt;el-input</span><br><span class="line">          ...</span><br><span class="line">          v-model=&quot;loginForm.password&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">        ...</span><br><span class="line">      &lt;/el-form-item&gt;</span><br><span class="line">		...</span><br><span class="line">    &lt;/el-form&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref &#125; from &#x27;vue&#x27;</span><br><span class="line">import &#123; validatePassword &#125; from &#x27;./rules&#x27;</span><br><span class="line"></span><br><span class="line">// 数据源</span><br><span class="line">const loginForm = ref(&#123;</span><br><span class="line">  username: &#x27;super-admin&#x27;,</span><br><span class="line">  password: &#x27;123456&#x27;</span><br><span class="line">&#125;)</span><br><span class="line">// 验证规则</span><br><span class="line">const loginRules = ref(&#123;</span><br><span class="line">  username: [</span><br><span class="line">    &#123;</span><br><span class="line">      required: true,</span><br><span class="line">      trigger: &#x27;blur&#x27;,</span><br><span class="line">      message: &#x27;用户名为必填项&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  password: [</span><br><span class="line">    &#123;</span><br><span class="line">      required: true,</span><br><span class="line">      trigger: &#x27;blur&#x27;,</span><br><span class="line">      validator: validatePassword()</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>views&#x2F;login&#x2F;rules.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">validatePassword</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">rule, value, callback</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (value.<span class="property">length</span> &lt; <span class="number">6</span>) &#123;</span><br><span class="line">      <span class="title function_">callback</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;密码不能少于6位&quot;</span>));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="title function_">callback</span>();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="通用后台登录方案解析"><a href="#通用后台登录方案解析" class="headerlink" title="通用后台登录方案解析"></a>通用后台登录方案解析</h2><p>对于登录操作在后台项目中是一个通用的解决方案，具体可以分为以下几点：</p>
+<ol>
+<li>封装 <code>axios</code> 模块</li>
+<li>封装 接口请求 模块</li>
+<li>封装登录请求动作</li>
+<li>保存服务端返回的 <code>token</code></li>
+<li>登录鉴权</li>
+</ol>
+<p>这些内容就共同的组成了一套 <strong>后台登录解决方案</strong> 。</p>
+<h2 id="配置环境变量封装-axios-模块"><a href="#配置环境变量封装-axios-模块" class="headerlink" title="配置环境变量封装 axios 模块"></a>配置环境变量封装 axios 模块</h2><p>首先我们先去完成第一步：封装 <code>axios</code> 模块。</p>
+<p>在当前这个场景下，我们希望封装出来的 <code>axios</code> 模块，至少需要具备一种能力，那就是：<strong>根据当前模式的不同，设定不同的 <code>BaseUrl</code></strong> ，因为通常情况下企业级项目在 <strong>开发状态</strong> 和 <strong>生产状态</strong> 下它的 <code>baseUrl</code> 是不同的。</p>
+<p>对于 <code>@vue/cli</code> 来说，它具备三种不同的模式：</p>
+<ol>
+<li><code>development</code></li>
+<li><code>test</code></li>
+<li><code>production</code></li>
+</ol>
+<p>根据我们前面所提到的 <strong>开发状态和生产状态</strong> 那么此时我们的 <code>axios</code> 必须要满足：<strong>在 开发 || 生产 状态下，可以设定不同 <code>BaseUrl</code> 的能力</strong></p>
+<p>那么想要解决这个问题，就必须要使用到 <code>vite</code> 所提提供的环境变量去进行实现。</p>
+<p>我们可以在项目中创建两个文件：</p>
+<ol>
+<li><code>.env.development</code></li>
+<li><code>.env.production</code></li>
+</ol>
+<p>它们分别对应 <strong>开发状态</strong> 和 <strong>生产状态</strong>。</p>
+<p>我们可以在上面两个文件中分别写入以下代码：</p>
+<p>**<code>.env.development</code>**：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 标志</span><br><span class="line">ENV = &#x27;development&#x27;</span><br><span class="line"></span><br><span class="line"># base api</span><br><span class="line">VITE_APP_BASE_API = &#x27;/api&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>.env.production</code>：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 标志</span><br><span class="line">ENV = &#x27;production&#x27;</span><br><span class="line"></span><br><span class="line"># base api</span><br><span class="line">VITE_APP_BASE_API = &#x27;/prod-api&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>有了这两个文件之后，我们就可以创建对应的 <code>axios</code> 模块</p>
+<p>创建 <code>utils/request.js</code> ，写入如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&quot;axios&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> service = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">baseURL</span>: <span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">VITE_APP_BASE_API</span>,</span><br><span class="line">  <span class="attr">timeout</span>: <span class="number">5000</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> service;</span><br></pre></td></tr></table></figure>
+
+<h2 id="封装请求动作"><a href="#封装请求动作" class="headerlink" title="封装请求动作"></a>封装请求动作</h2><p>有了 <code>axios</code> 模块之后，接下来我们就可以</p>
+<ol>
+<li>封装接口请求模块</li>
+<li>封装登录请求动作</li>
+</ol>
+<p><strong>封装接口请求模块：</strong></p>
+<p>创建 <code>api</code> 文件夹，创建 <code>sys.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> request <span class="keyword">from</span> <span class="string">&#x27;@/util/request&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> type &#123; <span class="title class_">LoginData</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./types/user&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> type &#123; loginResponse &#125; <span class="keyword">from</span> <span class="string">&#x27;./types/user&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 登录</span></span><br><span class="line"><span class="comment">export const login = (data: LoginData) =&gt; &#123;</span></span><br><span class="line"><span class="comment">  /**</span></span><br><span class="line"><span class="comment">   * 如果不限定返回的数据格式，在引用的时候ts会判断返回值为Promise对象</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">return</span> request.<span class="property">post</span>&lt;any, loginResponse&gt;(<span class="string">&#x27;/sys/login&#x27;</span>, data);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>封装登录请求动作：</strong></p>
+<p>该动作我们期望把它封装到 <code>pinia</code>的 <code>action</code> 中</p>
+<p>在 <code>store</code> 下创建 <code>user.ts</code> 模块，用于处理所有和 <strong>用户相关</strong> 的内容（此处需要使用第三方包 <code>md5</code> ）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineStore &#125; <span class="keyword">from</span> <span class="string">&quot;pinia&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> type &#123; <span class="title class_">LoginData</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@/apis/types/user&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; login &#125; <span class="keyword">from</span> <span class="string">&quot;@/apis/user&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useUserStore = <span class="title function_">defineStore</span>(<span class="string">&quot;user&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">state</span>: <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">    <span class="attr">token</span>: <span class="title function_">getItem</span>(<span class="string">&quot;token&quot;</span>),</span><br><span class="line">  &#125;),</span><br><span class="line">  <span class="attr">getters</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">actions</span>: &#123;</span><br><span class="line">    <span class="keyword">async</span> <span class="title function_">userLogin</span>(<span class="params">params: LoginData</span>) &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> data = <span class="keyword">await</span> <span class="title function_">login</span>(params);</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">token</span> = data.<span class="property">token</span>;</span><br><span class="line">        <span class="title function_">setItem</span>(<span class="string">&quot;token&quot;</span>, data.<span class="property">token</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="string">&quot;ok&quot;</span>);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>调用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//login.vue</span></span><br><span class="line"><span class="keyword">import</span> &#123; useUserStore &#125; <span class="keyword">from</span> <span class="string">&#x27;@/stores/user&#x27;</span>;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">useUserStore</span>();</span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">useRouter</span>();</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">handleLogin</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    loading.<span class="property">value</span> = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">await</span> store.<span class="title function_">userLogin</span>(&#123;</span><br><span class="line">      <span class="attr">username</span>: loginForm.<span class="property">username</span>,</span><br><span class="line">      <span class="attr">password</span>: <span class="title function_">md5</span>(loginForm.<span class="property">password</span>)</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="title class_">ElMessage</span>.<span class="title function_">success</span>(<span class="string">&#x27;登录成功&#x27;</span>);</span><br><span class="line">    router.<span class="title function_">push</span>(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    loading.<span class="property">value</span> = <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="登录触发动作"><a href="#登录触发动作" class="headerlink" title="登录触发动作"></a>登录触发动作</h2><p>在 <code>login</code> 中，触发定义的 <code>action</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-button</span><br><span class="line">    type=&quot;primary&quot;</span><br><span class="line">    style=&quot;width: 100%; margin-bottom: 30px&quot;</span><br><span class="line">    :loading=&quot;loading&quot;</span><br><span class="line">    @click=&quot;handleLogin&quot;</span><br><span class="line">    &gt;登录&lt;/el-button</span><br><span class="line">  &gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; User, Lock &#125; from &#x27;@element-plus/icons-vue&#x27;;</span><br><span class="line">import &#123; reactive, ref &#125; from &#x27;vue&#x27;;</span><br><span class="line">import &#123; useRouter &#125; from &#x27;vue-router&#x27;;</span><br><span class="line">import &#123; pwdValidate &#125; from &#x27;./rule&#x27;;</span><br><span class="line">import &#123; useUserStore &#125; from &#x27;@/stores/user&#x27;;</span><br><span class="line">import &#123; ElMessage &#125; from &#x27;element-plus&#x27;;</span><br><span class="line">import md5 from &#x27;md5&#x27;;</span><br><span class="line"></span><br><span class="line">......</span><br><span class="line"></span><br><span class="line">const loading = ref(false);</span><br><span class="line">const store = useUserStore();</span><br><span class="line">const router = useRouter();</span><br><span class="line">const handleLogin = async () =&gt; &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    loading.value = true;</span><br><span class="line">    await store.userLogin(&#123;</span><br><span class="line">      username: loginForm.username,</span><br><span class="line">      password: md5(loginForm.password)</span><br><span class="line">    &#125;);</span><br><span class="line">    ElMessage.success(&#x27;登录成功&#x27;);</span><br><span class="line">    router.push(&#x27;/&#x27;);</span><br><span class="line">  &#125; catch (error) &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">  &#125; finally &#123;</span><br><span class="line">    loading.value = false;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>触发之后会得到当前请求的接口不存在的错误。</p>
+<p>出现这个问题的原因，是因为我们在前面配置环境变量时指定了 <strong>开发环境下</strong>，请求的 <code>BaseUrl</code> 为 <code>/api</code> ，所以我们真实发出的请求为：<code>/api/sys/login</code> 。</p>
+<p>这样的一个请求会被自动键入到当前前端所在的服务中，所以我们最终就得到了 <code>http://localhost:5173/api/sys/login</code> 这样的一个请求路径, 没有请求到服务所在的地址</p>
+<p>而想要处理这个问题，那么可以通过指定代理的形式，代理当前的 <code>url</code> 请求。</p>
+<p>在 <code>vite.config.js</code> 中，加入以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">server</span>: &#123;</span><br><span class="line">    <span class="attr">proxy</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;/api&#x27;</span>: &#123;</span><br><span class="line">        <span class="comment">//获取数据的服务器地址设置</span></span><br><span class="line">        <span class="attr">target</span>: <span class="string">&#x27;http://localhost:3004&#x27;</span>,</span><br><span class="line">        <span class="comment">//需要代理跨域</span></span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>重新启动服务，再次进行请求，即可得到成功响应。</p>
+<h2 id="本地缓存处理方案"><a href="#本地缓存处理方案" class="headerlink" title="本地缓存处理方案"></a>本地缓存处理方案</h2><p>通常情况下，在获取到 <code>token</code> 之后，我们会把 <code>token</code> 进行缓存，而缓存的方式将会分为两种：</p>
+<ol>
+<li>本地缓存：<code>LocalStorage</code></li>
+<li>全局状态管理：<code>pina</code></li>
+</ol>
+<p>保存在 <code>LocalStorage</code> 是为了方便实现 <strong>自动登录功能</strong></p>
+<p>保存在 <code>pinia</code> 中是为了后面在其他位置进行使用</p>
+<p>那么下面我们就分别来实现对应的缓存方案：</p>
+<p><strong>LocalStorage：</strong></p>
+<ol>
+<li><p>创建 <code>utils/storage.js</code> 文件，封装三个对应方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 存储数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">setItem</span> = (<span class="params">key: string, value: unknown</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> <span class="attr">stringValue</span>: string;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> value === <span class="string">&quot;object&quot;</span> &amp;&amp; value !== <span class="literal">null</span>) &#123;</span><br><span class="line">    stringValue = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(value);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 将非对象类型的值转化为字符串，因为localStorage的第二个参数必须为string</span></span><br><span class="line">    stringValue = <span class="string">`<span class="subst">$&#123;value&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(key, stringValue);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">getItem</span> = (<span class="params">key: string</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> data = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(key);</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">JSON</span>.<span class="title function_">parse</span>(data);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 删除数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">removeItem</span> = (<span class="params">key: string</span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">window</span>.<span class="property">localStorage</span>.<span class="title function_">removeItem</span>(key);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 删除所有数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">removeAllItem</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">window</span>.<span class="property">localStorage</span>.<span class="title function_">clear</span>();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>pinia</code> 的 <code>user</code> 模块下，处理 <code>token</code> 的保存</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineStore &#125; <span class="keyword">from</span> <span class="string">&quot;pinia&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; login &#125; <span class="keyword">from</span> <span class="string">&quot;@/apis/user&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; setItem, getItem &#125; <span class="keyword">from</span> <span class="string">&quot;@/util/storage&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="variable constant_">TOKEN</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@/constant/index&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; <span class="title class_">LoginData</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@/apis/types/user&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useUserStore = <span class="title function_">defineStore</span>(<span class="string">&quot;user&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">state</span>: <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">    <span class="attr">token</span>: <span class="title function_">getItem</span>(<span class="variable constant_">TOKEN</span>) || <span class="string">&quot;&quot;</span>,</span><br><span class="line">  &#125;),</span><br><span class="line">  <span class="attr">getters</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">actions</span>: &#123;</span><br><span class="line">    <span class="keyword">async</span> <span class="title function_">userLogin</span>(<span class="params">params: LoginData</span>) &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> data = <span class="keyword">await</span> <span class="title function_">login</span>(params);</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">token</span> = data.<span class="property">token</span>;</span><br><span class="line">        <span class="title function_">setItem</span>(<span class="variable constant_">TOKEN</span>, data.<span class="property">token</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="string">&quot;ok&quot;</span>);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>处理保存的过程中，需要创建 <code>constant</code> 常量目录 <code>constant/index.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable constant_">TOKEN</span> = <span class="string">&quot;token&quot;</span>;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>此时，当点击登陆时，即可把 <code>token</code> 保存至 <code>pinia</code> 与 <code>localStorage</code> 中</p>
+<h2 id="响应数据的统一处理"><a href="#响应数据的统一处理" class="headerlink" title="响应数据的统一处理"></a>响应数据的统一处理</h2><p>在 <code>utils/request.js</code> 中实现以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ElMessage</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;element-plus&#x27;</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="comment">// 响应拦截器</span></span><br><span class="line">service.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(</span><br><span class="line">  <span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; success, message, data &#125; = response.<span class="property">data</span></span><br><span class="line">    <span class="comment">//   要根据success的成功与否决定下面的操作</span></span><br><span class="line">    <span class="keyword">if</span> (success) &#123;</span><br><span class="line">      <span class="keyword">return</span> data</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 业务错误</span></span><br><span class="line">      <span class="title class_">ElMessage</span>.<span class="title function_">error</span>(message) <span class="comment">// 提示错误消息</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(message))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 将来处理 token 超时问题</span></span><br><span class="line">    <span class="title class_">ElMessage</span>.<span class="title function_">error</span>(error.<span class="property">message</span>) <span class="comment">// 提示错误信息</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> service</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="登录后操作"><a href="#登录后操作" class="headerlink" title="登录后操作"></a>登录后操作</h2><p>那么截止到此时，我们距离登录操作还差最后一个功能就是 <strong>登录鉴权</strong> 。</p>
+<p>只不过在进行 <strong>登录鉴权</strong> 之前我们得先去创建一个登录后的页面，也就是我们所说的登录后操作。</p>
+<ol>
+<li><p>创建 <code>layout/index.vue</code> ，写入以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;&quot;&gt;Layout 页面&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123;&#125; from &quot;vue&quot;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>router/index</code> 中，指定对应路由表：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> publicRoutes = [</span><br><span class="line">  ...&#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&quot;/&quot;</span>,</span><br><span class="line">    <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;@/layout/index&quot;</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在登录成功后，完成跳转</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 登录后操作</span></span><br><span class="line">router.<span class="title function_">push</span>(<span class="string">&quot;/&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="登录鉴权解决方案"><a href="#登录鉴权解决方案" class="headerlink" title="登录鉴权解决方案"></a>登录鉴权解决方案</h2><p>在处理了登陆后操作之后，接下来我们就来看一下最后的一个功能，也就是 <strong>登录鉴权</strong></p>
+<p>首先我们先去对 <strong>登录鉴权</strong> 进行一个定义，什么是 <strong>登录鉴权</strong> 呢？</p>
+<blockquote>
+<p>当用户未登陆时，不允许进入除 <code>login</code> 之外的其他页面。</p>
+<p>用户登录后，<code>token</code> 未过期之前，不允许进入 <code>login</code> 页面</p>
+</blockquote>
+<p>而想要实现这个功能，那么最好的方式就是通过 <a class="link"   target="_blank" rel="noopener" href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E5%85%A8%E5%B1%80%E5%89%8D%E7%BD%AE%E5%AE%88%E5%8D%AB" >路由守卫<i class="fas fa-external-link-alt"></i></a> 来进行实现。</p>
+<p>那么明确好了 <strong>登录鉴权</strong> 的概念之后，接下来就可以去实现一下</p>
+<p>在 <code>main.js</code> 平级，创建 <code>permission</code> 文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&quot;./router/index&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; useUserStore &#125; <span class="keyword">from</span> <span class="string">&quot;./stores/user&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> whiteList = [<span class="string">&quot;/login&quot;</span>];</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 这里舍弃了第三个参数next的用法，使用了return返回参数的用法</span></span><br><span class="line"><span class="comment"> * 通过一个路由地址重定向到一个不同的地址，如同调用 router.push()</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">router.<span class="title function_">beforeEach</span>(<span class="keyword">async</span> (to, <span class="keyword">from</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> userStore = <span class="title function_">useUserStore</span>();</span><br><span class="line">  <span class="keyword">const</span> token = userStore.<span class="property">token</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (token) &#123;</span><br><span class="line">    <span class="comment">//已登录</span></span><br><span class="line">    <span class="keyword">if</span> (to.<span class="property">path</span> === <span class="string">&quot;/login&quot;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;/&quot;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">//跳转到 to 所指向的路由</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//未登录</span></span><br><span class="line">    <span class="keyword">if</span> (whiteList.<span class="title function_">includes</span>(to.<span class="property">path</span>)) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;/login&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/blog/tags/Vue3-TS%E5%90%8E%E5%8F%B0%E6%96%B9%E6%A1%88/">Vue3+TS后台方案</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/blog/2024/02/25/vue3%E5%90%8E%E5%8F%B0%E7%BB%BC%E5%90%88%E6%96%B9%E6%A1%88/1.%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8BESLint%20+%20Git%20Hooks%20/"
+                                   title="编程规范解决方案之ESLint + Git Hooks"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">编程规范解决方案之ESLint + Git Hooks</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Icon-%E5%9B%BE%E6%A0%87%E5%A4%84%E7%90%86%E6%96%B9%E6%A1%88%EF%BC%9ASvgIcon"><span class="nav-number">1.</span> <span class="nav-text">Icon 图标处理方案：SvgIcon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%86%85%E9%83%A8-svg-%E5%9B%BE%E6%A0%87%E6%98%BE%E7%A4%BA"><span class="nav-number">2.</span> <span class="nav-text">处理内部 svg 图标显示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vite-plugin-svg-icons"><span class="nav-number">2.1.</span> <span class="nav-text">vite-plugin-svg-icons</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E5%96%84%E7%99%BB%E5%BD%95%E8%A1%A8%E5%8D%95%E6%A0%A1%E9%AA%8C"><span class="nav-number">3.</span> <span class="nav-text">完善登录表单校验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E5%90%8E%E5%8F%B0%E7%99%BB%E5%BD%95%E6%96%B9%E6%A1%88%E8%A7%A3%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">通用后台登录方案解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%B0%81%E8%A3%85-axios-%E6%A8%A1%E5%9D%97"><span class="nav-number">5.</span> <span class="nav-text">配置环境变量封装 axios 模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82%E5%8A%A8%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">封装请求动作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E8%A7%A6%E5%8F%91%E5%8A%A8%E4%BD%9C"><span class="nav-number">7.</span> <span class="nav-text">登录触发动作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E5%A4%84%E7%90%86%E6%96%B9%E6%A1%88"><span class="nav-number">8.</span> <span class="nav-text">本地缓存处理方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86"><span class="nav-number">9.</span> <span class="nav-text">响应数据的统一处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E5%90%8E%E6%93%8D%E4%BD%9C"><span class="nav-number">10.</span> <span class="nav-text">登录后操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E9%89%B4%E6%9D%83%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">11.</span> <span class="nav-text">登录鉴权解决方案</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/blog/">leihy</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Icon-%E5%9B%BE%E6%A0%87%E5%A4%84%E7%90%86%E6%96%B9%E6%A1%88%EF%BC%9ASvgIcon"><span class="nav-number">1.</span> <span class="nav-text">Icon 图标处理方案：SvgIcon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%86%85%E9%83%A8-svg-%E5%9B%BE%E6%A0%87%E6%98%BE%E7%A4%BA"><span class="nav-number">2.</span> <span class="nav-text">处理内部 svg 图标显示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vite-plugin-svg-icons"><span class="nav-number">2.1.</span> <span class="nav-text">vite-plugin-svg-icons</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E5%96%84%E7%99%BB%E5%BD%95%E8%A1%A8%E5%8D%95%E6%A0%A1%E9%AA%8C"><span class="nav-number">3.</span> <span class="nav-text">完善登录表单校验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E5%90%8E%E5%8F%B0%E7%99%BB%E5%BD%95%E6%96%B9%E6%A1%88%E8%A7%A3%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">通用后台登录方案解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%B0%81%E8%A3%85-axios-%E6%A8%A1%E5%9D%97"><span class="nav-number">5.</span> <span class="nav-text">配置环境变量封装 axios 模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82%E5%8A%A8%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">封装请求动作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E8%A7%A6%E5%8F%91%E5%8A%A8%E4%BD%9C"><span class="nav-number">7.</span> <span class="nav-text">登录触发动作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E5%A4%84%E7%90%86%E6%96%B9%E6%A1%88"><span class="nav-number">8.</span> <span class="nav-text">本地缓存处理方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86"><span class="nav-number">9.</span> <span class="nav-text">响应数据的统一处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E5%90%8E%E6%93%8D%E4%BD%9C"><span class="nav-number">10.</span> <span class="nav-text">登录后操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E9%89%B4%E6%9D%83%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">11.</span> <span class="nav-text">登录鉴权解决方案</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/header-shrink.js"></script>
+
+<script src="/blog/js/back2top.js"></script>
+
+<script src="/blog/js/toggle-theme.js"></script>
+
+<script src="/blog/js/code-block.js"></script>
+
+<script src="/blog/js/main.js"></script>
+
+<script src="/blog/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/blog/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/blog/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/blog/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/blog/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
