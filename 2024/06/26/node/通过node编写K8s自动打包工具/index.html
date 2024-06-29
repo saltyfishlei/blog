@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="leihy">
+    
+    <title>
+        
+            Node-实现一个简易的脚手架 |
+        
+        leihy&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/blog/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/blog/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"saltyfishlei.github.io","root":"/blog/","language":"cn","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"leihy's blog","author":"leihy","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"面朝大海，春暖花开。","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":false,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"jsdelivr"},"pjax":{"enable":false},"footer":{"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"/blog","version":"4.0.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/blog/">
+                    <img src="/blog/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/blog/">
+               leihy&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/blog/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/blog/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Node-实现一个简易的脚手架
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">leihy</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2024-06-26 00:00:00</span>
+                <span class="mobile">2024-06-26 00:00</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Sat Jun 29 2024 17:16:46 GMT+0800">2024-06-29 17:16:46</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/blog/tags/node/">node</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <blockquote>
+<p>公司有时候做了需求出包没法走流水线， 只能自己手动打包到 k8s 的 pod 里面去打包， 太麻烦， 于是写了一个脚本每次一条命令就可以把自动拉去包到本地的脚本</p>
+</blockquote>
+<p>代码全部写在一个文件中，但这里分开解释;</p>
+<p>为了与远程机器创建 SSH 连接，安装<code>ssh2</code>, 并引入:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Client &#125; from &quot;ssh2&quot;;</span><br><span class="line"></span><br><span class="line">const conn = new Client();</span><br></pre></td></tr></table></figure>
+
+<p>配置:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="attr">serverIp</span>: <span class="string">&quot;172.16.30.xx&quot;</span>,</span><br><span class="line">  <span class="attr">user</span>: <span class="string">&quot;ops&quot;</span>,</span><br><span class="line">  <span class="attr">password</span>: <span class="string">&quot;xx&quot;</span>,</span><br><span class="line">  <span class="attr">workDir</span>:</span><br><span class="line">    <span class="string">&quot;/data/jenkins/workspace/k8s-envs/devops-30033586-uat-pal-180-pj860/opt&quot;</span>,</span><br><span class="line">  <span class="attr">namespace</span>: <span class="string">&quot;devops-30033586-uat-pal-180-pj860&quot;</span>,</span><br><span class="line">  <span class="attr">kubeConfig</span>: <span class="string">&quot;.kube_config.yaml&quot;</span>, <span class="comment">// 使用的 Kubernetes 配置文件的路径</span></span><br><span class="line">  <span class="attr">localDir</span>: <span class="string">&quot;/tmp/pal&quot;</span>, <span class="comment">// 宿主机打包位置</span></span><br><span class="line">  <span class="attr">remoteFile</span>: <span class="string">&quot;pal-portal.tar.gz&quot;</span>, <span class="comment">// 打包后的文件名</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Promisefy"><a href="#Promisefy" class="headerlink" title="Promisefy"></a>Promisefy</h4><p>在正式开始连接之前， 因为我们需要对回调函数进行<code>Promisefy</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; promisify &#125; <span class="keyword">from</span> <span class="string">&quot;util&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在这里来执行回调函数</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">execCommand</span> = (<span class="params">conn, command</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    conn.<span class="title function_">exec</span>(command, <span class="function">(<span class="params">err, stream</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (err) <span class="keyword">return</span> <span class="title function_">reject</span>(err);</span><br><span class="line">      <span class="keyword">let</span> data = <span class="string">&quot;&quot;</span>;</span><br><span class="line">      <span class="keyword">let</span> errorData = <span class="string">&quot;&quot;</span>;</span><br><span class="line">      stream</span><br><span class="line">        .<span class="title function_">on</span>(<span class="string">&quot;close&quot;</span>, <span class="function">(<span class="params">code, signal</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">if</span> (code === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="title function_">resolve</span>(data);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(errorData));</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function">(<span class="params">chunk</span>) =&gt;</span> (data += chunk))</span><br><span class="line">        .<span class="property">stderr</span>.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function">(<span class="params">chunk</span>) =&gt;</span> (errorData += chunk));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意： 每个<code>conn.exec</code>都是一个单独的进程， 比如你想要进入到<code>/data/opt</code>下的文件创建一个文件夹， 比如使用<code>&amp;&amp;</code> 连续执行 <code>cd /data/opt &amp;&amp; mkdir dirDemo</code></strong></p>
+<h4 id="创建连接："><a href="#创建连接：" class="headerlink" title="创建连接："></a>创建连接：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">conn</span><br><span class="line">  .<span class="title function_">on</span>(<span class="string">&quot;ready&quot;</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;ssh连接成功&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;error&quot;</span>, error);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      conn.<span class="title function_">end</span>();</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;连接已断开...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">connect</span>(&#123;</span><br><span class="line">    <span class="attr">host</span>: config.<span class="property">serverIp</span>,</span><br><span class="line">    <span class="attr">port</span>: <span class="number">22</span>,</span><br><span class="line">    <span class="attr">username</span>: config.<span class="property">user</span>,</span><br><span class="line">    <span class="attr">password</span>: config.<span class="property">password</span>,</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在 K8s 部署环境中有多个 pods， 而且是经常变化的，那么我们需要先获取所有 pods 的名字：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">conn</span><br><span class="line">  .on(&quot;ready&quot;, async () =&gt; &#123;</span><br><span class="line">      console.log(&quot;ssh连接成功&quot;);</span><br><span class="line">      const pods = await execCommand(</span><br><span class="line">        conn,</span><br><span class="line">        `cd $&#123;config.workDir&#125; &amp;&amp;</span><br><span class="line">        kubectl --kubeconfig=$&#123;config.kubeConfig&#125; -n=$&#123;config.namespace&#125; get pods -o=jsonpath=&#x27;&#123;.items[*].metadata.name&#125; &#x27;`</span><br><span class="line">      );</span><br><span class="line">      const podList = pods.trim().split(&quot; &quot;)</span><br><span class="line"></span><br><span class="line">  &#125;)</span><br><span class="line">  .connect(&#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>命令解析：</p>
+<ol>
+<li><code>-o</code> 等于 **&#96;–output， 指定了 kubectl 命令的输出格式</li>
+<li><code>&#123;.items[\*].metadata.name&#125;</code>选取 JSON 对象中名为<code>items</code>的键下所有的元素下的<code>metadata</code>对象中的<code>name</code>字段</li>
+</ol>
+</blockquote>
+<h4 id="选择-pod"><a href="#选择-pod" class="headerlink" title="选择 pod"></a>选择 pod</h4><p>拿到所有的 pods 了，用户需要进行选择，使用库<code>inquirer</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> inquirer <span class="keyword">from</span> <span class="string">&quot;inquirer&quot;</span>;</span><br><span class="line"></span><br><span class="line">conn</span><br><span class="line">  .<span class="title function_">on</span>(<span class="string">&quot;ready&quot;</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">      ...</span><br><span class="line"> 	  <span class="comment">// 让用户选择容器</span></span><br><span class="line">      <span class="keyword">const</span> answers = <span class="keyword">await</span> inquirer.<span class="title function_">prompt</span>([</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">type</span>: <span class="string">&quot;list&quot;</span>,</span><br><span class="line">          <span class="attr">name</span>: <span class="string">&quot;podName&quot;</span>,</span><br><span class="line">          <span class="attr">message</span>: <span class="string">&quot;请选择你要打包的模块&quot;</span>,</span><br><span class="line">          <span class="attr">choices</span>: podList,</span><br><span class="line">        &#125;,</span><br><span class="line">      ]);</span><br><span class="line">      <span class="keyword">const</span> selectedPod = answers.<span class="property">podName</span>;</span><br><span class="line">      <span class="comment">// 开始在容器打包并拉取到本地</span></span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">runCompile</span>(selectedPod);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">connect</span>(&#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>编写上面代码中提到的<code>runCompile</code>：</p>
+<h4 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h4><p>将选中的 pod 打包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const runCompile = async (podName) =&gt; &#123;</span><br><span class="line">  const commands = `</span><br><span class="line">    cd $&#123;config.workDir&#125; &amp;&amp;  kubectl --kubeconfig=$&#123;config.kubeConfig&#125; -n=$&#123;config.namespace&#125; exec $&#123;podName&#125; -- sh -c &quot;</span><br><span class="line">        cd ../ &amp;&amp;</span><br><span class="line">        tar -zcvf $&#123;config.remoteFile&#125; pal-portal &amp;&amp;</span><br><span class="line">        mv pal-portal.tar.gz pal-portal &amp;&amp;</span><br><span class="line">        &amp;&amp; exit</span><br><span class="line">      &quot; `;</span><br><span class="line">  await execCommand(conn, commands);</span><br><span class="line">  console.log(&quot;pod打包完成...&quot;);</span><br><span class="line">  ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>命令解析：</p>
+<ol>
+<li>&#96;&#96;– sh -c<code>: 表示后续的参数不应该被解释为 </code>kubectl exec&#96; 的选项， 而是作为要传递给容器的命令</li>
+<li>当在 kubectl exec 命令后不要添加 -it 参数时，它会启动一个交互式会话，这在自动化脚本中会导致挂起</li>
+<li>在 kubectl exec 中使用 <code>sh -c</code> 后面接的是在 k8s 中需要执行的命令</li>
+</ol>
+</blockquote>
+<p>将打好的包复制到宿主机中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">runDeploy</span> = <span class="keyword">async</span> (<span class="params">podName</span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;从容器复制到宿主机...&quot;</span>);</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">execCommand</span>(</span><br><span class="line">    conn,</span><br><span class="line">    <span class="string">`cd <span class="subst">$&#123;config.workDir&#125;</span> &amp;&amp; kubectl --kubeconfig=<span class="subst">$&#123;config.kubeConfig&#125;</span> -n=<span class="subst">$&#123;config.namespace&#125;</span> cp <span class="subst">$&#123;podName&#125;</span>:<span class="subst">$&#123;config.remoteFile&#125;</span> <span class="subst">$&#123;config.localDir&#125;</span>/<span class="subst">$&#123;config.remoteFile&#125;</span>`</span></span><br><span class="line">  );</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;从容器复制到宿主机完成&quot;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="下载到本地"><a href="#下载到本地" class="headerlink" title="下载到本地"></a>下载到本地</h4><p>通过实例<code>conn</code>的<code>sftp</code>方法初始化一个 SFTF</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">runDeploy</span> = <span class="keyword">async</span> (<span class="params">podName</span>) =&gt; &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;通过SFTP传输文件到本地...&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> sftp = <span class="keyword">await</span> <span class="title function_">promisify</span>(conn.<span class="property">sftp</span>.<span class="title function_">bind</span>(conn))();</span><br><span class="line">  <span class="keyword">const</span> __filename = <span class="title function_">fileURLToPath</span>(<span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">url</span>);</span><br><span class="line">  <span class="keyword">const</span> __dirname = path.<span class="title function_">dirname</span>(__filename);</span><br><span class="line">  <span class="comment">// 生成宿主机路径</span></span><br><span class="line">  <span class="keyword">const</span> remoteFilePath = path.<span class="title function_">join</span>(config.<span class="property">localDir</span>, config.<span class="property">remoteFile</span>).<span class="title function_">replaceAll</span>(<span class="string">&quot;\\&quot;</span>, <span class="string">&quot;/&quot;</span>);</span><br><span class="line">  <span class="comment">// 生成本地路径</span></span><br><span class="line">  <span class="keyword">const</span> localFilePath = path.<span class="title function_">join</span>(__dirname, config.<span class="property">remoteFile</span>);</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">promisify</span>(sftp.<span class="property">fastGet</span>.<span class="title function_">bind</span>(sftp))(remoteFilePath, localFilePath);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;文件传输到本地完成:&quot;</span>, localFilePath);</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;删除Pod中的文件...&quot;</span>);</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">execCommand</span>(</span><br><span class="line">    conn,</span><br><span class="line">    <span class="string">`cd <span class="subst">$&#123;config.workDir&#125;</span> &amp;&amp; kubectl --kubeconfig=<span class="subst">$&#123;config.kubeConfig&#125;</span> -n=<span class="subst">$&#123;config.namespace&#125;</span> exec <span class="subst">$&#123;podName&#125;</span> -- rm -f <span class="subst">$&#123;config.remoteFile&#125;</span>`</span></span><br><span class="line">  );</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Pod中的文件删除完成&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;删除宿主机上的文件...&quot;</span>);</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">execCommand</span>(conn, <span class="string">`rm -f <span class="subst">$&#123;config.localDir&#125;</span>/<span class="subst">$&#123;config.remoteFile&#125;</span>`</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;宿主机上的文件删除完成&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>代码解析：</p>
+<ol>
+<li><code>replaceAll</code>为了确保生成的路径能够跨平台兼容</li>
+<li>还记得前面提到的每个<code>exec</code>都有独立的进程吗， 所有每次操作都要去进入到指定的目录</li>
+</ol>
+</blockquote>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/blog/tags/node/">node</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/blog/2024/06/24/node/Node-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6/"
+                                   title="Node-实现一个简易的脚手架"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Node-实现一个简易的脚手架</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Promisefy"><span class="nav-number">1.</span> <span class="nav-text">Promisefy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%BF%9E%E6%8E%A5%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">创建连接：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9-pod"><span class="nav-number">3.</span> <span class="nav-text">选择 pod</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%93%E5%8C%85"><span class="nav-number">4.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="nav-number">5.</span> <span class="nav-text">下载到本地</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/blog/">leihy</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Promisefy"><span class="nav-number">1.</span> <span class="nav-text">Promisefy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%BF%9E%E6%8E%A5%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">创建连接：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9-pod"><span class="nav-number">3.</span> <span class="nav-text">选择 pod</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%93%E5%8C%85"><span class="nav-number">4.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="nav-number">5.</span> <span class="nav-text">下载到本地</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/header-shrink.js"></script>
+
+<script src="/blog/js/back2top.js"></script>
+
+<script src="/blog/js/toggle-theme.js"></script>
+
+<script src="/blog/js/code-block.js"></script>
+
+<script src="/blog/js/main.js"></script>
+
+<script src="/blog/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/blog/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/blog/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/blog/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/blog/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="leihy">
+    
+    <title>
+        
+            i18n-国际化 |
+        
+        leihy&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/blog/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/blog/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"saltyfishlei.github.io","root":"/blog/","language":"cn","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"leihy's blog","author":"leihy","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"面朝大海，春暖花开。","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":false,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"jsdelivr"},"pjax":{"enable":false},"footer":{"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"/blog","version":"4.0.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/blog/">
+                    <img src="/blog/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/blog/">
+               leihy&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/blog/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/blog/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        i18n-国际化
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">leihy</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2024-03-18 00:00:00</span>
+                <span class="mobile">2024-03-18 00:00</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Thu May 09 2024 20:52:47 GMT+0800">2024-05-09 20:52:47</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/blog/tags/vue3/">vue3</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <h2 id="基于-vue-i18n-V9-的国际化实现方案分析"><a href="#基于-vue-i18n-V9-的国际化实现方案分析" class="headerlink" title="基于 vue-i18n V9 的国际化实现方案分析"></a>基于 vue-i18n V9 的国际化实现方案分析</h2><h3 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h3><p>vue-i18n 的使用可以分为四个部分：</p>
+<ol>
+<li>创建 <code>messages</code> 数据源</li>
+<li>创建 <code>locale</code> 语言变量</li>
+<li>初始化 <code>i18n</code> 实例</li>
+<li>注册 <code>i18n</code> 实例</li>
+</ol>
+<p>那么接下来我们就去实现以下：</p>
+<ol>
+<li><p>安装 <code>vue-i18n</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-i18n@9</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 <code>i18n/index.ts</code> 文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; createI18n &#125; <span class="keyword">from</span> <span class="string">&#x27;vue-i18n&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">En</span> <span class="keyword">from</span> <span class="string">&#x27;./lang/en&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Zh</span> <span class="keyword">from</span> <span class="string">&#x27;./lang/zh&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; useAppStore &#125; <span class="keyword">from</span> <span class="string">&#x27;@/stores/app&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> messages = &#123;</span><br><span class="line">  <span class="attr">en</span>: &#123;</span><br><span class="line">    ...<span class="title class_">En</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">zh</span>: &#123;</span><br><span class="line">    ...<span class="title class_">Zh</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. Create i18n instance with options</span></span><br><span class="line"><span class="keyword">const</span> i18n = <span class="title function_">createI18n</span>(&#123;</span><br><span class="line">  <span class="comment">// 使用 Composition API 模式，则需要将其设置为false</span></span><br><span class="line">  <span class="attr">legacy</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// 全局注入 $t 函数</span></span><br><span class="line">  <span class="attr">globalInjection</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">locale</span>: ’zh<span class="string">&#x27;,</span></span><br><span class="line"><span class="string">  messages</span></span><br><span class="line"><span class="string">&#125;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// Now the app has started!</span></span><br><span class="line"><span class="string">export default i18n;</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>APP.vue</code>获取当前语言并持久化：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useAppStore &#125; <span class="keyword">from</span> <span class="string">&quot;./stores/app&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; useI18n &#125; <span class="keyword">from</span> <span class="string">&quot;vue-i18n&quot;</span>;</span><br><span class="line"><span class="comment">// 处理自定义国际化</span></span><br><span class="line"><span class="keyword">const</span> i18n = <span class="title function_">useI18n</span>();</span><br><span class="line">i18n.<span class="property">locale</span>.<span class="property">value</span> = apptore.<span class="property">language</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>main.js</code> 中导入， 把 <code>i18n</code> 注册到 <code>vue</code> 实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// i18n （PS：导入放到 APP.vue 导入之前，因为后面我们会在 app.vue 中使用国际化内容）</span></span><br><span class="line"><span class="keyword">import</span> i18n <span class="keyword">from</span> <span class="string">&#x27;@/i18n&#x27;</span></span><br><span class="line">...</span><br><span class="line">app.<span class="title function_">use</span>(i18n)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 <code>i18n</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;logo-title&quot;</span> <span class="attr">v-if</span>=<span class="string">&quot;$store.getters.sidebarOpened&quot;</span>&gt;</span></span><br><span class="line">  &#123;&#123; $t(&#x27;msg.test&#x27;) &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>项目中完成国际化分成以下几步进行:</p>
+<ol>
+<li>封装 <code>langSelect</code> 组件用于修改 <code>locale</code></li>
+<li>导入 <code>el-locale</code> 语言包</li>
+<li>创建自定义语言包</li>
+</ol>
+<h3 id="封装-langSelect-组件"><a href="#封装-langSelect-组件" class="headerlink" title="封装 langSelect 组件"></a>封装 langSelect 组件</h3><ol>
+<li><p>定义 <code>store/app.ts</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineStore &#125; <span class="keyword">from</span> <span class="string">&quot;pinia&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="variable constant_">LANG</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@/constant&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; getItem, setItem &#125; <span class="keyword">from</span> <span class="string">&quot;@/util/storage&quot;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useAppStore = <span class="title function_">defineStore</span>(<span class="string">&quot;app&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">state</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">language</span>: <span class="title function_">getItem</span>(<span class="variable constant_">LANG</span>) || <span class="string">&quot;zh&quot;</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">actions</span>: &#123;</span><br><span class="line">    <span class="title function_">setLanguage</span>(<span class="params">lang: string</span>) &#123;</span><br><span class="line">      <span class="title function_">setItem</span>(<span class="variable constant_">LANG</span>, lang);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">language</span> = lang;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>constant</code> 中定义常量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 国际化</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable constant_">LANG</span> = <span class="string">&quot;language&quot;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 <code>components/LangSelect/index</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-dropdown trigger=&quot;click&quot; @command=&quot;changeLanguage&quot;&gt;</span><br><span class="line">    &lt;!-- 如果没有外层div会报错 ：getBoundingClientRect is not a function--&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;el-tooltip effect=&quot;dark&quot; content=&quot;国际化&quot; placement=&quot;top&quot;&gt;</span><br><span class="line">        &lt;svg-icon name=&quot;language&quot;&gt;&lt;/svg-icon&gt;</span><br><span class="line">      &lt;/el-tooltip&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;template #dropdown&gt;</span><br><span class="line">      &lt;el-dropdown-menu&gt;</span><br><span class="line">        &lt;el-dropdown-item :disabled=&quot;language === &#x27;zh&#x27;&quot; command=&quot;zh&quot;&gt;</span><br><span class="line">          中文</span><br><span class="line">        &lt;/el-dropdown-item&gt;</span><br><span class="line">        &lt;el-dropdown-item :disabled=&quot;language === &#x27;en&#x27;&quot; command=&quot;en&quot;&gt;</span><br><span class="line">          English</span><br><span class="line">        &lt;/el-dropdown-item&gt;</span><br><span class="line">      &lt;/el-dropdown-menu&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">  &lt;/el-dropdown&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; useI18n &#125; from &quot;vue-i18n&quot;; // 在js中引用i18n的情况</span><br><span class="line">import &#123; useAppStore &#125; from &quot;@/stores/app&quot;;</span><br><span class="line">import &#123; computed &#125; from &quot;vue&quot;;</span><br><span class="line">import &#123; ElMessage &#125; from &quot;element-plus&quot;;</span><br><span class="line"></span><br><span class="line">const appStore = useAppStore();</span><br><span class="line">const language = computed(() =&gt; appStore.language);</span><br><span class="line"></span><br><span class="line">const i18n = useI18n(); // 获取i18n实例</span><br><span class="line">const changeLanguage = (lang: string) =&gt; &#123;</span><br><span class="line">  i18n.locale.value = lang; // 切换语言</span><br><span class="line">  appStore.setLanguage(lang);</span><br><span class="line">  ElMessage.success(i18n.t(&quot;toast.switchLangSuccess&quot;));</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>navbar</code> 中导入 <code>LangSelect</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;navbar&quot;&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;div class=&quot;right-menu&quot;&gt;</span><br><span class="line">      &lt;lang-select class=&quot;right-menu-item hover-effect&quot; /&gt;</span><br><span class="line">      ...</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import LangSelect from &#x27;@/components/LangSelect&#x27;</span><br><span class="line">...</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="element-plus-国际化处理"><a href="#element-plus-国际化处理" class="headerlink" title="element-plus 国际化处理"></a>element-plus 国际化处理</h3><p>截止到目前，我们的国际化内容已经基本功能已经处理完成了。接下来需要处理的就是对应的语言包，有了语言包就可以实现整个项目中的所有国际化处理了。</p>
+<p>那么对于语言包来说，我们整个项目中会分成两部分：</p>
+<ol>
+<li><code>element-plus</code> 语言包：用来处理 <code>element</code> 组件的国际化功能</li>
+<li>自定义语言包：用来处理 <strong>非</strong><code>element</code> 组件的国际化功能</li>
+</ol>
+<p>先来看看<code>element-plus</code> 语言包：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">el-config-provider</span> <span class="attr">:locale</span>=<span class="string">&quot;locale&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">router-view</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">el-config-provider</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">&quot;ts&quot;</span> <span class="attr">setup</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">import</span> &#123; <span class="title class_">ElConfigProvider</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;element-plus&#x27;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">import</span> &#123; computed &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">import</span> &#123; useAppStore &#125; <span class="keyword">from</span> <span class="string">&#x27;./stores/app&#x27;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">import</span> zhCn <span class="keyword">from</span> <span class="string">&#x27;element-plus/dist/locale/zh-cn.mjs&#x27;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">import</span> en <span class="keyword">from</span> <span class="string">&#x27;element-plus/dist/locale/en.mjs&#x27;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">const</span> apptore = <span class="title function_">useAppStore</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">const</span> locale = <span class="title function_">computed</span>(<span class="function">() =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">return</span> apptore.<span class="property">language</span> === <span class="string">&#x27;zh&#x27;</span> ? zhCn : en;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>参考： <a class="link"   target="_blank" rel="noopener" href="https://element-plus.org/zh-CN/guide/i18n.html" >https://element-plus.org/zh-CN/guide/i18n.html<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="自定义语言包国际化处理"><a href="#自定义语言包国际化处理" class="headerlink" title="自定义语言包国际化处理"></a>自定义语言包国际化处理</h3><p>处理完 <code>element</code> 的国际化内容之后，接下来我们来处理 <strong>自定义语言包</strong>。</p>
+<p>自定义语言包我们使用了 <code>commonJS</code> 导出了一个对象，这个对象就是所有的</p>
+<ol>
+<li><p>复制 <code>lang</code> 文件夹到 <code>i18n</code> 中</p>
+</li>
+<li><p>在 <code>lang/index</code> 中，导入语言包</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> mZhLocale <span class="keyword">from</span> <span class="string">&quot;./lang/zh&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> mEnLocale <span class="keyword">from</span> <span class="string">&quot;./lang/en&quot;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>messages</code> 中注册到语言包</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> messages = &#123;</span><br><span class="line">  <span class="attr">en</span>: &#123;</span><br><span class="line">    <span class="attr">msg</span>: &#123;</span><br><span class="line">      ...mEnLocale,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">zh</span>: &#123;</span><br><span class="line">    <span class="attr">msg</span>: &#123;</span><br><span class="line">      ...mZhLocale,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="最后使用-访问："><a href="#最后使用-访问：" class="headerlink" title="最后使用&#x2F;访问："></a>最后使用&#x2F;访问：</h3><ol>
+<li><p>在 template 中： $t()</p>
+</li>
+<li><p>组件 setup 的顶层中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup lang=<span class="string">&quot;ts&quot;</span>&gt;</span><br><span class="line">  <span class="keyword">import</span> &#123;useI18n&#125; <span class="keyword">from</span> <span class="string">&#x27;vue-i18n&#x27;</span>; <span class="keyword">const</span> i18n = <span class="title function_">useI18n</span>(); i18n.<span class="title function_">t</span>() <span class="comment">// 访问</span></span><br><span class="line">  i18n.<span class="property">locale</span>.<span class="property">value</span> = <span class="string">&#x27;en&#x27;</span> <span class="comment">// 对locale赋值</span></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>非组件的 js 文件中</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> i18n <span class="keyword">from</span> <span class="string">&#x27;@/i18n/index.ts&#x27;</span>  <span class="comment">// 默认导出的实例</span></span><br><span class="line"><span class="comment">// 赋值</span></span><br><span class="line">i18n.<span class="property">global</span>.<span class="property">value</span> = <span class="string">&#x27;&#x27;</span>；</span><br></pre></td></tr></table></figure>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/blog/tags/vue3/">vue3</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/blog/2024/04/11/file-operation/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"
+                                   title="文件上传"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">文件上传</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/blog/2023/12/30/typescript/ts%E7%9A%84%E6%84%8F%E4%B9%89%E4%B8%8E%E9%BA%BB%E7%83%A6/"
+                                   title="ts的意义与麻烦"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">ts的意义与麻烦</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E-vue-i18n-V9-%E7%9A%84%E5%9B%BD%E9%99%85%E5%8C%96%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">基于 vue-i18n V9 的国际化实现方案分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">基础用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%81%E8%A3%85-langSelect-%E7%BB%84%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">封装 langSelect 组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element-plus-%E5%9B%BD%E9%99%85%E5%8C%96%E5%A4%84%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">element-plus 国际化处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80%E5%8C%85%E5%9B%BD%E9%99%85%E5%8C%96%E5%A4%84%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">自定义语言包国际化处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E4%BD%BF%E7%94%A8-%E8%AE%BF%E9%97%AE%EF%BC%9A"><span class="nav-number">1.5.</span> <span class="nav-text">最后使用&#x2F;访问：</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/blog/">leihy</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E-vue-i18n-V9-%E7%9A%84%E5%9B%BD%E9%99%85%E5%8C%96%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">基于 vue-i18n V9 的国际化实现方案分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">基础用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%81%E8%A3%85-langSelect-%E7%BB%84%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">封装 langSelect 组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element-plus-%E5%9B%BD%E9%99%85%E5%8C%96%E5%A4%84%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">element-plus 国际化处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80%E5%8C%85%E5%9B%BD%E9%99%85%E5%8C%96%E5%A4%84%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">自定义语言包国际化处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E4%BD%BF%E7%94%A8-%E8%AE%BF%E9%97%AE%EF%BC%9A"><span class="nav-number">1.5.</span> <span class="nav-text">最后使用&#x2F;访问：</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/header-shrink.js"></script>
+
+<script src="/blog/js/back2top.js"></script>
+
+<script src="/blog/js/toggle-theme.js"></script>
+
+<script src="/blog/js/code-block.js"></script>
+
+<script src="/blog/js/main.js"></script>
+
+<script src="/blog/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/blog/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/blog/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/blog/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/blog/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

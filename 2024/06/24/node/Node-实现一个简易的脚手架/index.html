@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="leihy">
+    
+    <title>
+        
+            Node-实现一个简易的脚手架 |
+        
+        leihy&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/blog/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/blog/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"saltyfishlei.github.io","root":"/blog/","language":"cn","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"leihy's blog","author":"leihy","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"面朝大海，春暖花开。","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":false,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"jsdelivr"},"pjax":{"enable":false},"footer":{"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"/blog","version":"4.0.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/blog/">
+                    <img src="/blog/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/blog/">
+               leihy&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/blog/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/blog/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Node-实现一个简易的脚手架
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">leihy</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2024-06-24 00:00:00</span>
+                <span class="mobile">2024-06-24 00:00</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Sat Jun 29 2024 16:00:14 GMT+0800">2024-06-29 16:00:14</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/blog/tags/node/">node</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <h3 id="实现一个简易的脚手架："><a href="#实现一个简易的脚手架：" class="headerlink" title="实现一个简易的脚手架："></a><strong>实现一个简易的脚手架：</strong></h3><h4 id="创建一个全局命令"><a href="#创建一个全局命令" class="headerlink" title="创建一个全局命令"></a><strong>创建一个全局命令</strong></h4><p>package.json 配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	...<span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    	...<span class="punctuation">,</span></span><br><span class="line">    	<span class="attr">&quot;cli&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node index.js&quot;</span>  <span class="comment">// 在项目下可以实现与bin命令一样的效果</span></span><br><span class="line">  	<span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  	<span class="attr">&quot;bin&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    	<span class="attr">&quot;my-cli&quot;</span><span class="punctuation">:</span> <span class="string">&quot;index.js&quot;</span>  <span class="comment">// bin命令任意文件夹可调用</span></span><br><span class="line">  	<span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行的脚本文件需要在顶部配置：以 node 环境去执行该文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env node</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hi cli&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>npm link</code>将当前包链接到全局 npm 模块缓存中, 然后就可以在任意路径下执行<code>my-cli</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\14596\Desktop&gt; my-cli</span><br><span class="line">hi cli</span><br></pre></td></tr></table></figure>
+
+<h4 id="为工具添加交互"><a href="#为工具添加交互" class="headerlink" title="为工具添加交互"></a><strong>为工具添加交互</strong></h4><p>使用<code>inquirer</code>库：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> inquirer <span class="keyword">from</span> <span class="string">&quot;inquire&quot;</span>;</span><br><span class="line"></span><br><span class="line">inquirer</span><br><span class="line">  .<span class="title function_">prompt</span>([</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="string">&quot;input&quot;</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&quot;ProjecName&quot;</span>,</span><br><span class="line">      <span class="attr">message</span>: <span class="string">&quot;请输入项目名&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="string">&quot;list&quot;</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&quot;ProjecType&quot;</span>,</span><br><span class="line">      <span class="attr">message</span>: <span class="string">&quot;请选择Vue/React&quot;</span>,</span><br><span class="line">      <span class="attr">choices</span>: [<span class="string">&quot;Vue&quot;</span>, <span class="string">&quot;React&quot;</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="string">&quot;checkbox&quot;</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&quot;projectFeature&quot;</span>,</span><br><span class="line">      <span class="attr">message</span>: <span class="string">&quot;请选择要添加的功能&quot;</span>,</span><br><span class="line">      <span class="attr">choices</span>: [<span class="string">&quot;router&quot;</span>, <span class="string">&quot;redux&quot;</span>, <span class="string">&quot;axios&quot;</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="string">&quot;confirm&quot;</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&quot;projectSave&quot;</span>,</span><br><span class="line">      <span class="attr">message</span>: <span class="string">&quot;是否要保存项目配置&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  ])</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  ProjecName: &#x27;demo&#x27;,</span></span><br><span class="line"><span class="comment">  ProjecType: &#x27;Vue&#x27;,</span></span><br><span class="line"><span class="comment">  projectFeature: [ &#x27;router&#x27;, &#x27;redux&#x27; ],</span></span><br><span class="line"><span class="comment">  projectSave: false</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：在 node14 以下是完全无法使用 ESM 语法的，在 14 版本及以上如果要使用 ESM 语法需要在<code>package.json</code>中配置<code>&quot;type&quot;: &quot;module”</code>, 否则默认支持 commonJS 语法</p>
+</blockquote>
+<h4 id="拉取项目模板"><a href="#拉取项目模板" class="headerlink" title="拉取项目模板"></a><strong>拉取项目模板</strong></h4><blockquote>
+<p>在与用户交互的时候，我们对用户所选的配置应该返回对应的模板, 但模板的处理是一项复杂的工程，仍需不断学习。<strong>这里主要的实现逻辑就为选着哪种框架，就直接拉取其代码</strong></p>
+</blockquote>
+<p>使用<code>download-git-repo</code>库</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">...</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> _target = <span class="string">&quot;Vuejs/vue&quot;</span>;</span><br><span class="line">        <span class="keyword">let</span> outputDir = path.<span class="title function_">resolve</span>(process.<span class="title function_">cwd</span>(), res.<span class="property">ProjecName</span>);  <span class="comment">// 将项目保存在进程执行处</span></span><br><span class="line">        <span class="keyword">if</span> (res.<span class="property">ProjecType</span> === <span class="string">&quot;React&quot;</span>) &#123;</span><br><span class="line">            _target = <span class="string">&quot;facebook/react&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        fs.<span class="title function_">mkdirSync</span>(outputDir);  <span class="comment">// 下载前需要创建好对应的文件夹</span></span><br><span class="line">        <span class="title function_">downloadGit</span>(<span class="string">&quot;github:&quot;</span> + _target, outputDir, &#123;&#125;, <span class="function">(<span class="params">err, res</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                <span class="keyword">throw</span> err;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;download sucessfully&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>到这里，一个简单完整的脚手架创建项目流程就已经实现了</p>
+<p>除此之外， 我们还可以为我们的<code>cli</code>添加一些命令功能</p>
+<h4 id="命令行参数添加"><a href="#命令行参数添加" class="headerlink" title="命令行参数添加"></a>命令行参数添加</h4><p>使用<code>commander</code>库</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Command</span> &#125; <span class="keyword">from</span> <span class="string">&quot;commander&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> program = <span class="keyword">new</span> <span class="title class_">Command</span>();</span><br><span class="line"></span><br><span class="line">program.<span class="title function_">version</span>(<span class="string">&quot;1.2.3&quot;</span>, <span class="string">&quot;-V, --version&quot;</span>, <span class="string">&quot;output the version number&quot;</span>); <span class="comment">// 添加版本号的特有方法</span></span><br><span class="line"><span class="comment">// 命令式</span></span><br><span class="line">program</span><br><span class="line">  .<span class="title function_">command</span>(<span class="string">&quot;create &lt;name&gt;&quot;</span>) <span class="comment">//尖括号表示必填， 方括号表示选填</span></span><br><span class="line">  .<span class="title function_">description</span>(<span class="string">&quot; create a new project powered by vue-cli-service&quot;</span>)</span><br><span class="line">  .<span class="title function_">option</span>(<span class="string">&quot;-s, --separator &lt;char&gt;&quot;</span>, <span class="string">&quot;separator character&quot;</span>, <span class="string">&quot;,&quot;</span>) <span class="comment">// 只是传参给action的第二个参数</span></span><br><span class="line">  .<span class="title function_">action</span>(<span class="function">(<span class="params">str, options</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(str, options);</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">      str: command 命令拿到的参数</span></span><br><span class="line"><span class="comment">      options: &#123;separator : &#x27;,&#x27;&#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  &#125;);</span><br><span class="line">program.<span class="title function_">parse</span>(process.<span class="property">argv</span>); <span class="comment">// -h, --help 会被自动注入</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><h4 id="为-cli-的交互字体添加一些样式"><a href="#为-cli-的交互字体添加一些样式" class="headerlink" title="为 cli 的交互字体添加一些样式"></a>为 cli 的交互字体添加一些样式</h4><p>当前创建模板的时候，字体全是白色</p>
+<p>使用<code>chalk</code>库</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> chalk <span class="keyword">from</span> <span class="string">&#x27;chalk&#x27;</span></span><br><span class="line">...</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(chalk.<span class="title function_">green</span>(<span class="string">&quot;download sucessfully&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<h4 id="下载反馈"><a href="#下载反馈" class="headerlink" title="下载反馈"></a>下载反馈</h4><p>现在从远程仓库拉取模板的时候，是一个光标在闪，不太友好。</p>
+<p>使用<code>ora</code>库</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ora <span class="keyword">from</span> <span class="string">&#x27;ora&#x27;</span>;</span><br><span class="line">...</span><br><span class="line">.<span class="title function_">then</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> spinner = <span class="title function_">ora</span>(<span class="string">&#x27;下载中&#x27;</span>).<span class="title function_">start</span>();</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">//下载完成</span></span><br><span class="line">    spinner.<span class="title function_">stop</span>()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="日常操作工具"><a href="#日常操作工具" class="headerlink" title="日常操作工具"></a>日常操作工具</h2><p>把一些经常复用的内容通过工具直接输出出来</p>
+<h3 id="命令行操作"><a href="#命令行操作" class="headerlink" title="命令行操作"></a>命令行操作</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> child_process <span class="keyword">from</span> <span class="string">&quot;child_process&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>推荐用<code>shelljs</code></p>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/blog/tags/node/">node</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/blog/2024/06/26/node/%E9%80%9A%E8%BF%87node%E7%BC%96%E5%86%99K8s%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7/"
+                                   title="Node-实现一个简易的脚手架"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Node-实现一个简易的脚手架</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/blog/2024/06/17/typescript/typescript%E7%9A%84%E5%BA%94%E7%94%A8%E5%8F%8A%E8%B8%A9%E5%9D%91/"
+                                   title="TypeScript的应用及踩坑"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">TypeScript的应用及踩坑</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">实现一个简易的脚手架：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%85%A8%E5%B1%80%E5%91%BD%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">创建一个全局命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E5%B7%A5%E5%85%B7%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92"><span class="nav-number">1.2.</span> <span class="nav-text">为工具添加交互</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%89%E5%8F%96%E9%A1%B9%E7%9B%AE%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.3.</span> <span class="nav-text">拉取项目模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E6%B7%BB%E5%8A%A0"><span class="nav-number">1.4.</span> <span class="nav-text">命令行参数添加</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95"><span class="nav-number">2.</span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA-cli-%E7%9A%84%E4%BA%A4%E4%BA%92%E5%AD%97%E4%BD%93%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%BA%9B%E6%A0%B7%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">为 cli 的交互字体添加一些样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%8F%8D%E9%A6%88"><span class="nav-number">2.2.</span> <span class="nav-text">下载反馈</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C%E5%B7%A5%E5%85%B7"><span class="nav-number"></span> <span class="nav-text">日常操作工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">命令行操作</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/blog/">leihy</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">实现一个简易的脚手架：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%85%A8%E5%B1%80%E5%91%BD%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">创建一个全局命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E5%B7%A5%E5%85%B7%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92"><span class="nav-number">1.2.</span> <span class="nav-text">为工具添加交互</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%89%E5%8F%96%E9%A1%B9%E7%9B%AE%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.3.</span> <span class="nav-text">拉取项目模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E6%B7%BB%E5%8A%A0"><span class="nav-number">1.4.</span> <span class="nav-text">命令行参数添加</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95"><span class="nav-number">2.</span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA-cli-%E7%9A%84%E4%BA%A4%E4%BA%92%E5%AD%97%E4%BD%93%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%BA%9B%E6%A0%B7%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">为 cli 的交互字体添加一些样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%8F%8D%E9%A6%88"><span class="nav-number">2.2.</span> <span class="nav-text">下载反馈</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C%E5%B7%A5%E5%85%B7"><span class="nav-number"></span> <span class="nav-text">日常操作工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">命令行操作</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/header-shrink.js"></script>
+
+<script src="/blog/js/back2top.js"></script>
+
+<script src="/blog/js/toggle-theme.js"></script>
+
+<script src="/blog/js/code-block.js"></script>
+
+<script src="/blog/js/main.js"></script>
+
+<script src="/blog/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/blog/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/blog/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/blog/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/blog/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

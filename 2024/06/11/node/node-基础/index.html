@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="leihy">
+    
+    <title>
+        
+            node基础 |
+        
+        leihy&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/blog/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/blog/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"saltyfishlei.github.io","root":"/blog/","language":"cn","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"leihy's blog","author":"leihy","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"面朝大海，春暖花开。","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":false,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"jsdelivr"},"pjax":{"enable":false},"footer":{"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"/blog","version":"4.0.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/blog/">
+                    <img src="/blog/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/blog/">
+               leihy&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/blog/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/blog/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        node基础
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">leihy</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2024-06-11 00:00:00</span>
+                <span class="mobile">2024-06-11 00:00</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Sat Jun 29 2024 16:00:05 GMT+0800">2024-06-29 16:00:05</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/blog/tags/node/">node</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <blockquote>
+<p>可以说，node 改变了前端的开发方式：</p>
+<ol>
+<li>为前端提供开发工具（vue-cli, webpack 等）</li>
+<li>提供线上环境模拟</li>
+<li>提供中间层服务器渲染（ssr，高流量项目）</li>
+<li>做后端服务（极少）</li>
+</ol>
+</blockquote>
+<h1 id="常用工具模块"><a href="#常用工具模块" class="headerlink" title="常用工具模块"></a>常用工具模块</h1><p>核心操作</p>
+<ol>
+<li>读写文件</li>
+<li>开启服务</li>
+</ol>
+<h2 id="path-路径处理工具"><a href="#path-路径处理工具" class="headerlink" title="path-路径处理工具"></a>path-路径处理工具</h2><blockquote>
+<p>tips: node 里面的全局对象是 global，不存在 window</p>
+</blockquote>
+<h3 id="basename-dirname"><a href="#basename-dirname" class="headerlink" title="basename &amp;&amp; dirname"></a>basename &amp;&amp; dirname</h3><p>路径最后一部分 &amp;&amp; 目录名，除去文件名的路径</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="string">&quot;./src/test/a.js&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// The &quot;path&quot; argument must be of type string</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(path.<span class="title function_">basename</span>(a)); <span class="comment">// a.js</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(path.<span class="title function_">dirname</span>(a)); <span class="comment">// ./src/test</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="parse-format"><a href="#parse-format" class="headerlink" title="parse &amp;&amp; format"></a>parse &amp;&amp; format</h3><p>解析路径为对象 &amp;&amp; 对象解析为路径</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(path.<span class="title function_">parse</span>(a)); <span class="comment">// &#123; root: &#x27;&#x27;, dir: &#x27;./src/test&#x27;, base: &#x27;a.js&#x27;, ext: &#x27;.js&#x27;, name: &#x27;a&#x27; &#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(</span><br><span class="line">  path.<span class="title function_">format</span>(&#123;</span><br><span class="line">    <span class="attr">root</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">dir</span>: <span class="string">&quot;./src/test&quot;</span>,</span><br><span class="line">    <span class="attr">base</span>: <span class="string">&quot;a.js&quot;</span>,</span><br><span class="line">    <span class="attr">ext</span>: <span class="string">&quot;.js&quot;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;a&quot;</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">); <span class="comment">//./src/test\a.js</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="resolve-常用"><a href="#resolve-常用" class="headerlink" title="resolve(常用)"></a>resolve(常用)</h3><p>拼接路径，常用于解析绝对路径</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;./static&quot;</span>)); <span class="comment">// C:\Users\14596\Desktop\node\static</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(path.<span class="title function_">resolve</span>(<span class="string">&quot;../&quot;</span>, <span class="string">&quot;./static&quot;</span>)); <span class="comment">// C:\Users\14596\Desktop\static</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p>字符串拼接</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(path.<span class="title function_">join</span>(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>)); <span class="comment">// a\b</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="process-进程"><a href="#process-进程" class="headerlink" title="process-进程"></a>process-进程</h2><blockquote>
+<p>程序执行的进程信息，全局变量，无需手动引入</p>
+</blockquote>
+<h3 id="argv-execArgv"><a href="#argv-execArgv" class="headerlink" title="argv &amp;&amp; execArgv"></a>argv &amp;&amp; execArgv</h3><p>启动 node 时的命令行参数 &amp;&amp; node 命令后的直接参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(process.<span class="property">argv</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">PS C:\Users\14596\Desktop\node&gt; node .\test.js -a -b</span></span><br><span class="line"><span class="comment">[</span></span><br><span class="line"><span class="comment">  &#x27;C:\\Program Files\\nodejs\\node.exe&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;C:\\Users\\14596\\Desktop\\node\\test.js&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;-a&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;-b&#x27;</span></span><br><span class="line"><span class="comment">]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(process.<span class="property">execArgv</span>); <span class="comment">// 拿到的是紧接着node所接的参数</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">PS C:\Users\14596\Desktop\node&gt; node  --abort-on-uncaught-exception .\test.js</span></span><br><span class="line"><span class="comment">[ &#x27;--abort-on-uncaught-exception&#x27; ]</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="env"><a href="#env" class="headerlink" title="env"></a>env</h3><p>用户环境信息，在日常开发中最大的作用是接收 node 环境信息</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">process.<span class="property">env</span>.<span class="property">NODE_ENV</span> = <span class="string">&quot;production&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(process.<span class="property">env</span>.<span class="property">NODE_ENV</span>); <span class="comment">// production</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="cwd"><a href="#cwd" class="headerlink" title="cwd()"></a>cwd()</h3><p>获取当前进程的工作目录</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(process.<span class="title function_">cwd</span>());</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">PS C:\Users\14596\Desktop&gt; node .\node\test.js</span></span><br><span class="line"><span class="comment">C:\Users\14596\Desktop</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>与__dirname 的区别？</p>
+<p>cwd()是执行命令行所在目录，__dirname 是被执行的文件所在目录</p>
+</blockquote>
+<h3 id="stdout-stdin"><a href="#stdout-stdin" class="headerlink" title="stdout &amp;&amp; stdin"></a>stdout &amp;&amp; stdin</h3><p>屏幕输入与输出，可实现用户交互</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">process.<span class="property">stdout</span>.<span class="title function_">write</span>(<span class="string">&quot;please write your project-name:&quot;</span>);</span><br><span class="line">process.<span class="property">stdin</span>.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res.<span class="title function_">toString</span>());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>但是现在的命令行会一直在交互进程中….</p>
+<h3 id="exit-监听"><a href="#exit-监听" class="headerlink" title="exit() &amp;&amp; 监听"></a>exit() &amp;&amp; 监听</h3><p>退出进程 &amp;&amp; 监听（退出）事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">process.<span class="property">stdin</span>.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  ...</span><br><span class="line">  process.<span class="title function_">exit</span>();</span><br><span class="line">&#125;);</span><br><span class="line">process.<span class="title function_">on</span>(<span class="string">&#x27;exit&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;创建成功&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="memoryUsage"><a href="#memoryUsage" class="headerlink" title="memoryUsage()"></a>memoryUsage()</h3><p>内存使用情况</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(process.<span class="title function_">memoryUsage</span>());</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> &#123;</span></span><br><span class="line"><span class="comment">  rss: 19128320,</span></span><br><span class="line"><span class="comment">  heapTotal: 4866048,</span></span><br><span class="line"><span class="comment">  heapUsed: 3967912,</span></span><br><span class="line"><span class="comment">  external: 221041,</span></span><br><span class="line"><span class="comment">  arrayBuffers: 11146</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>进程功能是极其复杂的，比如多进程，进程管理等，我们日常的中后台项目开发熟悉以上知识即可。</strong></p>
+<h2 id="util-工具函数"><a href="#util-工具函数" class="headerlink" title="util 工具函数"></a>util 工具函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> util = <span class="built_in">require</span>(<span class="string">&quot;util&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="promisify"><a href="#promisify" class="headerlink" title="promisify"></a>promisify</h3><p>把异步回调包装为 promise 形式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> readFile = util.<span class="title function_">promisify</span>(fs.<span class="property">readFile</span>);</span><br><span class="line"><span class="title function_">readFile</span>(<span class="string">&quot;./text.txt&quot;</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res.<span class="title function_">toString</span>());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="callbackify"><a href="#callbackify" class="headerlink" title="callbackify"></a>callbackify</h3><p>将一个返回值为 promise 的函数改为回调</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">resolve</span>(<span class="number">100</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> callback = util.<span class="title function_">callbackify</span>(fn);</span><br><span class="line"><span class="title function_">callback</span>(<span class="function">(<span class="params">error, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res); <span class="comment">// 100</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>规律： node 中所有的异步操作都是通过回调获取结果的， 几乎所有的回调函数第一个参数都是<code>错误信息</code>， 后面的才是结果</p>
+</blockquote>
+<h1 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tips:</p>
+<ol>
+<li>文件读取方法全部都是异步操作 ， 那么就会涉及到<strong>回调</strong>，promise</li>
+<li>文件操作的异步形式都会有一个回调，在最后一个参数</li>
+<li>所有方法都有同步版本，在方法后面加上<code>sync</code></li>
+</ol>
+</blockquote>
+<h2 id="文件基本操作"><a href="#文件基本操作" class="headerlink" title="文件基本操作"></a>文件基本操作</h2><h3 id="读取-readFile"><a href="#读取-readFile" class="headerlink" title="读取-readFile"></a>读取-readFile</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 异步</span></span><br><span class="line">fs.<span class="title function_">readFile</span>(<span class="string">&quot;./test1.txt&quot;</span>, <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="title function_">toString</span>());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同步</span></span><br><span class="line"><span class="keyword">const</span> data = fs.<span class="title function_">readFileSync</span>(<span class="string">&quot;./test1.txt&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="title function_">toString</span>());</span><br></pre></td></tr></table></figure>
+
+<h3 id="写入-writeFile"><a href="#写入-writeFile" class="headerlink" title="写入-writeFile"></a>写入-writeFile</h3><p>写入路径必须存在</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 异步</span></span><br><span class="line">fs.<span class="title function_">writeFile</span>(<span class="string">&quot;./test.txt&quot;</span>, <span class="string">&quot;hello writeFile&quot;</span>, <span class="function">(<span class="params">err, res</span>) =&gt;</span> &#123;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同步</span></span><br><span class="line"><span class="keyword">const</span> res = fs.<span class="title function_">writeFileSync</span>(<span class="string">&quot;./test2.txt&quot;</span>, <span class="string">&quot;hello sync&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>后续都不再书写同步方法，原理与<code>读写</code>与<code>写入</code>一致</p>
+<h3 id="删除-unlink"><a href="#删除-unlink" class="headerlink" title="删除-unlink"></a>删除-unlink</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">unlink</span>(<span class="string">&quot;./test1.txt&quot;</span>, <span class="function">() =&gt;</span> &#123;&#125;); <span class="comment">// 回调必传</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="插入-appendFile"><a href="#插入-appendFile" class="headerlink" title="插入-appendFile"></a>插入-appendFile</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">appendFile</span>(<span class="string">&quot;./test.txt&quot;</span>, <span class="string">&quot;append&quot;</span>, <span class="function">() =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="移动（重命名）-rename"><a href="#移动（重命名）-rename" class="headerlink" title="移动（重命名）- rename"></a>移动（重命名）- rename</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 重命名</span></span><br><span class="line">fs.<span class="title function_">rename</span>(<span class="string">&quot;./test.txt&quot;</span>, <span class="string">&quot;./test2.txt&quot;</span>, <span class="function">() =&gt;</span> &#123;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 移动</span></span><br><span class="line">fs.<span class="title function_">rename</span>(<span class="string">&quot;./test2.txt&quot;</span>, <span class="string">&quot;./src/test2.txt&quot;</span>, <span class="function">() =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>实际上就是删除原有的并在指定位置创建新的文件。</p>
+<h3 id="拷贝-copyFile"><a href="#拷贝-copyFile" class="headerlink" title="拷贝- copyFile"></a>拷贝- copyFile</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">copyFile</span>(<span class="string">&quot;./src/a.js&quot;</span>, <span class="string">&quot;./src/b.js&quot;</span>, <span class="function">() =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>扩展： 如果想对文件内容进行一定的修改再拷贝可以<code>读取</code>文件后，经过处理再去<code>写入</code></p>
+</blockquote>
+<h2 id="文件夹的操作"><a href="#文件夹的操作" class="headerlink" title="文件夹的操作"></a>文件夹的操作</h2><h3 id="读取-readdir"><a href="#读取-readdir" class="headerlink" title="读取-readdir"></a>读取-readdir</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">readdir</span>(<span class="string">&quot;./src&quot;</span>, <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">&#125;)[</span><br><span class="line">  <span class="comment">// 打印结果</span></span><br><span class="line">  (<span class="string">&quot;a.js&quot;</span>, <span class="string">&quot;b.js&quot;</span>, <span class="string">&quot;test2.txt&quot;</span>)</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-mkdir"><a href="#创建-mkdir" class="headerlink" title="创建-mkdir"></a>创建-mkdir</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">mkdir</span>(<span class="string">&quot;./dist&quot;</span>, <span class="function">() =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除-rmdir"><a href="#删除-rmdir" class="headerlink" title="删除-rmdir"></a>删除-rmdir</h3><p>注意：<strong>被删除的必须是空文件夹</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">rmdir</span>(<span class="string">&quot;./empty&quot;</span>, <span class="function">() =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果想要删除所有文件该如何做？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">deleteAllFile</span>(<span class="params">dirPath</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (fs.<span class="title function_">existsSync</span>(dirPath)) &#123;</span><br><span class="line">    <span class="keyword">let</span> content = fs.<span class="title function_">readdirSync</span>(dirPath);</span><br><span class="line">    content.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> fullPath = path.<span class="title function_">join</span>(dirPath, item);</span><br><span class="line">      <span class="keyword">let</span> _stat = fs.<span class="title function_">statSync</span>(fullPath);</span><br><span class="line">      <span class="comment">// 如果是目录</span></span><br><span class="line">      <span class="keyword">if</span> (_stat.<span class="title function_">isDirectory</span>()) &#123;</span><br><span class="line">        <span class="title function_">deleteDirectory</span>(fullPath);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 是文件就删除文件</span></span><br><span class="line">        fs.<span class="title function_">unlink</span>(fullPath, <span class="function">() =&gt;</span> &#123;&#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// fs.rmdirSync(dirPath); // 文件夹一起删除</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;路径不存在&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="拷贝-移动"><a href="#拷贝-移动" class="headerlink" title="拷贝 &amp;&amp; 移动"></a>拷贝 &amp;&amp; 移动</h3><p>这两个没有直接的 api，必须遍历</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">copyDir</span>(<span class="params">source, target</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!fs.<span class="title function_">existsSync</span>(source)) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;源文件夹不存在&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 目标文件夹不存在</span></span><br><span class="line">  <span class="keyword">if</span> (!fs.<span class="title function_">existsSync</span>(target)) &#123;</span><br><span class="line">    fs.<span class="title function_">mkdirSync</span>(target);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> sourceContent = fs.<span class="title function_">readdirSync</span>(source);</span><br><span class="line">  sourceContent.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> sourcePath = path.<span class="title function_">join</span>(source, item);</span><br><span class="line">    <span class="keyword">let</span> targetPath = path.<span class="title function_">join</span>(target, item);</span><br><span class="line">    <span class="keyword">let</span> source_stat = fs.<span class="title function_">statSync</span>(sourcePath);</span><br><span class="line">    <span class="keyword">if</span> (source_stat.<span class="title function_">isDirectory</span>()) &#123;</span><br><span class="line">      <span class="title function_">copyDir</span>(sourcePath);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      fs.<span class="title function_">copyFileSync</span>(sourcePath, targetPath);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面对文件夹的删除，拷贝，移动等代码主要是为了帮助理解其中的思路，一般来说推荐使用第三方库。</p>
+<h2 id="一些好用的第三方库"><a href="#一些好用的第三方库" class="headerlink" title="一些好用的第三方库"></a>一些好用的第三方库</h2><h3 id="fs-extra"><a href="#fs-extra" class="headerlink" title="fs-extra"></a>fs-extra</h3><blockquote>
+<p><code>fs-extra</code> adds file system methods that aren’t included in the native <code>fs</code> module and adds promise support to the <code>fs</code> methods</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 复制文件夹</span></span><br><span class="line">fse.<span class="title function_">copySync</span>(<span class="string">&quot;./src&quot;</span>, <span class="string">&quot;./target&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 移动文件夹</span></span><br><span class="line">fse.<span class="title function_">moveSync</span>(<span class="string">&quot;./dist&quot;</span>, <span class="string">&quot;./target&quot;</span>); <span class="comment">// dist文件夹的内容移动到指定文件夹</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 清空文件夹</span></span><br><span class="line">fse.<span class="title function_">emptyDirSync</span>(<span class="string">&quot;./target&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除文件夹</span></span><br><span class="line">fse.<span class="title function_">removeSync</span>(<span class="string">&quot;./target&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="compressing"><a href="#compressing" class="headerlink" title="compressing"></a>compressing</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">compressing.<span class="property">tgz</span>.<span class="title function_">compressDir</span>(<span class="string">&quot;./src&quot;</span>, <span class="string">&quot;./src.tgz&quot;</span>);</span><br><span class="line">compressing.<span class="property">tgz</span>.<span class="title function_">uncompress</span>(<span class="string">&quot;./src.tgz&quot;</span>, <span class="string">&quot;./&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>npm 官网： <a class="link"   target="_blank" rel="noopener" href="https://www.npmjs.com/package/compressing" >https://www.npmjs.com/package/compressing<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="buff-与流"><a href="#buff-与流" class="headerlink" title="buff 与流"></a>buff 与流</h1><blockquote>
+<p>我们在实际开发中基本不会涉及到 Buffer 与 Stream 的操作，这一节主要是理解一些服务的底层运作原理，比如 http 服务</p>
+</blockquote>
+<h2 id="buffer"><a href="#buffer" class="headerlink" title="buffer"></a>buffer</h2><p><code>buffer</code>可以理解为一个固定长度的“字符串”数组，存在于 v8 内存，存储文件二进制内容的缓冲区</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fse.<span class="title function_">readFile</span>(<span class="string">&quot;./test.js&quot;</span>, <span class="function">(<span class="params">err, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 这里的data 就是buffer</span></span><br><span class="line">  <span class="comment">// 后续处理</span></span><br><span class="line">  <span class="keyword">let</span> data = res.<span class="title function_">toString</span>();</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Buffer-类的常用操作"><a href="#Buffer-类的常用操作" class="headerlink" title="Buffer 类的常用操作"></a>Buffer 类的常用操作</h3><p><strong>alloc</strong>：初始化的新 <code>Buffer</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// If `fill` is `undefined`, the`Buffer` will be zero-filled</span></span><br><span class="line"><span class="keyword">const</span> buf = <span class="title class_">Buffer</span>.<span class="title function_">alloc</span>(<span class="number">5</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(buf); <span class="comment">//  &lt;Buffer 00 00 00 00 00&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// If `fill` is specified, the allocated `Buffer` will be initialized by calling `buf.fill(fill)`.</span></span><br><span class="line"><span class="keyword">const</span> buf = <span class="title class_">Buffer</span>.<span class="title function_">alloc</span>(<span class="number">5</span>, <span class="string">&quot;123&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(buf.<span class="title function_">toString</span>()); <span class="comment">// Prints: 12312</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>from</strong>： 新建 buffer。从现有的数据结构创建或复制一个 <code>Buffer</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> buf = <span class="title class_">Buffer</span>.<span class="title function_">from</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123; <span class="attr">a</span>: <span class="number">1</span> &#125;));</span><br></pre></td></tr></table></figure>
+
+<p><strong>isBuffer</strong>：判断是否为<code>Buffer</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Returns `true` if `obj` is a `Buffer`, `false` otherwise.</span></span><br><span class="line"><span class="title class_">Buffer</span>.<span class="title function_">isBuffer</span>(buf);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Buffer-对象常用操作"><a href="#Buffer-对象常用操作" class="headerlink" title="Buffer 对象常用操作"></a>Buffer 对象常用操作</h3><p><strong>toString()</strong> ：Decodes <code>buf</code> to a string</p>
+<p><strong>length：</strong>The length of the array</p>
+<h2 id="流（Stream）"><a href="#流（Stream）" class="headerlink" title="流（Stream）"></a>流（Stream）</h2><p>可理解为一个管道， 作为<code>Buffer</code>的传输通道</p>
+<p>使用场景： 大文件传输等</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> readStream = fs.<span class="title function_">createReadStream</span>(<span class="string">&quot;./test.pdf&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> writeStream = fs.<span class="title function_">createWriteStream</span>(<span class="string">&quot;./test2.pdf&quot;</span>);</span><br><span class="line">readStream.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function">(<span class="params">chunk</span>) =&gt;</span> &#123;</span><br><span class="line">  writeStream.<span class="title function_">write</span>(chunk);</span><br><span class="line">&#125;);</span><br><span class="line">readStream.<span class="title function_">on</span>(<span class="string">&quot;close&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;读取完毕&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">writeStream.<span class="title function_">on</span>(<span class="string">&quot;finish&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;写入完成&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果不作其他处理，可以简写为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readStream.<span class="title function_">pipe</span>(writeStream);</span><br></pre></td></tr></table></figure>
+
+<h1 id="开启-http-等各种服务"><a href="#开启-http-等各种服务" class="headerlink" title="开启 http 等各种服务"></a>开启 http 等各种服务</h1><hr>
+<p>title: node 基础（4）- 开启 http 等各种服务<br>date: 2024-6-22<br>tags:</p>
+<ul>
+<li>node</li>
+</ul>
+<hr>
+<p>网络协议的共同的：</p>
+<ol>
+<li>都会有客户端和服务端</li>
+<li>大多数操作都是流的形式</li>
+</ol>
+<h2 id="http"><a href="#http" class="headerlink" title="http"></a>http</h2><h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><ol>
+<li><p>开启一个服务，服务的本质就是<strong>收到请求，返回内容</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.<span class="title function_">createServer</span>();</span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&quot;request&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">end</span>(<span class="string">&quot;hello word&quot;</span>); <span class="comment">// res的本质就是写入流</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;启动成功&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据网址显示不同页面</p>
+<ol>
+<li><p>借助<code>url</code>模块对拿到的 url 进行处理，分离<code>pathName</code>和<code>query</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">&quot;url&quot;</span>);</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> &#123;pathname, query&#125; = url.<span class="title function_">parse</span>(req.<span class="property">url</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写不同页面的逻辑</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (pathname === <span class="string">&#x27;/page1&#x27;</span>) &#123;</span><br><span class="line">    res.<span class="title function_">write</span>(<span class="string">&#x27;hello&#x27;</span>) <span class="comment">// 前面提到res实际上是写入流, 所以可以往里面写入数据</span></span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;page1&#x27;</span>)  <span class="comment">// end后的代码不再执行</span></span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果返回一个<code>html</code>文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">if</span> (pathname === <span class="string">&quot;/index.html&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> readStream = fs.<span class="title function_">createReadStream</span>(<span class="string">&#x27;./index.html&#x27;</span>); <span class="comment">// 将html读作流</span></span><br><span class="line">    readStream.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function">(<span class="params">chunk</span>) =&gt;</span> &#123;</span><br><span class="line">   	 res.<span class="title function_">write</span>(chunk);</span><br><span class="line">    &#125;);</span><br><span class="line">    readStream.<span class="title function_">on</span>(<span class="string">&quot;close&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    	res.<span class="title function_">end</span>();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果在 html 中引入了静态资源</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">// 当html引入了静态资源的时候，html加载完成后就会发起请求静态资源, 也需要一个接口</span></span><br><span class="line"><span class="keyword">if</span> (pathname === <span class="string">&quot;/index.css&quot;</span>) &#123;</span><br><span class="line">	<span class="keyword">let</span> indexCss = fs.<span class="title function_">createReadStream</span>(<span class="string">&quot;./index.css&quot;</span>);</span><br><span class="line">    indexCss.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function">(<span class="params">chunk</span>) =&gt;</span> &#123;</span><br><span class="line">    	res.<span class="title function_">write</span>(chunk);</span><br><span class="line">    &#125;);</span><br><span class="line">	indexCss.<span class="title function_">on</span>(<span class="string">&quot;end&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">		res.<span class="title function_">end</span>();</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>编写 get 接口</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (method === <span class="string">&quot;GET&quot;</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (pathname === <span class="string">&quot;/list&quot;</span>) &#123;</span><br><span class="line">    res.<span class="title function_">end</span>(</span><br><span class="line">      <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;</span><br><span class="line">        <span class="attr">data</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">      &#125;)</span><br><span class="line">    );</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    res.<span class="property">statusCode</span> = <span class="number">404</span>; <span class="comment">// 设置响应状态码</span></span><br><span class="line">    res.<span class="title function_">setHeader</span>(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json; charset=utf-8&quot;</span>); <span class="comment">// 设置响应头</span></span><br><span class="line">    res.<span class="title function_">end</span>(</span><br><span class="line">      <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;</span><br><span class="line">        <span class="attr">message</span>: <span class="string">&quot;接口不存在&quot;</span>,</span><br><span class="line">      &#125;)</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写 post 请求，本质上是获取可读流的内容（req)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><ol>
+<li><p>GET 方式请求</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">http.<span class="title function_">get</span>(<span class="string">&quot;http://localhost:3000/list&quot;</span>, <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// res : 可读流</span></span><br><span class="line">  <span class="keyword">let</span> data = <span class="string">&quot;&quot;</span>;</span><br><span class="line">  res.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function">(<span class="params">chunk</span>) =&gt;</span> &#123;</span><br><span class="line">    data += chunk;</span><br><span class="line">  &#125;);</span><br><span class="line">  res.<span class="title function_">on</span>(<span class="string">&quot;end&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">JSON</span>.<span class="title function_">parse</span>(data));</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Post 方式请求</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> request = http.<span class="title function_">request</span>(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">hostname</span>: <span class="string">&quot;localhost&quot;</span>,</span><br><span class="line">    <span class="attr">port</span>: <span class="number">3000</span>,</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&quot;/updateName&quot;</span>,</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> data = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    res.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function">(<span class="params">chunk</span>) =&gt;</span> &#123;</span><br><span class="line">      data += chunk;</span><br><span class="line">    &#125;);</span><br><span class="line">    res.<span class="title function_">on</span>(<span class="string">&quot;end&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"><span class="comment">// The &quot;chunk&quot; argument must be of type string or an instance of Buffer or Uint8Array</span></span><br><span class="line">request.<span class="title function_">write</span>(</span><br><span class="line">  <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">1</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br><span class="line">request.<span class="title function_">end</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置请求头 ： request.setHeader</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="https"><a href="#https" class="headerlink" title="https"></a>https</h2><p>安装并创建证书（非正式）, 参考：<a class="link"   target="_blank" rel="noopener" href="https://www.npmjs.com/package/mkcert#create-a-certificate-authority" >https://www.npmjs.com/package/mkcert#create-a-certificate-authority<i class="fas fa-external-link-alt"></i></a></p>
+<p>创建<code>https</code>服务：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// httpsServer.js</span></span><br><span class="line"><span class="keyword">const</span> https = <span class="built_in">require</span>(<span class="string">&quot;https&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> certOption = &#123;</span><br><span class="line">  <span class="attr">key</span>: fs.<span class="title function_">readFileSync</span>(path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;./cert.key&quot;</span>)),</span><br><span class="line">  <span class="attr">cert</span>: fs.<span class="title function_">readFileSync</span>(path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;./cert.crt&quot;</span>)),</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> app = https.<span class="title function_">createServer</span>(certOption);</span><br><span class="line">app.<span class="title function_">on</span>(<span class="string">&quot;request&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">end</span>(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;启动https服务成功&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>其他与<code>http</code>服务大同小异</p>
+<h2 id="websocket"><a href="#websocket" class="headerlink" title="websocket"></a>websocket</h2><p>原生构建过于麻烦，这里推荐使用第三方库<code>ws</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// wsServer.js</span></span><br><span class="line"><span class="keyword">const</span> ws = <span class="built_in">require</span>(<span class="string">&quot;ws&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> webSocketServer = ws.<span class="property">WebSocketServer</span>;</span><br><span class="line"><span class="keyword">const</span> wss = <span class="keyword">new</span> <span class="title function_">webSocketServer</span>(&#123;</span><br><span class="line">  <span class="attr">port</span>: <span class="number">8080</span>,</span><br><span class="line">&#125;);</span><br><span class="line">wss.<span class="title function_">on</span>(<span class="string">&quot;connection&quot;</span>, <span class="function">(<span class="params">ws</span>) =&gt;</span> &#123;</span><br><span class="line">  ws.<span class="title function_">on</span>(<span class="string">&quot;message&quot;</span>, <span class="function">(<span class="params">res, err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res.<span class="title function_">toString</span>());</span><br><span class="line">  &#125;);</span><br><span class="line">  ws.<span class="title function_">send</span>(<span class="string">&quot;返回ws数据&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>客户端（浏览器）交互：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// wsClient.js</span></span><br><span class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> <span class="title class_">WebSocket</span>(<span class="string">&quot;ws://localhost:8080&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 连接完成</span></span><br><span class="line">ws.<span class="property">onopen</span> = <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;WebSocket is open now.&quot;</span>);</span><br><span class="line">  ws.<span class="title function_">send</span>(<span class="string">&quot;hi ws&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 服务端那边有数据</span></span><br><span class="line">ws.<span class="property">onmessage</span> = <span class="keyword">function</span> (<span class="params">res</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;从服务端来的数据&quot;</span>, res);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>客户端（node）交互：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Websocket</span> = <span class="built_in">require</span>(<span class="string">&quot;ws&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> <span class="title class_">Websocket</span>(<span class="string">&quot;ws://localhost:8080&quot;</span>);</span><br><span class="line">ws.<span class="property">onopen</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;WebSocket is open now.&quot;</span>);</span><br><span class="line">  ws.<span class="title function_">send</span>(<span class="string">&quot;hi ws&quot;</span>); <span class="comment">// 连接是异步的，代码写在连接完成后</span></span><br><span class="line">&#125;;</span><br><span class="line">ws.<span class="property">onmessage</span> = <span class="keyword">function</span> (<span class="params">res</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;从服务端来的数据&quot;</span>, res);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/blog/tags/node/">node</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/blog/2024/06/11/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82import%E5%88%B0%E5%BA%95%E5%9C%A8%E5%BC%95%E5%85%A5%E4%BB%80%E4%B9%88/"
+                                   title="一文搞懂import到底在引入什么"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">一文搞懂import到底在引入什么</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/blog/2024/06/08/react/React%E5%BF%85%E8%B8%A9%E5%9D%91%E5%8F%8A%E5%85%B6%E8%83%8C%E5%90%8E%E5%8E%9F%E7%90%86/"
+                                   title="React必踩坑及其背后原理"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">React必踩坑及其背后原理</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E6%A8%A1%E5%9D%97"><span class="nav-number">1.</span> <span class="nav-text">常用工具模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#path-%E8%B7%AF%E5%BE%84%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-number">1.1.</span> <span class="nav-text">path-路径处理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#basename-dirname"><span class="nav-number">1.1.1.</span> <span class="nav-text">basename &amp;&amp; dirname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parse-format"><span class="nav-number">1.1.2.</span> <span class="nav-text">parse &amp;&amp; format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resolve-%E5%B8%B8%E7%94%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">resolve(常用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join"><span class="nav-number">1.1.4.</span> <span class="nav-text">join</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#process-%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">process-进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#argv-execArgv"><span class="nav-number">1.2.1.</span> <span class="nav-text">argv &amp;&amp; execArgv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#env"><span class="nav-number">1.2.2.</span> <span class="nav-text">env</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cwd"><span class="nav-number">1.2.3.</span> <span class="nav-text">cwd()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stdout-stdin"><span class="nav-number">1.2.4.</span> <span class="nav-text">stdout &amp;&amp; stdin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exit-%E7%9B%91%E5%90%AC"><span class="nav-number">1.2.5.</span> <span class="nav-text">exit() &amp;&amp; 监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#memoryUsage"><span class="nav-number">1.2.6.</span> <span class="nav-text">memoryUsage()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#util-%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">util 工具函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#promisify"><span class="nav-number">1.3.1.</span> <span class="nav-text">promisify</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#callbackify"><span class="nav-number">1.3.2.</span> <span class="nav-text">callbackify</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">文件基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96-readFile"><span class="nav-number">2.1.1.</span> <span class="nav-text">读取-readFile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%85%A5-writeFile"><span class="nav-number">2.1.2.</span> <span class="nav-text">写入-writeFile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4-unlink"><span class="nav-number">2.1.3.</span> <span class="nav-text">删除-unlink</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5-appendFile"><span class="nav-number">2.1.4.</span> <span class="nav-text">插入-appendFile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%EF%BC%88%E9%87%8D%E5%91%BD%E5%90%8D%EF%BC%89-rename"><span class="nav-number">2.1.5.</span> <span class="nav-text">移动（重命名）- rename</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D-copyFile"><span class="nav-number">2.1.6.</span> <span class="nav-text">拷贝- copyFile</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.</span> <span class="nav-text">文件夹的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96-readdir"><span class="nav-number">2.2.1.</span> <span class="nav-text">读取-readdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-mkdir"><span class="nav-number">2.2.2.</span> <span class="nav-text">创建-mkdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4-rmdir"><span class="nav-number">2.2.3.</span> <span class="nav-text">删除-rmdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D-%E7%A7%BB%E5%8A%A8"><span class="nav-number">2.2.4.</span> <span class="nav-text">拷贝 &amp;&amp; 移动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93"><span class="nav-number">2.3.</span> <span class="nav-text">一些好用的第三方库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fs-extra"><span class="nav-number">2.3.1.</span> <span class="nav-text">fs-extra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#compressing"><span class="nav-number">2.3.2.</span> <span class="nav-text">compressing</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#buff-%E4%B8%8E%E6%B5%81"><span class="nav-number">3.</span> <span class="nav-text">buff 与流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#buffer"><span class="nav-number">3.1.</span> <span class="nav-text">buffer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer-%E7%B1%BB%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">3.1.1.</span> <span class="nav-text">Buffer 类的常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer-%E5%AF%B9%E8%B1%A1%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">3.1.2.</span> <span class="nav-text">Buffer 对象常用操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%EF%BC%88Stream%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">流（Stream）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%90%AF-http-%E7%AD%89%E5%90%84%E7%A7%8D%E6%9C%8D%E5%8A%A1"><span class="nav-number">4.</span> <span class="nav-text">开启 http 等各种服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#http"><span class="nav-number">4.1.</span> <span class="nav-text">http</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">4.1.1.</span> <span class="nav-text">服务端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">4.1.2.</span> <span class="nav-text">客户端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#https"><span class="nav-number">4.2.</span> <span class="nav-text">https</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#websocket"><span class="nav-number">4.3.</span> <span class="nav-text">websocket</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/blog/">leihy</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E6%A8%A1%E5%9D%97"><span class="nav-number">1.</span> <span class="nav-text">常用工具模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#path-%E8%B7%AF%E5%BE%84%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-number">1.1.</span> <span class="nav-text">path-路径处理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#basename-dirname"><span class="nav-number">1.1.1.</span> <span class="nav-text">basename &amp;&amp; dirname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parse-format"><span class="nav-number">1.1.2.</span> <span class="nav-text">parse &amp;&amp; format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resolve-%E5%B8%B8%E7%94%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">resolve(常用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join"><span class="nav-number">1.1.4.</span> <span class="nav-text">join</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#process-%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">process-进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#argv-execArgv"><span class="nav-number">1.2.1.</span> <span class="nav-text">argv &amp;&amp; execArgv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#env"><span class="nav-number">1.2.2.</span> <span class="nav-text">env</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cwd"><span class="nav-number">1.2.3.</span> <span class="nav-text">cwd()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stdout-stdin"><span class="nav-number">1.2.4.</span> <span class="nav-text">stdout &amp;&amp; stdin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exit-%E7%9B%91%E5%90%AC"><span class="nav-number">1.2.5.</span> <span class="nav-text">exit() &amp;&amp; 监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#memoryUsage"><span class="nav-number">1.2.6.</span> <span class="nav-text">memoryUsage()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#util-%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">util 工具函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#promisify"><span class="nav-number">1.3.1.</span> <span class="nav-text">promisify</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#callbackify"><span class="nav-number">1.3.2.</span> <span class="nav-text">callbackify</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">文件基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96-readFile"><span class="nav-number">2.1.1.</span> <span class="nav-text">读取-readFile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%85%A5-writeFile"><span class="nav-number">2.1.2.</span> <span class="nav-text">写入-writeFile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4-unlink"><span class="nav-number">2.1.3.</span> <span class="nav-text">删除-unlink</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5-appendFile"><span class="nav-number">2.1.4.</span> <span class="nav-text">插入-appendFile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%EF%BC%88%E9%87%8D%E5%91%BD%E5%90%8D%EF%BC%89-rename"><span class="nav-number">2.1.5.</span> <span class="nav-text">移动（重命名）- rename</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D-copyFile"><span class="nav-number">2.1.6.</span> <span class="nav-text">拷贝- copyFile</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.</span> <span class="nav-text">文件夹的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96-readdir"><span class="nav-number">2.2.1.</span> <span class="nav-text">读取-readdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-mkdir"><span class="nav-number">2.2.2.</span> <span class="nav-text">创建-mkdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4-rmdir"><span class="nav-number">2.2.3.</span> <span class="nav-text">删除-rmdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D-%E7%A7%BB%E5%8A%A8"><span class="nav-number">2.2.4.</span> <span class="nav-text">拷贝 &amp;&amp; 移动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93"><span class="nav-number">2.3.</span> <span class="nav-text">一些好用的第三方库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fs-extra"><span class="nav-number">2.3.1.</span> <span class="nav-text">fs-extra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#compressing"><span class="nav-number">2.3.2.</span> <span class="nav-text">compressing</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#buff-%E4%B8%8E%E6%B5%81"><span class="nav-number">3.</span> <span class="nav-text">buff 与流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#buffer"><span class="nav-number">3.1.</span> <span class="nav-text">buffer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer-%E7%B1%BB%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">3.1.1.</span> <span class="nav-text">Buffer 类的常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer-%E5%AF%B9%E8%B1%A1%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">3.1.2.</span> <span class="nav-text">Buffer 对象常用操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%EF%BC%88Stream%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">流（Stream）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%90%AF-http-%E7%AD%89%E5%90%84%E7%A7%8D%E6%9C%8D%E5%8A%A1"><span class="nav-number">4.</span> <span class="nav-text">开启 http 等各种服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#http"><span class="nav-number">4.1.</span> <span class="nav-text">http</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">4.1.1.</span> <span class="nav-text">服务端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">4.1.2.</span> <span class="nav-text">客户端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#https"><span class="nav-number">4.2.</span> <span class="nav-text">https</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#websocket"><span class="nav-number">4.3.</span> <span class="nav-text">websocket</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/header-shrink.js"></script>
+
+<script src="/blog/js/back2top.js"></script>
+
+<script src="/blog/js/toggle-theme.js"></script>
+
+<script src="/blog/js/code-block.js"></script>
+
+<script src="/blog/js/main.js"></script>
+
+<script src="/blog/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/blog/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/blog/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/blog/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/blog/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

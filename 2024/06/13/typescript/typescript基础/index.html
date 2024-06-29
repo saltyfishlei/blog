@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="leihy">
+    
+    <title>
+        
+            TypeScript基础语法 |
+        
+        leihy&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/blog/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/blog/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"saltyfishlei.github.io","root":"/blog/","language":"cn","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"leihy's blog","author":"leihy","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"面朝大海，春暖花开。","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":false,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"jsdelivr"},"pjax":{"enable":false},"footer":{"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"/blog","version":"4.0.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/blog/">
+                    <img src="/blog/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/blog/">
+               leihy&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/blog/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/blog/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        TypeScript基础语法
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">leihy</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2024-06-13 00:00:00</span>
+                <span class="mobile">2024-06-13 00:00</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Sat Jun 29 2024 16:01:40 GMT+0800">2024-06-29 16:01:40</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/blog/tags/TypeScript/">TypeScript</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <blockquote>
+<p>记哪些？</p>
+<ol>
+<li>各种类型的写法和操作</li>
+<li>Typescript 一些机制</li>
+<li>一些关键字怎么用</li>
+</ol>
+<p>理解哪些？</p>
+<ol>
+<li>工程化的配置</li>
+<li>一些实战中常见需求怎么去描述类型</li>
+<li>编写一些常见的东西</li>
+</ol>
+</blockquote>
+<h2 id="为什么需要-TypeScript？"><a href="#为什么需要-TypeScript？" class="headerlink" title="为什么需要 TypeScript？"></a>为什么需要 TypeScript？</h2><p>项目需要编写一个全局数组排序方法</p>
+<p>写了一个组件，该组件的事件必须具有一个特定的参数</p>
+<h2 id="调试工具"><a href="#调试工具" class="headerlink" title="调试工具"></a>调试工具</h2><p><code>ts-node</code> : 模拟浏览器环境<br><code>typescript</code> : 将 ts 文件编译为 js 文件</p>
+<p>当然，这两个工具仅用于自己学习使用，实战中的构建工具都已经处理好了。</p>
+<h2 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h2><blockquote>
+<p>本节要点：</p>
+<ol>
+<li>string，number，boolean，null，undefined 等基础类型</li>
+<li>typescipt 如何限定一个变量的类型</li>
+<li>字面量类型</li>
+</ol>
+</blockquote>
+<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">str</span>: <span class="built_in">string</span> = <span class="string">&quot;leihy&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果要设置number类型</span></span><br><span class="line">str = <span class="number">123</span>;</span><br><span class="line"><span class="comment">//Type &#x27;number&#x27; is not assignable to type &#x27;string&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="number"><a href="#number" class="headerlink" title="number"></a>number</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">b</span>: <span class="built_in">number</span> = <span class="number">123</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="boolean"><a href="#boolean" class="headerlink" title="boolean"></a>boolean</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">c</span>: <span class="built_in">boolean</span> = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tips： 当存在 tsconfig.json 文件时，会默认关闭严格模式，此时就可以将 undefine，null 赋值给各类型</p>
+</blockquote>
+<h3 id="字面量"><a href="#字面量" class="headerlink" title="字面量"></a>字面量</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 内容都被限定了</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">ENV</span>: <span class="string">&quot;dev&quot;</span> | <span class="string">&quot;prod&quot;</span> | <span class="string">&quot;test&quot;</span> = <span class="string">&quot;dev&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="联合类型"><a href="#联合类型" class="headerlink" title="联合类型"></a>联合类型</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只能是文本或数字</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">test</span>: <span class="built_in">string</span> | <span class="built_in">number</span> = <span class="string">&quot;123&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 纯(数字）类型</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr1</span>: <span class="built_in">number</span>[] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="comment">// 泛型定义</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr2</span>: <span class="title class_">Array</span>&lt;<span class="built_in">number</span>&gt; = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="comment">// 元组: 指定位置必须有指定类型的元素, 不能多与少</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr2</span>: [<span class="built_in">string</span>, <span class="built_in">number</span>] = [<span class="string">&quot;1&quot;</span>, <span class="number">2</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">obj</span>: &#123; <span class="attr">x</span>: <span class="built_in">number</span>; <span class="attr">y</span>: <span class="built_in">number</span> &#125; = &#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span> &#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="案例扩展"><a href="#案例扩展" class="headerlink" title="案例扩展"></a>案例扩展</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 元素是字符串或字符串</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr1</span>: (<span class="built_in">number</span> | <span class="built_in">string</span>)[] = [<span class="number">1</span>, <span class="string">&quot;2&quot;</span>];</span><br><span class="line"><span class="comment">// 数组中有一个元素是可有可无的</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr2</span>: [<span class="built_in">string</span>, <span class="built_in">number</span>?] = [<span class="string">&quot;1&quot;</span>];</span><br><span class="line"><span class="comment">// 数组中前面固定，后面可以随意添加</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr3</span>: [<span class="built_in">string</span>, <span class="built_in">number</span>, ...(<span class="built_in">number</span> | <span class="built_in">string</span>)[]] = [<span class="string">&quot;1&quot;</span>];</span><br><span class="line"><span class="comment">// 规定键名是一个数字</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">obj1</span>: &#123; [<span class="attr">propsName</span>: <span class="built_in">number</span>]: <span class="built_in">number</span> &#125; = &#123; <span class="number">123</span>: <span class="number">111</span>, <span class="number">456</span>: <span class="number">1323</span> &#125;; <span class="comment">// 可以发现其他数字键名可以不用再声明了</span></span><br><span class="line"><span class="comment">// 属性可有可无</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">obj2</span>: &#123; <span class="attr">x</span>: <span class="built_in">number</span>; y?: <span class="built_in">number</span> &#125; = &#123; <span class="attr">x</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="comment">// 固定某几个属性，其他属性随便加</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">obj3</span>: &#123; <span class="attr">x</span>: <span class="built_in">number</span>; <span class="attr">y</span>: <span class="built_in">number</span>; [<span class="attr">propsName</span>: <span class="built_in">string</span>]: <span class="built_in">string</span> &#125; = &#123;</span><br><span class="line">  <span class="attr">x</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">y</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;123&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tips—— 可选</p>
+<p>ts 中经常用<code>?</code>号来属性可选，比如对象中可选属性，方法中可选参数</p>
+</blockquote>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接定义一个函数的参数与返回</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn1</span>(<span class="params">a: <span class="built_in">string</span></span>): <span class="built_in">string</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个变量为函数类型</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">fn2</span>: <span class="function">(<span class="params">a: <span class="built_in">string</span></span>) =&gt;</span> <span class="built_in">string</span> = <span class="keyword">function</span> (<span class="params">b</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;123&quot;</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h4><ol>
+<li>参数可选 + 剩余参数处理</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn1</span>(<span class="params">a: <span class="built_in">string</span>, b?: <span class="built_in">string</span>, ...args: <span class="built_in">number</span>[]</span>): <span class="built_in">string</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(args); <span class="comment">// 获取所有没有被显式接收的参数</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 编译为js</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn1</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> args = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> _i = <span class="number">2</span>; _i &lt; <span class="variable language_">arguments</span>.<span class="property">length</span>; _i++) &#123;</span><br><span class="line">    args[_i - <span class="number">2</span>] = <span class="variable language_">arguments</span>[_i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(args);</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>默认值：参数类型由默认值的类型推断， 并且带有可选的含义了</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn1</span>(<span class="params">a = <span class="number">1</span></span>): <span class="built_in">number</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>this 处理：</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn3</span>(<span class="params"><span class="variable language_">this</span>: <span class="built_in">void</span>, a: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">  <span class="comment">// 函数内就正常使用this</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">fn3</span>(<span class="string">&quot;hi&quot;</span>); <span class="comment">// 传递的参数会被a接收到</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="类（class）"><a href="#类（class）" class="headerlink" title="类（class）"></a>类（class）</h2><h3 id="js-对比-ts-的-class"><a href="#js-对比-ts-的-class" class="headerlink" title="js 对比 ts 的 class"></a>js 对比 ts 的 class</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>js</th>
+<th>ts</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>公有属性</td>
+<td>默认共有</td>
+<td>默认公有，多了 public（默认）</td>
+</tr>
+<tr>
+<td>私有属性</td>
+<td>无直接实现</td>
+<td>private</td>
+</tr>
+<tr>
+<td>静态属性</td>
+<td>无直接实现，提案有 static</td>
+<td>static</td>
+</tr>
+<tr>
+<td>只读</td>
+<td>无直接实现</td>
+<td>readonly</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>无直接实现</td>
+<td>protected</td>
+</tr>
+</tbody></table>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test.ts</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TSClass</span> &#123;</span><br><span class="line">  pub = <span class="number">1</span>; <span class="comment">// 公有属性</span></span><br><span class="line">  <span class="keyword">private</span> pri = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">static</span> sta = <span class="number">3</span>;</span><br><span class="line">  <span class="keyword">readonly</span> read = <span class="number">4</span>;</span><br><span class="line">  <span class="keyword">protected</span> pro = <span class="number">5</span>;</span><br><span class="line">  <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">pro</span> = <span class="number">7</span>; <span class="comment">// 只能在类中修改与读取</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 静态属性只能在类上获取</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">TSClass</span>.<span class="property">sta</span>); <span class="comment">// 3</span></span><br><span class="line"><span class="keyword">let</span> test = <span class="keyword">new</span> <span class="title class_">TSClass</span>();</span><br><span class="line">test.<span class="property">pri</span>; <span class="comment">//Property &#x27;pri&#x27; is private and only accessible within class &#x27;TSClass&#x27;</span></span><br><span class="line">test.<span class="property">sta</span>; <span class="comment">// Property &#x27;sta&#x27; does not exist on type &#x27;TSClass&#x27;</span></span><br><span class="line">test.<span class="property">sta</span> = <span class="number">5</span>; <span class="comment">// Cannot assign to &#x27;read&#x27; because it is a read-only property</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类型定义"><a href="#类型定义" class="headerlink" title="类型定义"></a>类型定义</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TSClass</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="title function_">fn</span>(<span class="attr">count</span>: <span class="built_in">number</span>): <span class="built_in">number</span>;</span><br><span class="line">  <span class="title function_">fn</span>(<span class="params">count</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> count + <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&quot;leihy&quot;</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">age</span> = <span class="number">25</span>; <span class="comment">// Property &#x27;age&#x27; does not exist on type &#x27;TSClass&#x27;.</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tips: 定义了类型的 class 还可以当作接口以限制对象的属性类型</p>
+</blockquote>
+<h2 id="特殊类型与高级类型"><a href="#特殊类型与高级类型" class="headerlink" title="特殊类型与高级类型"></a>特殊类型与高级类型</h2><h3 id="any-unknow"><a href="#any-unknow" class="headerlink" title="any &amp;&amp; unknow"></a>any &amp;&amp; unknow</h3><ol>
+<li>any 和 unkow 类型可以分配任何值</li>
+<li>unknown 相当于更安全的 any， unkown 类型只能赋值给 unkown 和 any</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">value1</span>: <span class="built_in">any</span> = <span class="number">123</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">value2</span>: <span class="built_in">unknown</span> = <span class="string">&quot;123&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">value3</span>: <span class="built_in">string</span> = value1;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">value4</span>: <span class="built_in">string</span> = value2; <span class="comment">// type &#x27;unknown&#x27; is not assignable to type &#x27;string&#x27;.</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tips: 不可随意滥用 any 与 unkown 类型， 否则 ts 就失去了本身的意义</p>
+</blockquote>
+<h3 id="never（了解）"><a href="#never（了解）" class="headerlink" title="never（了解）"></a>never（了解）</h3><ol>
+<li>never 代表永远不会出现</li>
+<li>never 类型的变量可以赋值给任何东西，但 never 类型不能有任何值</li>
+<li>常用错误类型，或者永远没有结果的返回值</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throwError</span>(<span class="params"></span>): never &#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="联合类型-1"><a href="#联合类型-1" class="headerlink" title="联合类型"></a>联合类型</h3><p>满足其中一种类型, 使用管道符<code>|</code>定义</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">arr</span>: (<span class="built_in">string</span> | <span class="built_in">number</span>)[];</span><br></pre></td></tr></table></figure>
+
+<h3 id="交叉类型"><a href="#交叉类型" class="headerlink" title="交叉类型"></a>交叉类型</h3><p>必须满足多个类型，一般用于两种不对的对象，使用连字符<code>&amp;</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">obj1Class</span> &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">obj2Class</span> &#123;</span><br><span class="line">  <span class="attr">b</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">obj3</span>: obj1Class &amp; obj2Class = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口与-type"><a href="#接口与-type" class="headerlink" title="接口与 type"></a>接口与 type</h2><h3 id="type"><a href="#type" class="headerlink" title="type"></a>type</h3><ol>
+<li><p><code>type</code>关键字用于给一个类型一个命名，可以用于各种类型的定义。</p>
+</li>
+<li><p>常用于基础类型和联合，交叉类型。<strong>方便复用</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> dataType = <span class="built_in">number</span> | <span class="built_in">string</span> | <span class="built_in">number</span>[];</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">type</span> obj2 = &#123;</span><br><span class="line">  <span class="attr">b</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">type</span> obj3 = obj1 &amp; obj2;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">obj</span>: obj3 = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 定义函数</span></span><br><span class="line"><span class="keyword">type</span> f1 = <span class="function">(<span class="params">a: <span class="built_in">string</span></span>) =&gt;</span> <span class="built_in">string</span>; <span class="comment">// a只是一个占位符</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">fn</span>: f1 = <span class="function">(<span class="params">b: <span class="built_in">string</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;1&quot;</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="interface"><a href="#interface" class="headerlink" title="interface"></a>interface</h3><ol>
+<li><code>interface</code>意思为接口，区别于 type，这是定义了一个<strong>可继承</strong>的接口</li>
+<li>常用于函数，类，对象，数组的定义</li>
+</ol>
+<h4 id="对象-1"><a href="#对象-1" class="headerlink" title="对象"></a>对象</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">UserInfo</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">id</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleInfo</span>(<span class="params">userInfo: UserInfo</span>) &#123;</span><br><span class="line">  userInfo.<span class="property">name</span>.<span class="title function_">slice</span>(<span class="number">0</span>); <span class="comment">// 这个时候就能自动推导出name属性所拥有的的api</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">handleInfo</span>(&#123; <span class="attr">name</span>: <span class="string">&quot;leihy&quot;</span>, <span class="attr">id</span>: <span class="number">1</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="函数-1"><a href="#函数-1" class="headerlink" title="函数"></a>函数</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> obj &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="built_in">number</span>;</span><br><span class="line">  <span class="attr">fn</span>: <span class="function">(<span class="params">b: <span class="built_in">string</span></span>) =&gt;</span> <span class="built_in">string</span>;  <span class="comment">//对象内函数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">obj</span>:<span class="title class_">Obj</span> = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="title function_">fn</span>(<span class="params">b</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;1&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 也可以写成：</span></span><br><span class="line">  <span class="title function_">fn2</span>(<span class="attr">b</span>: <span class="built_in">string</span>): <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接定义函数类型</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Fn</span> &#123;</span><br><span class="line">  (<span class="attr">a</span>: <span class="built_in">string</span>, <span class="attr">b</span>: <span class="built_in">string</span>): <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">fn</span>: <span class="title class_">Fn</span> = <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="类"><a href="#类" class="headerlink" title="类"></a>类</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">  <span class="attr">sex</span>: <span class="string">&quot;male&quot;</span> | <span class="string">&quot;female&quot;</span>;</span><br><span class="line">  <span class="title function_">eat</span>(<span class="attr">food</span>: <span class="built_in">string</span>): <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Mary</span> <span class="keyword">implements</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">  <span class="attr">sex</span>: <span class="string">&quot;male&quot;</span> | <span class="string">&quot;female&quot;</span>;</span><br><span class="line">  <span class="title function_">eat</span>(<span class="attr">food</span>: <span class="built_in">string</span>): <span class="built_in">string</span>;</span><br><span class="line">  <span class="comment">//Function implementation is immediately following the declaration.</span></span><br><span class="line">  <span class="title function_">eat</span>(<span class="params">food</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;吃完了&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">age</span> = <span class="number">1</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">sex</span> = <span class="string">&quot;male&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="数组-1"><a href="#数组-1" class="headerlink" title="数组"></a>数组</h4><p>这里应该叫做<code>可索引类型</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Arr</span> &#123;</span><br><span class="line">  [<span class="attr">index</span>: <span class="built_in">number</span>]: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr</span>: <span class="title class_">Arr</span> = [<span class="string">&quot;1&quot;</span>, <span class="string">&quot;2&quot;</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="type-VS-interface"><a href="#type-VS-interface" class="headerlink" title="type VS interface"></a>type VS interface</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>type</th>
+<th>interface</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>继承</td>
+<td>&amp;（合并）</td>
+<td>extend</td>
+</tr>
+<tr>
+<td>声明合并</td>
+<td>无</td>
+<td>有</td>
+</tr>
+<tr>
+<td>定义类类型</td>
+<td>无</td>
+<td>有</td>
+</tr>
+</tbody></table>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>type:</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> obj3 = obj1 &amp; obj2;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">obj</span>: obj3 = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>interface:</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Obj1</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Obj2</span> &#123;</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Obj3</span> <span class="keyword">extends</span> <span class="title class_">Obj1</span>, <span class="title class_">Obj2</span> &#123;</span><br><span class="line">  <span class="attr">sex</span>: <span class="string">&quot;male&quot;</span> | <span class="string">&quot;female&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">obj</span>: <span class="title class_">Obj3</span> = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;leihy&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">22</span>,</span><br><span class="line">  <span class="attr">sex</span>: <span class="string">&quot;male&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="声明合并"><a href="#声明合并" class="headerlink" title="声明合并"></a>声明合并</h4><p>type: 不存在</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type Obj1 = &#123;</span><br><span class="line">  name: string;</span><br><span class="line">&#125;;</span><br><span class="line">// Error: Duplicate identifier &#x27;Obj1&#x27;</span><br><span class="line">type Obj1 = &#123;</span><br><span class="line">  name: string;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>interface: 存在</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">interface obj1 &#123;</span><br><span class="line">  name: string;</span><br><span class="line">&#125;</span><br><span class="line">interface obj1 &#123;</span><br><span class="line">  name: string;  // 如果有重复属性，类型必须保持一致</span><br><span class="line">  age: number;</span><br><span class="line">&#125;</span><br><span class="line">let person: obj1 = &#123;</span><br><span class="line">  name: &quot;leihy&quot;,</span><br><span class="line">  age: 1,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><blockquote>
+<p>如果我们编写了一个公用的工具，我们需要接收不同的参数来做不同的处理，怎么处理？</p>
+<p>也就是说我们不明确该工具需要什么类型，这个时候就可以使用<code>泛型</code></p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟find方法</span></span><br><span class="line"><span class="keyword">function</span> find&lt;T&gt;(<span class="attr">arr</span>: T[], <span class="attr">target</span>: T): T &#123;</span><br><span class="line">  <span class="keyword">let</span> _result;</span><br><span class="line">  arr.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (item === target) &#123;</span><br><span class="line">      _result = item;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> _result;</span><br><span class="line">&#125;</span><br><span class="line">find&lt;<span class="built_in">number</span>&gt;([<span class="number">1</span>, <span class="number">2</span>], <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="多个泛型："><a href="#多个泛型：" class="headerlink" title="多个泛型："></a>多个泛型：</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为了确保类型参数 T 和 U 可以安全地与 &#123;&#125; 兼容，我们可以为它们添加 extends &#123;&#125; 约束</span></span><br><span class="line"><span class="keyword">function</span> combinObj&lt;T <span class="keyword">extends</span> &#123;&#125;, U <span class="keyword">extends</span> &#123;&#125;&gt;(<span class="attr">obj1</span>: T, <span class="attr">obj2</span>: U): T &amp; U &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Object</span>.<span class="title function_">assign</span>(obj1, obj2);</span><br><span class="line">&#125;</span><br><span class="line">combinObj&lt;&#123; <span class="attr">a</span>: <span class="built_in">number</span> &#125;, &#123; <span class="attr">b</span>: <span class="built_in">number</span> &#125;&gt;(&#123; <span class="attr">a</span>: <span class="number">1</span> &#125;, &#123; <span class="attr">b</span>: <span class="number">2</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Person</span>&lt;T&gt; &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">sex</span>: T;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 接口使用泛型必传类型</span></span><br><span class="line"><span class="keyword">let</span> <span class="title class_">Mary</span>: <span class="title class_">Person</span>&lt;<span class="built_in">number</span>&gt; = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;Mary&quot;</span>,</span><br><span class="line">  <span class="attr">sex</span>: <span class="number">0</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="类-1"><a href="#类-1" class="headerlink" title="类"></a>类</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span>&lt;T&gt; &#123;</span><br><span class="line">  <span class="attr">characteristic</span>: T;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">obj: T</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">characteristic</span> = obj;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Animal</span>(&#123; <span class="attr">eyes</span>: <span class="number">2</span>, <span class="attr">foot</span>: <span class="number">2</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>泛型约束： 使用<code>extends来规定泛型只能接收哪些类型的传值</code></p>
+<p>function find&lt;T extends number | string&gt;(arr: T[], target: T): T</p>
+</blockquote>
+<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><blockquote>
+<p>我们 JavaScript 是非常灵活的，而 ts 是严格类型的，这导致他们可能会存在冲突。 我们可以用<code>as</code>断言来解决这个冲突</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">UserInfo</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> <span class="title class_">Jack</span> = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Jack</span>.<span class="property">age</span> = <span class="number">2</span>; <span class="comment">// Property &#x27;age&#x27; does not exist on type &#x27;&#123;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>因为 Jack 默认被推断为<code>&#123;&#125;</code>类型， 所以需要使用断言帮助编辑器确定类型：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="title class_">Jack</span> = &#123;&#125; <span class="keyword">as</span> <span class="title class_">UserInfo</span>;</span><br></pre></td></tr></table></figure>
+
+<p>再来看一个函数的例子：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> fn &#123;</span><br><span class="line">  (<span class="attr">a</span>: <span class="built_in">string</span>): <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">b</span>: <span class="built_in">string</span>; <span class="comment">// 代表函数必须有个b属性</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">f1</span>: fn = (<span class="function">(<span class="params">a</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;111&quot;</span>;</span><br><span class="line">&#125;) <span class="keyword">as</span> fn;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>断言也有一种表示：<code>&lt;&gt;</code>, 一般写在需要被断言的代码前，比如<code>let Jack = &lt;UserInfo&gt;&#123;&#125;;</code> ， 这跟泛型很像，所以日常中为了区分，一般还是使用<code>as</code></p>
+</blockquote>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/blog/tags/TypeScript/">TypeScript</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/blog/2024/06/15/typescript/Ts%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E6%9C%BA%E5%88%B6/"
+                                   title="Ts中的一些特殊机制"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Ts中的一些特殊机制</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/blog/2024/06/11/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82import%E5%88%B0%E5%BA%95%E5%9C%A8%E5%BC%95%E5%85%A5%E4%BB%80%E4%B9%88/"
+                                   title="一文搞懂import到底在引入什么"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">一文搞懂import到底在引入什么</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-TypeScript%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">为什么需要 TypeScript？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">调试工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">基础类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#string"><span class="nav-number">3.1.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#number"><span class="nav-number">3.2.</span> <span class="nav-text">number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#boolean"><span class="nav-number">3.3.</span> <span class="nav-text">boolean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E9%9D%A2%E9%87%8F"><span class="nav-number">3.4.</span> <span class="nav-text">字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.5.</span> <span class="nav-text">联合类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">引用类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">4.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.2.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E6%89%A9%E5%B1%95"><span class="nav-number">4.3.</span> <span class="nav-text">案例扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">4.4.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8"><span class="nav-number">4.4.1.</span> <span class="nav-text">实际应用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%EF%BC%88class%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">类（class）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#js-%E5%AF%B9%E6%AF%94-ts-%E7%9A%84-class"><span class="nav-number">5.1.</span> <span class="nav-text">js 对比 ts 的 class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="nav-number">5.2.</span> <span class="nav-text">类型定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B%E4%B8%8E%E9%AB%98%E7%BA%A7%E7%B1%BB%E5%9E%8B"><span class="nav-number">6.</span> <span class="nav-text">特殊类型与高级类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#any-unknow"><span class="nav-number">6.1.</span> <span class="nav-text">any &amp;&amp; unknow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#never%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89"><span class="nav-number">6.2.</span> <span class="nav-text">never（了解）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B-1"><span class="nav-number">6.3.</span> <span class="nav-text">联合类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E7%B1%BB%E5%9E%8B"><span class="nav-number">6.4.</span> <span class="nav-text">交叉类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E4%B8%8E-type"><span class="nav-number">7.</span> <span class="nav-text">接口与 type</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#type"><span class="nav-number">7.1.</span> <span class="nav-text">type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#interface"><span class="nav-number">7.2.</span> <span class="nav-text">interface</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1-1"><span class="nav-number">7.2.1.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0-1"><span class="nav-number">7.2.2.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB"><span class="nav-number">7.2.3.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E7%BB%84-1"><span class="nav-number">7.2.4.</span> <span class="nav-text">数组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#type-VS-interface"><span class="nav-number">7.3.</span> <span class="nav-text">type VS interface</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-number">7.3.1.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E5%90%88%E5%B9%B6"><span class="nav-number">7.3.2.</span> <span class="nav-text">声明合并</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B"><span class="nav-number">8.</span> <span class="nav-text">泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E6%B3%9B%E5%9E%8B%EF%BC%9A"><span class="nav-number">8.0.1.</span> <span class="nav-text">多个泛型：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3"><span class="nav-number">8.0.2.</span> <span class="nav-text">接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB-1"><span class="nav-number">8.0.3.</span> <span class="nav-text">类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%AD%E8%A8%80"><span class="nav-number">9.</span> <span class="nav-text">断言</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/blog/">leihy</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-TypeScript%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">为什么需要 TypeScript？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">调试工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">基础类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#string"><span class="nav-number">3.1.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#number"><span class="nav-number">3.2.</span> <span class="nav-text">number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#boolean"><span class="nav-number">3.3.</span> <span class="nav-text">boolean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E9%9D%A2%E9%87%8F"><span class="nav-number">3.4.</span> <span class="nav-text">字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.5.</span> <span class="nav-text">联合类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">引用类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">4.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.2.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E6%89%A9%E5%B1%95"><span class="nav-number">4.3.</span> <span class="nav-text">案例扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">4.4.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8"><span class="nav-number">4.4.1.</span> <span class="nav-text">实际应用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%EF%BC%88class%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">类（class）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#js-%E5%AF%B9%E6%AF%94-ts-%E7%9A%84-class"><span class="nav-number">5.1.</span> <span class="nav-text">js 对比 ts 的 class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="nav-number">5.2.</span> <span class="nav-text">类型定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B%E4%B8%8E%E9%AB%98%E7%BA%A7%E7%B1%BB%E5%9E%8B"><span class="nav-number">6.</span> <span class="nav-text">特殊类型与高级类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#any-unknow"><span class="nav-number">6.1.</span> <span class="nav-text">any &amp;&amp; unknow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#never%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89"><span class="nav-number">6.2.</span> <span class="nav-text">never（了解）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B-1"><span class="nav-number">6.3.</span> <span class="nav-text">联合类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E7%B1%BB%E5%9E%8B"><span class="nav-number">6.4.</span> <span class="nav-text">交叉类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E4%B8%8E-type"><span class="nav-number">7.</span> <span class="nav-text">接口与 type</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#type"><span class="nav-number">7.1.</span> <span class="nav-text">type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#interface"><span class="nav-number">7.2.</span> <span class="nav-text">interface</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1-1"><span class="nav-number">7.2.1.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0-1"><span class="nav-number">7.2.2.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB"><span class="nav-number">7.2.3.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E7%BB%84-1"><span class="nav-number">7.2.4.</span> <span class="nav-text">数组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#type-VS-interface"><span class="nav-number">7.3.</span> <span class="nav-text">type VS interface</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-number">7.3.1.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E5%90%88%E5%B9%B6"><span class="nav-number">7.3.2.</span> <span class="nav-text">声明合并</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B"><span class="nav-number">8.</span> <span class="nav-text">泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E6%B3%9B%E5%9E%8B%EF%BC%9A"><span class="nav-number">8.0.1.</span> <span class="nav-text">多个泛型：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3"><span class="nav-number">8.0.2.</span> <span class="nav-text">接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB-1"><span class="nav-number">8.0.3.</span> <span class="nav-text">类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%AD%E8%A8%80"><span class="nav-number">9.</span> <span class="nav-text">断言</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/header-shrink.js"></script>
+
+<script src="/blog/js/back2top.js"></script>
+
+<script src="/blog/js/toggle-theme.js"></script>
+
+<script src="/blog/js/code-block.js"></script>
+
+<script src="/blog/js/main.js"></script>
+
+<script src="/blog/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/blog/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/blog/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/blog/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/blog/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

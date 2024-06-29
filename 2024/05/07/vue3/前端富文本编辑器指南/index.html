@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="leihy">
+    
+    <title>
+        
+            前端富文本编辑器指南——tinymce |
+        
+        leihy&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/blog/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/blog/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"saltyfishlei.github.io","root":"/blog/","language":"cn","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"leihy's blog","author":"leihy","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"面朝大海，春暖花开。","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":false,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"jsdelivr"},"pjax":{"enable":false},"footer":{"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"/blog","version":"4.0.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/blog/">
+                    <img src="/blog/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/blog/">
+               leihy&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/blog/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/blog/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        前端富文本编辑器指南——tinymce
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">leihy</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2024-05-07 00:00:00</span>
+                <span class="mobile">2024-05-07 00:00</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Thu May 09 2024 20:52:47 GMT+0800">2024-05-09 20:52:47</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/blog/tags/vue3/">vue3</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p><strong>安装注意事项</strong></p>
+<ol>
+<li><p>有两种方案分别是安装对应的 vue&#x2F;react 组件，然后直接用组件；或者直接使用 tinymce 去按原生操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install tinymce @tinymce/tinymce-vue</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>原生方式会报找不到文件的错误，需要把 tinymce 都复制到 public 里, 项目真正上线也要将文件放入服务器静态资源目录</p>
+</li>
+</ol>
+<h2 id="tinymce-常见界面需求"><a href="#tinymce-常见界面需求" class="headerlink" title="tinymce 常见界面需求"></a>tinymce 常见界面需求</h2><p><strong>隐藏不需要的部分</strong>：</p>
+<ol>
+<li><p>Menubar 控制菜单栏，</p>
+</li>
+<li><p>toolbar 控制工具栏，</p>
+</li>
+<li><p>statusbar 控制状态栏</p>
+</li>
+</ol>
+<p><strong>自定义样式</strong>：</p>
+<ol>
+<li>skin 控制皮肤，</li>
+<li>或者通过 skin_url 导入自定义皮肤。</li>
+<li>可以通过 content_css 定义内容区域部分 样式。</li>
+<li>Icons_url 导入图标</li>
+</ol>
+<p><strong>中文化</strong>：把文件转为二进制形式获取为 blob 对象</p>
+<p><strong>自定义工具栏内容和排序</strong>： 把文件转化为二进制形式获取为 blob 对象</p>
+<h3 id="原生操作"><a href="#原生操作" class="headerlink" title="原生操作"></a>原生操作</h3><h4 id="隐藏不需要的部分"><a href="#隐藏不需要的部分" class="headerlink" title="隐藏不需要的部分"></a><strong>隐藏不需要的部分</strong></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tinymce <span class="keyword">from</span> <span class="string">&quot;tinymce&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; onMounted &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  tinymce.<span class="title function_">init</span>(&#123;</span><br><span class="line">    <span class="attr">base_url</span>: <span class="string">&quot;/tinymce/&quot;</span>, <span class="comment">// 改变静态资源读取路径</span></span><br><span class="line">    <span class="attr">selector</span>: <span class="string">&quot;.home&quot;</span>, <span class="comment">// 编辑器的所在位置， 同css选择器语法</span></span><br><span class="line">    <span class="attr">menubar</span>: <span class="literal">false</span>, <span class="comment">// Possible values: true, false, or string of menus</span></span><br><span class="line">    <span class="attr">toolbar</span>: <span class="literal">false</span>, <span class="comment">// // Possible values: true, false, or string of tools</span></span><br><span class="line">    <span class="attr">statusbar</span>: <span class="literal">false</span>, <span class="comment">// Possible values: true, false</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="自定义样式"><a href="#自定义样式" class="headerlink" title="自定义样式"></a><strong>自定义样式</strong></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  tinymce.<span class="title function_">init</span>(&#123;</span><br><span class="line">    ...,</span><br><span class="line">    <span class="attr">skin</span>: <span class="string">&#x27;tinymce-5&#x27;</span>, <span class="comment">//Possible values: the name of a skin or false</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * If you would like to create your own skin</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">     <span class="attr">skin_url</span>: <span class="string">&#x27;/skins/ui/mySkin&#x27;</span>, <span class="comment">// 读取的文件是content.min.css 与 skin.min.css</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>如果不想进行整体样式的替换，进行局部微调，要分为两部分：</p>
+<ol>
+<li><p>工具栏与菜单栏，可直接操作</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.tox-toolbar__primary</span>,</span><br><span class="line"><span class="selector-class">.tox-tbtn</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>内容区域</strong>， 在 iframe 中，无法直接操作，可通过<code>content_css</code> 进行修改</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  tinymce.<span class="title function_">init</span>(&#123;</span><br><span class="line">    ...,</span><br><span class="line">	<span class="attr">content_css</span>: <span class="string">&#x27;/skins/custom/myContent.css&#x27;</span>, <span class="comment">// Type: String, Array</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* myContent.css */</span></span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="中文化"><a href="#中文化" class="headerlink" title="中文化"></a>中文化</h4><p>语言包官网： <a class="link"   target="_blank" rel="noopener" href="https://www.tiny.cloud/get-tiny/language-packages/" >https://www.tiny.cloud/get-tiny/language-packages/<i class="fas fa-external-link-alt"></i></a></p>
+<ol>
+<li><p>下载语言包<code>Chinese Simplified</code></p>
+</li>
+<li><p>将<code>langs</code>文件夹放入对应资源下</p>
+</li>
+<li><p>设置<code>language</code>属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  tinymce.<span class="title function_">init</span>(&#123;</span><br><span class="line">    ...,</span><br><span class="line">	<span class="attr">language</span>: <span class="string">&#x27;zh_CN&#x27;</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="自定义工具栏内容和排序"><a href="#自定义工具栏内容和排序" class="headerlink" title="自定义工具栏内容和排序"></a>自定义工具栏内容和排序</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  tinymce.<span class="title function_">init</span>(&#123;</span><br><span class="line">    ...,</span><br><span class="line">	 <span class="attr">toolbar</span>: <span class="string">&#x27;undo redo | styles | bold italic | fontfamily fontsize forecolor&#x27;</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>更多详细配置查看官网文档 <a class="link"   target="_blank" rel="noopener" href="https://www.tiny.cloud/docs/tinymce" >https://www.tiny.cloud/docs/tinymce<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="组件方式"><a href="#组件方式" class="headerlink" title="组件方式"></a>组件方式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;!-- 直接引用 --&gt;</span><br><span class="line">  &lt;RichEditor&gt;&lt;/RichEditor&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import RichEditor from &quot;@tinymce/tinymce-vue&quot;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="进阶-交互"><a href="#进阶-交互" class="headerlink" title="进阶-交互"></a>进阶-交互</h2><h3 id="获取输入内容"><a href="#获取输入内容" class="headerlink" title="获取输入内容"></a>获取输入内容</h3><p>通过编辑器实例的 getContent 方法获得</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> htmlInfo = tinymce.<span class="property">activeEditor</span>.<span class="title function_">getContent</span>()  <span class="comment">// html结构</span></span><br><span class="line"><span class="keyword">const</span> text = tinymce.<span class="property">activeEditor</span>.<span class="title function_">getContent</span>(&#123; <span class="attr">format</span>: <span class="string">&#x27;text&#x27;</span> &#125;） <span class="comment">//文本</span></span><br><span class="line">tinymce.<span class="property">selection</span>.<span class="title function_">getContent</span>(） <span class="comment">// Returns the selected contents</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="设置内容"><a href="#设置内容" class="headerlink" title="设置内容"></a>设置内容</h3><p>通过 setContent 方法设置内容</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tinymce.<span class="property">activeEditor</span>.<span class="title function_">setContent</span>(<span class="string">&quot;&lt;strong&gt;Some contents&lt;/strong&gt;&quot;</span>);</span><br><span class="line">tinymce.<span class="property">activeEditor</span>.<span class="property">selection</span>.<span class="title function_">setContent</span>(<span class="string">&quot;&lt;strong&gt;Some contents&lt;/strong&gt;&quot;</span>); <span class="comment">// 替换被选中的内容</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="插件使用"><a href="#插件使用" class="headerlink" title="插件使用"></a>插件使用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  tinymce.<span class="title function_">init</span>(&#123;</span><br><span class="line">    <span class="attr">toolbar</span>: <span class="string">&quot;undo redo | styles | bold italic | link image&quot;</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>我们会发现 link 和 image 按钮没有加载， 需要配合插件进行加载：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tinymce.<span class="title function_">init</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: <span class="string">&quot;link, image&quot;</span>, <span class="comment">// 会去加载资源文件夹下plugins对应插件的plugin.js文件</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h2><p>可以对编辑器进行更多功能上的开发，比如添加工具， 添加事件等；</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">tinymce.<span class="title function_">init</span>(&#123;</span><br><span class="line">  <span class="attr">setup</span>: <span class="keyword">function</span> (<span class="params">Editor</span>) &#123;</span><br><span class="line">    <span class="comment">//添加工具</span></span><br><span class="line">    editor.<span class="property">ui</span>.<span class="property">registry</span>.<span class="title function_">addButton</span>(<span class="string">&quot;toRed&quot;</span>, &#123;</span><br><span class="line">      <span class="attr">onAction</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> text = editor.<span class="property">selection</span>.<span class="title function_">getContent</span>();</span><br><span class="line">        editor.<span class="property">selection</span>.<span class="title function_">setContent</span>(<span class="string">`&lt;span style=&quot;color: red&quot;&gt;<span class="subst">$&#123;text&#125;</span>&lt;/span&gt;`</span>);</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">icon</span>: <span class="string">&quot;help&quot;</span>,</span><br><span class="line">      <span class="attr">tooltip</span>: <span class="string">&quot;变红&quot;</span>,</span><br><span class="line">      <span class="comment">// 要记得在tooBar中添加对应的按钮名toRed</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 添加事件</span></span><br><span class="line">    <span class="title class_">Editor</span>.<span class="title function_">on</span>(<span class="string">&quot;change&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失焦啦&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/blog/tags/vue3/">vue3</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/blog/2024/05/08/vue3/%E6%94%B9%E9%80%A0%E6%97%A5%E5%8E%86%E7%BB%84%E4%BB%B6%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0/"
+                                   title="改造日历组件——渲染函数"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">改造日历组件——渲染函数</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/blog/2024/04/28/mobile/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/"
+                                   title="移动端适配"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">移动端适配</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tinymce-%E5%B8%B8%E8%A7%81%E7%95%8C%E9%9D%A2%E9%9C%80%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">tinymce 常见界面需求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%94%9F%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.</span> <span class="nav-text">原生操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E9%83%A8%E5%88%86"><span class="nav-number">1.1.1.</span> <span class="nav-text">隐藏不需要的部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%B7%E5%BC%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">自定义样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E5%8C%96"><span class="nav-number">1.1.3.</span> <span class="nav-text">中文化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E6%A0%8F%E5%86%85%E5%AE%B9%E5%92%8C%E6%8E%92%E5%BA%8F"><span class="nav-number">1.1.4.</span> <span class="nav-text">自定义工具栏内容和排序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">组件方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6-%E4%BA%A4%E4%BA%92"><span class="nav-number">2.</span> <span class="nav-text">进阶-交互</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9"><span class="nav-number">2.1.</span> <span class="nav-text">获取输入内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%86%85%E5%AE%B9"><span class="nav-number">2.2.</span> <span class="nav-text">设置内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">插件使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setup"><span class="nav-number">4.</span> <span class="nav-text">setup</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/blog/">leihy</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tinymce-%E5%B8%B8%E8%A7%81%E7%95%8C%E9%9D%A2%E9%9C%80%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">tinymce 常见界面需求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%94%9F%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.</span> <span class="nav-text">原生操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E9%83%A8%E5%88%86"><span class="nav-number">1.1.1.</span> <span class="nav-text">隐藏不需要的部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%B7%E5%BC%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">自定义样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E5%8C%96"><span class="nav-number">1.1.3.</span> <span class="nav-text">中文化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E6%A0%8F%E5%86%85%E5%AE%B9%E5%92%8C%E6%8E%92%E5%BA%8F"><span class="nav-number">1.1.4.</span> <span class="nav-text">自定义工具栏内容和排序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">组件方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6-%E4%BA%A4%E4%BA%92"><span class="nav-number">2.</span> <span class="nav-text">进阶-交互</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9"><span class="nav-number">2.1.</span> <span class="nav-text">获取输入内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%86%85%E5%AE%B9"><span class="nav-number">2.2.</span> <span class="nav-text">设置内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">插件使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setup"><span class="nav-number">4.</span> <span class="nav-text">setup</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/header-shrink.js"></script>
+
+<script src="/blog/js/back2top.js"></script>
+
+<script src="/blog/js/toggle-theme.js"></script>
+
+<script src="/blog/js/code-block.js"></script>
+
+<script src="/blog/js/main.js"></script>
+
+<script src="/blog/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/blog/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/blog/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/blog/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/blog/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
