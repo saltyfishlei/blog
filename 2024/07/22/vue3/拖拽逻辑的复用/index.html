@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="leihy">
+    
+    <title>
+        
+            通过自定义hook实现一个拖拽逻辑的复用 |
+        
+        leihy&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/blog/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/blog/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"saltyfishlei.github.io","root":"/blog/","language":"cn","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"leihy's blog","author":"leihy","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"面朝大海，春暖花开。","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":false,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"jsdelivr"},"pjax":{"enable":false},"footer":{"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"/blog","version":"4.0.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/blog/">
+                    <img src="/blog/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/blog/">
+               leihy&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/blog/"
+                        >首页</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/archives"
+                            >归档</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/tags"
+                            >标签</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/about"
+                            >关于</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/blog/"
+                >首页</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/archives"
+                    >归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/tags"
+                    >标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/about"
+                    >关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        通过自定义hook实现一个拖拽逻辑的复用
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">leihy</span>
+                                
+                                    <span class="author-badge">Lv4</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2024-07-22 00:00:00</span>
+                <span class="mobile">2024-07-22 00:00</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Wed Jul 31 2024 22:34:33 GMT+0800">2024-07-31 22:34:33</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/blog/tags/vue3/">vue3</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p>本节实现了一个用于拖拽复用的自定义 Hook。</p>
+<p>1.引入模块并声明默认窗口对象</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; <span class="title class_">Ref</span> &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ref, computed, onMounted, unref, onBeforeUnmount &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// /*#__PURE__*/表示这个表达式是“纯”的，它不会产生任何副作用，在多次调用时结果相同</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> defaultWindow = <span class="comment">/*#__PURE__*/</span> <span class="variable language_">window</span>;</span><br></pre></td></tr></table></figure>
+
+<p>2.定义接口：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义 DragOption 接口，包含可选的拖拽配置选项。</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">DragOption</span> &#123;</span><br><span class="line">  draggingElement?: <span class="built_in">any</span>;</span><br><span class="line">  draggingHandle?: <span class="built_in">any</span>;</span><br><span class="line">  initialValue?: <span class="built_in">any</span>;</span><br><span class="line">  axis?: <span class="string">&quot;x&quot;</span> | <span class="string">&quot;y&quot;</span> | <span class="string">&quot;both&quot;</span>;</span><br><span class="line">  limitDOM?: <span class="title class_">Ref</span>&lt;<span class="title class_">HTMLElement</span> | <span class="literal">null</span> | <span class="literal">undefined</span>&gt;; <span class="comment">// 限制可拖拽的区域</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.初始化拖拽函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">useDrag</span>(<span class="params">target: Ref&lt;HTMLElement | <span class="literal">null</span>&gt;, options: DragOption</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;</span><br><span class="line">    draggingElement = defaultWindow,</span><br><span class="line">    draggingHandle = target,</span><br><span class="line">    axis = <span class="string">&quot;both&quot;</span>,</span><br><span class="line">    initialValue,</span><br><span class="line">    limitDOM,</span><br><span class="line">  &#125; = options;</span><br><span class="line">  <span class="keyword">const</span> position = <span class="title function_">ref</span>(initialValue ?? &#123; <span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span> &#125;);  <span class="comment">// 初始化拖拽位置 position</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4.计算拖拽元素的大小</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> size = <span class="title function_">computed</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">width</span>: target.<span class="property">value</span>?.<span class="property">offsetWidth</span> || <span class="number">0</span>, <span class="comment">// offsetWidth :返回一个元素的布局宽度</span></span><br><span class="line">    <span class="attr">height</span>: target.<span class="property">value</span>?.<span class="property">offsetHeight</span> || <span class="number">0</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>5.存储鼠标按下时的位置偏移</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const pressDelta = ref(null);</span><br></pre></td></tr></table></figure>
+
+<p>6.添加和移除事件监听器</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="title function_">unref</span>(target)) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">&quot;drag目标元素不存在!&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  target.<span class="property">value</span>!.<span class="title function_">addEventListener</span>(<span class="string">&quot;pointerdown&quot;</span>, start);</span><br><span class="line">  draggingElement!.<span class="title function_">addEventListener</span>(<span class="string">&quot;pointermove&quot;</span>, move);</span><br><span class="line">  draggingElement!.<span class="title function_">addEventListener</span>(<span class="string">&quot;pointerup&quot;</span>, end);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">onBeforeUnmount</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">unref</span>(target)) &#123;</span><br><span class="line">    target.<span class="property">value</span>!.<span class="title function_">removeEventListener</span>(<span class="string">&quot;pointerdown&quot;</span>, start);</span><br><span class="line">    draggingElement!.<span class="title function_">removeEventListener</span>(<span class="string">&quot;pointermove&quot;</span>, move);</span><br><span class="line">    draggingElement!.<span class="title function_">removeEventListener</span>(<span class="string">&quot;pointerup&quot;</span>, end);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>为什么绑定的事件使用的是<code>pointer</code>而不是<code>mouse</code>？</p>
+<p>Pointer Events API 旨在统一处理不同输入设备（如鼠标、触摸、笔等）的事件。它综合了传统的鼠标事件（如 <code>mousedown</code>、<code>mouseup</code>、<code>mousemove</code> 等）和触摸事件（如 <code>touchstart</code>、<code>touchend</code>、<code>touchmove</code> 等）。使用 <code>pointerdown</code> 可以更好地支持各种输入设备，使得拖拽功能在多种设备上具有一致性</p>
+<p><code>mouse-</code> 事件仅适用于鼠标操作。</p>
+</blockquote>
+<p>7.定义 <code>start</code>、<code>move</code> 和 <code>end</code> 函数来处理鼠标事件。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用户按下鼠标按钮时触发，用于记录鼠标点击位置和元素初始位置</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">start</span> = (<span class="params">e: PointerEvent</span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 返回一个 DOMRect 对象，其提供了元素的大小及其相对于视口的位置。</span></span><br><span class="line">  <span class="keyword">const</span> rect = target.<span class="property">value</span>!.<span class="title function_">getBoundingClientRect</span>();</span><br><span class="line">  <span class="keyword">const</span> pos = &#123;</span><br><span class="line">    <span class="attr">x</span>: e.<span class="property">clientX</span> - rect.<span class="property">left</span>, <span class="comment">// 鼠标点击位置减去元素偏移量， 就是鼠标在元素上的位置</span></span><br><span class="line">    <span class="attr">y</span>: e.<span class="property">clientY</span> - rect.<span class="property">top</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">  pressDelta.<span class="property">value</span> = pos; <span class="comment">// 保存偏移值，后续移动时使用</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">move</span> = (<span class="params">e: PointerEvent</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (!pressDelta.<span class="property">value</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> &#123; x, y &#125; = position.<span class="property">value</span>;</span><br><span class="line">  <span class="keyword">if</span> (axis === <span class="string">&quot;x&quot;</span> || axis === <span class="string">&quot;both&quot;</span>) &#123;</span><br><span class="line">    x = e.<span class="property">clientX</span> - pressDelta.<span class="property">value</span>.<span class="property">x</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (axis === <span class="string">&quot;y&quot;</span> || axis === <span class="string">&quot;both&quot;</span>) &#123;</span><br><span class="line">    y = e.<span class="property">clientY</span> - pressDelta.<span class="property">value</span>.<span class="property">y</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  position.<span class="property">value</span> = <span class="title function_">limitArea</span>(&#123; x, y &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">end</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (!pressDelta.<span class="property">value</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  pressDelta.<span class="property">value</span> = <span class="literal">undefined</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>8.限制拖拽区域与设置观察者</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">limitArea</span> = (<span class="params">&#123; x = position.value.x, y = position.value.y &#125;: &#123; x?: <span class="built_in">number</span>; y?: <span class="built_in">number</span>; &#125; = &#123;&#125;</span>) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 拖拽区域的左边界</span></span><br><span class="line">    <span class="keyword">if</span> (x &lt; areaLimit.<span class="property">value</span>.<span class="property">startX</span>) &#123;</span><br><span class="line">        x = areaLimit.<span class="property">value</span>.<span class="property">startX</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果 x 大于这个值，说明元素超出了右边界，需要将 x 调整为 endX - size.value.width</span></span><br><span class="line">    <span class="keyword">if</span> (x &gt; areaLimit.<span class="property">value</span>.<span class="property">endX</span> - size.<span class="property">value</span>.<span class="property">width</span>) &#123;</span><br><span class="line">        x = areaLimit.<span class="property">value</span>.<span class="property">endX</span> - size.<span class="property">value</span>.<span class="property">width</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (y &lt; areaLimit.<span class="property">value</span>.<span class="property">startY</span>) &#123;</span><br><span class="line">        y = areaLimit.<span class="property">value</span>.<span class="property">startY</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (y &gt; areaLimit.<span class="property">value</span>.<span class="property">endY</span> - size.<span class="property">value</span>.<span class="property">height</span>) &#123;</span><br><span class="line">        y = areaLimit.<span class="property">value</span>.<span class="property">endY</span> - size.<span class="property">value</span>.<span class="property">height</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123; x, y &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// startX 和 startY：表示拖拽区域的左上角。</span></span><br><span class="line"><span class="comment">// endX 和 endY：表示拖拽区域的右下角</span></span><br><span class="line"><span class="keyword">const</span> areaLimit = <span class="title function_">ref</span>(&#123;</span><br><span class="line">    <span class="attr">startX</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">startY</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">endX</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">endY</span>: <span class="number">0</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">mo</span>: <span class="title class_">MutationObserver</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">re</span>: <span class="title class_">ResizeObserver</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">initWatch</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> limitDiv = <span class="title function_">unref</span>(limitDOM) ? <span class="title function_">unref</span>(limitDOM) : <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;app&quot;</span>);</span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">callback</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> &#123; left, right, top, bottom &#125; = limitDiv!.<span class="title function_">getBoundingClientRect</span>();</span><br><span class="line">        areaLimit.<span class="property">value</span> = &#123;</span><br><span class="line">            <span class="attr">startX</span>: left,</span><br><span class="line">            <span class="attr">startY</span>: top,</span><br><span class="line">            <span class="attr">endX</span>: right,</span><br><span class="line">            <span class="attr">endY</span>: bottom,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        position.<span class="property">value</span> = <span class="title function_">limitArea</span>();</span><br><span class="line">    &#125;;</span><br><span class="line">	<span class="comment">// 动态调整拖拽区域和元素的位置，确保拖拽功能在页面元素或窗口大小变化时能够正确地工作</span></span><br><span class="line">    <span class="keyword">if</span> (limitDiv) &#123;</span><br><span class="line">        mo = <span class="keyword">new</span> <span class="title class_">MutationObserver</span>(callback);</span><br><span class="line">        mo.<span class="title function_">observe</span>(limitDiv, &#123;</span><br><span class="line">            <span class="attr">attributes</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;);</span><br><span class="line">        re = <span class="keyword">new</span> <span class="title class_">ResizeObserver</span>(callback);</span><br><span class="line">        re.<span class="title function_">observe</span>(limitDiv);</span><br><span class="line">        <span class="title function_">callback</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">initWatch</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">onBeforeUnmount</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (mo) &#123;</span><br><span class="line">        mo.<span class="title function_">disconnect</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (re) &#123;</span><br><span class="line">        re.<span class="title function_">disconnect</span>();</span><br><span class="line">    d</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>最后返回坐标：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">  draggingHandle,</span><br><span class="line">  <span class="attr">x</span>: <span class="title function_">computed</span>(<span class="function">() =&gt;</span> position.<span class="property">value</span>.<span class="property">x</span>),</span><br><span class="line">  <span class="attr">y</span>: <span class="title function_">computed</span>(<span class="function">() =&gt;</span> position.<span class="property">value</span>.<span class="property">y</span>),</span><br><span class="line">  position,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/blog/tags/vue3/">vue3</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/blog/2024/07/31/vue3/%E9%80%9A%E8%BF%87canvas%E5%AE%9E%E7%8E%B0%E7%AD%BE%E5%90%8D%E6%9D%BF/"
+                                   title="通过canvas实现签名板绘制"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">通过canvas实现签名板绘制</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/blog/2024/06/30/node/node%20+%20koa%E5%AE%9E%E7%8E%B0bff%E4%B8%AD%E9%97%B4%E5%B1%82/"
+                                   title="node + koa实现bff中间层"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">node + koa实现bff中间层</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/blog/">leihy</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/header-shrink.js"></script>
+
+<script src="/blog/js/back2top.js"></script>
+
+<script src="/blog/js/toggle-theme.js"></script>
+
+<script src="/blog/js/code-block.js"></script>
+
+<script src="/blog/js/main.js"></script>
+
+<script src="/blog/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/blog/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/blog/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/blog/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/blog/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

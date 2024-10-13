@@ -9,7 +9,7 @@
     
     <title>
         
-            一文搞懂import到底在引入什么 |
+            前端变量的使用和原理 |
         
         leihy&#39;s blog
     </title>
@@ -171,7 +171,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        一文搞懂import到底在引入什么
+                        前端变量的使用和原理
                     </div>
                 
 
@@ -195,13 +195,13 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
-                <span class="pc">2024-06-11 20:30:53</span>
-                <span class="mobile">2024-06-11 20:30</span>
+                <span class="pc">2024-08-15 00:00:00</span>
+                <span class="mobile">2024-08-15 00:00</span>
             </span>
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc" data-updated="Thu Aug 15 2024 12:01:40 GMT+0800">2024-08-15 12:01:40</span>
+                <span class="pc" data-updated="Thu Aug 15 2024 14:50:32 GMT+0800">2024-08-15 14:50:32</span>
             </span>
         
 
@@ -212,7 +212,7 @@
                 <i class="icon fas fa-tags"></i>&nbsp;
                 <ul class="post-tag-ul">
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/blog/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/">工程化</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/blog/tags/%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/">资源管理</a></li>
                         
                     
                 </ul>
@@ -236,38 +236,62 @@
                 <div class="post-content keep-markdown-body">
                     
 
-                    <blockquote>
-<p>通过这篇文章，你可以学会：</p>
+                    <h2 id="项目部署"><a href="#项目部署" class="headerlink" title="项目部署"></a>项目部署</h2><p>前端资源的部署很简单：</p>
 <ol>
-<li>搞懂 package.json 的几个重要字段</li>
-<li>明白 import 引入模块时的机制，引入一个模块到底引入的是哪个文件</li>
+<li><p>打包项目， 常用<code>npm run build</code></p>
+</li>
+<li><p>将打包好的项目放到指定的服务器目录</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用express模拟后端配置静态资源目录</span></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置静态文件目录</span></span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">static</span>(path.<span class="title function_">join</span>(__dirname, <span class="string">&quot;dist&quot;</span>)));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 基本路由</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&quot;/&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">sendFile</span>(path.<span class="title function_">join</span>(__dirname, <span class="string">&quot;dist&quot;</span>, <span class="string">&quot;index.html&quot;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">PORT</span> = process.<span class="property">env</span>.<span class="property">PORT</span> || <span class="number">8000</span>;</span><br><span class="line">app.<span class="title function_">listen</span>(<span class="variable constant_">PORT</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Server is running on http://localhost:<span class="subst">$&#123;PORT&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>然后将打包好的<code>dist</code>目录放到对应路径，即可通过<code>8000</code>端口访问到 html 文件，然后再由浏览器去获取<code>css</code>与<code>js</code>资源</p>
+<p>我们的 html 文件中有如下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;module&quot;</span> <span class="attr">crossorigin</span> <span class="attr">src</span>=<span class="string">&quot;/assets/index-Bvg1yUIS.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">crossorigin</span> <span class="attr">href</span>=<span class="string">&quot;/assets/index-BaMTLMsk.css&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>根据前面的静态资源目录配置，<strong>代表着在服务器中的<code>/dist/assets/</code>下去寻找资源</strong></p>
+</li>
 </ol>
+<h2 id="缓存怎么工作"><a href="#缓存怎么工作" class="headerlink" title="缓存怎么工作"></a>缓存怎么工作</h2><p>我们需要知道浏览器对于我们加载过的图片，js，css 等等文件资源都会有缓存。首先我们明确缓存分为两种</p>
+<ol>
+<li>强缓存</li>
+<li>协商缓存</li>
+</ol>
+<p>浏览器如何确实是哪种缓存? —— 最常见的是响应头<code>cache-control</code></p>
+<ul>
+<li><code>public,max-age=0</code> 或者<code>no-cache</code>都是协商缓存</li>
+<li><code>public,max-age=xxx</code> 并且时间没过期，为强缓存</li>
+<li><code>no-store</code>为不缓存</li>
+</ul>
+<blockquote>
+<p>强缓存与协商缓存的区别？</p>
+<ul>
+<li>强缓存<ul>
+<li>资源只要设定的时间没有过期，文件 hash 没有变化，那么就会使用缓存资源， 状态码为灰色 200</li>
+</ul>
+</li>
+<li>协商缓存<ul>
+<li>每次都会请求核对服务器资源<strong>文件的最后修改时间</strong>是否或者<strong>etag</strong>与本地一致, 一致则用缓存的，状态码为 304</li>
+</ul>
+</li>
+</ul>
 </blockquote>
-<h2 id="文件夹查找机制"><a href="#文件夹查找机制" class="headerlink" title="文件夹查找机制"></a>文件夹查找机制</h2><ol>
-<li>如果加了“.&#x2F;“, “&#x2F;“这样的具体路径， 那么就直接按照路径找</li>
-<li>如果只写了模块名，就从<code>node_modules</code>中查找对应的文件夹</li>
-</ol>
-<h2 id="导入一个库"><a href="#导入一个库" class="headerlink" title="导入一个库"></a>导入一个库</h2><ol>
-<li>执行<code>import ... from &#39;...&#39;</code></li>
-<li>去查找该库是否有<code>package.json</code>文件，并且有对应的控制字段</li>
-<li>如果有就去根据<code>main</code>等字段综合决定；没有就引入<code>index.js</code></li>
-</ol>
-<h3 id="package-json核心字段"><a href="#package-json核心字段" class="headerlink" title="package.json核心字段"></a><code>package.json</code>核心字段</h3><ol>
-<li>main： 一般常用，浏览器和 node 环境均生效</li>
-<li>module : ESM 规范入口，node 无效</li>
-<li>browser： 浏览器环境下的入口</li>
-<li>exports ： 可以覆盖前面属性，定义 import 和 require 分别引入什么，<strong>node14.13 后支持</strong></li>
-</ol>
-<h4 id="main-module-browser-的应用"><a href="#main-module-browser-的应用" class="headerlink" title="main &amp;&amp; module &amp;&amp; browser 的应用"></a>main &amp;&amp; module &amp;&amp; browser 的应用</h4><p>在浏览器环境下使用 import 引入的<strong>字段读取优先级</strong>：browser &gt; module &gt; main ,都没有等于<code>package.json</code>（读取 index.js)</p>
-<p>在 node 环境下使用 require 引入时读取<code>main</code> ， 其他无效, 如果没有 main 等同于没有<code>package.json</code></p>
-<h4 id="exports-的应用"><a href="#exports-的应用" class="headerlink" title="exports 的应用"></a>exports 的应用</h4><p>使用这种方式配置引入文件时，在组件中引入的库（文件夹）<strong>需要放在 node_modules 中</strong>才能生效</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  存在exports都会被覆盖</span></span><br><span class="line"><span class="comment">  &quot;main&quot;: &quot;index.js&quot;,</span></span><br><span class="line"><span class="comment">  &quot;browser&quot;: &quot;test.browser.js&quot;,</span></span><br><span class="line"><span class="comment">  &quot;module&quot;: &quot;test.module.js&quot;,</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">   ...<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;exports&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;.&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;import&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./test.exports.js&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="comment">// 如果有非默认路径，被引入的文件夹必须放入node_modules，否则报错</span></span><br><span class="line">    <span class="attr">&quot;./static&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;import&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./test.static.js&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><p><strong>当我们为协商缓存时:</strong></p>
+<p>资源文件内容完全不变，但是重新打包，文件修改时间发生变化，那么就会重新去请求资源(状态码为 200)，后续都是 304 状态</p>
+<blockquote>
+<p>tip: 替换静态资源不用重启服务器</p>
+</blockquote>
+<p><strong>当我们为强缓存时:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 设置静态文件目录</span><br><span class="line">app.use(express.static(path.join(__dirname, &quot;dist&quot;), &#123;</span><br><span class="line">	maxAge : 60 * 60 * 1000</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
 
-<p>文件引入：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> importTest <span class="keyword">from</span> <span class="string">&quot;importTest&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> importTestStatic <span class="keyword">from</span> <span class="string">&quot;importTest/static&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="扩展-CommonJS-导入导出规范"><a href="#扩展-CommonJS-导入导出规范" class="headerlink" title="扩展 CommonJS 导入导出规范"></a>扩展 CommonJS 导入导出规范</h2><p>我们首先需要知道，CommonJS 的执行核心就是依托于<code>require</code>方法</p>
-<p>而被执行的代码实际上实在一个函数环境中执行的, 如何证明？ —— 只需要在被引入的代码中打印<code>arguments</code>即可<br>这也解释了为什么 CommonJS 为什么能够隔离变量，从而避免全局污染。</p>
+<p>资源文件修改时间发生变化，仍然使用强缓存资源（除了被请求的资源，比如 html)，并且状态码为灰色 200</p>
+<p>但是如果 JS 文件 hash 名改变了，那么就会重新请求 JS 文件， css 文件仍然是使用缓存</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>协商缓存：</p>
+<p>​ 优点:能够保证每次前端打包后丢上服务器资源一定更新<br>​ 缺点:只要文件是新放的，即使文件内容没变也不缓存</p>
+<p>强缓存:</p>
+<p>​ 优点: 一定期限内，根本不用向服务器询问，一定是拿到缓存。速度最快<br>​ 缺点: 如何不配合 hash，无法感知到文件更新</p>
+<h3 id="hash-值最佳策略"><a href="#hash-值最佳策略" class="headerlink" title="hash 值最佳策略"></a><strong>hash 值最佳策略</strong></h3><ol>
+<li>每个文件有自己的 hash 值，确保不会被其他文件的改动影响</li>
+<li>某个文件变更尽量不要影响跟他无关的文件 hash 值</li>
+</ol>
 
                 </div>
 
@@ -279,7 +303,7 @@
                             <ul class="post-tags-box border-box">
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/blog/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/">工程化</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/blog/tags/%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/">资源管理</a>
                                     </li>
                                 
                             </ul>
@@ -298,14 +322,14 @@
                             <div class="prev-post">
                                 <a class="prev"
                                    rel="prev"
-                                   href="/blog/2024/06/13/typescript/typescript%E5%9F%BA%E7%A1%80/"
-                                   title="TypeScript基础语法"
+                                   href="/blog/2024/10/13/%E5%B8%83%E5%B1%80/grid%E5%B8%83%E5%B1%80/"
+                                   title="grid布局"
                                 >
                                     <span class="left arrow-icon flex-center">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">TypeScript基础语法</span>
+                                        <span class="post-nav-title-item text-ellipsis">grid布局</span>
                                         <span class="post-nav-item">上一篇</span>
                                     </span>
                                 </a>
@@ -315,11 +339,11 @@
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/blog/2024/06/11/node/node-%E5%9F%BA%E7%A1%80/"
-                                   title="node基础"
+                                   href="/blog/2024/08/14/charts/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%A7%E5%B1%8F/"
+                                   title="大屏可视化及地图扩展"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">node基础</span>
+                                        <span class="post-nav-title-item text-ellipsis">大屏可视化及地图扩展</span>
                                         <span class="post-nav-item">下一篇</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -347,7 +371,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9F%A5%E6%89%BE%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">文件夹查找机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E4%B8%80%E4%B8%AA%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">导入一个库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json%E6%A0%B8%E5%BF%83%E5%AD%97%E6%AE%B5"><span class="nav-number">2.1.</span> <span class="nav-text">package.json核心字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#main-module-browser-%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">2.1.1.</span> <span class="nav-text">main &amp;&amp; module &amp;&amp; browser 的应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exports-%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">2.1.2.</span> <span class="nav-text">exports 的应用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A9%E5%B1%95-CommonJS-%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E8%A7%84%E8%8C%83"><span class="nav-number">3.</span> <span class="nav-text">扩展 CommonJS 导入导出规范</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2"><span class="nav-number">1.</span> <span class="nav-text">项目部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">缓存怎么工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5"><span class="nav-number">2.1.</span> <span class="nav-text">实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">2.2.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hash-%E5%80%BC%E6%9C%80%E4%BD%B3%E7%AD%96%E7%95%A5"><span class="nav-number">2.3.</span> <span class="nav-text">hash 值最佳策略</span></a></li></ol></li></ol>
     </div>
 </div>
 
@@ -506,7 +530,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9F%A5%E6%89%BE%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">文件夹查找机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E4%B8%80%E4%B8%AA%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">导入一个库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json%E6%A0%B8%E5%BF%83%E5%AD%97%E6%AE%B5"><span class="nav-number">2.1.</span> <span class="nav-text">package.json核心字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#main-module-browser-%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">2.1.1.</span> <span class="nav-text">main &amp;&amp; module &amp;&amp; browser 的应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exports-%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">2.1.2.</span> <span class="nav-text">exports 的应用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A9%E5%B1%95-CommonJS-%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E8%A7%84%E8%8C%83"><span class="nav-number">3.</span> <span class="nav-text">扩展 CommonJS 导入导出规范</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2"><span class="nav-number">1.</span> <span class="nav-text">项目部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">缓存怎么工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5"><span class="nav-number">2.1.</span> <span class="nav-text">实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">2.2.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hash-%E5%80%BC%E6%9C%80%E4%BD%B3%E7%AD%96%E7%95%A5"><span class="nav-number">2.3.</span> <span class="nav-text">hash 值最佳策略</span></a></li></ol></li></ol>
     </div>
 </div>
 

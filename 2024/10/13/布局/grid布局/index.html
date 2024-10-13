@@ -9,7 +9,7 @@
     
     <title>
         
-            标签 |
+            grid布局 |
         
         leihy&#39;s blog
     </title>
@@ -92,7 +92,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class="active"
+                            <a class=""
                                href="/blog/tags"
                             >标签</a>
                         </li>
@@ -136,7 +136,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                        href="/blog/tags"
                     >标签</a>
                 </li>
@@ -162,13 +162,160 @@
             <div class="main-content border-box">
                 
 
-                    <div class="fade-in-down-animation">
-    <div class="tagcloud-container">
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        grid布局
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">leihy</span>
+                                
+                                    <span class="author-badge">Lv4</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
         
-            <div class="tagcloud-content">
-                <a href="/blog/tags/React-js/" style="font-size: 1.48rem;">React.js</a> <a href="/blog/tags/TypeScript/" style="font-size: 1.36rem;">TypeScript</a> <a href="/blog/tags/node/" style="font-size: 1.24rem;">node</a> <a href="/blog/tags/vue3/" style="font-size: 1.6rem;">vue3</a> <a href="/blog/tags/webpack/" style="font-size: 1.36rem;">webpack</a> <a href="/blog/tags/%E5%9B%BE%E8%A1%A8/" style="font-size: 1.12rem;">图表</a> <a href="/blog/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/" style="font-size: 1.12rem;">工程化</a> <a href="/blog/tags/%E5%B8%83%E5%B1%80/" style="font-size: 1rem;">布局</a> <a href="/blog/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 1rem;">移动端</a> <a href="/blog/tags/%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" style="font-size: 1rem;">资源管理</a>
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2024-10-13 20:30:53</span>
+                <span class="mobile">2024-10-13 20:30</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Sun Oct 13 2024 21:19:30 GMT+0800">2024-10-13 21:19:30</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/blog/tags/%E5%B8%83%E5%B1%80/">布局</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <blockquote>
+<p>假如我们有一个布局的需求： 一行两端对齐，最后一行左对齐</p>
+<p>这个时候你可能会想到flex布局的<code>justify-content</code>，但实际上flex实际上是办不到的，因为一旦最后数量较少，则会出现<strong>中间空着</strong>的情况</p>
+</blockquote>
+<h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 设置元素为grid布局</span></span><br><span class="line"><span class="attribute">display</span>: flex;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 设置每个子元素的占比（注意子元素不能设置显式的宽度)</span></span><br><span class="line"><span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr;  <span class="comment">// 一个元素一行</span></span><br><span class="line"><span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">1</span>fr;  <span class="comment">// 两个元素平均分布一行</span></span><br><span class="line"><span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">1</span>fr <span class="number">200px</span>;  <span class="comment">// 最后一个为200px， 其他平均分布</span></span><br><span class="line"><span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">2</span>fr <span class="number">1</span>fr;  <span class="comment">// 中间的元素是其他的两倍宽度</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(<span class="number">3</span>, <span class="number">1</span>fr); <span class="comment">// 最常用，重复三次，平均分布</span></span><br><span class="line"><span class="comment">// 3. 设置元素间距</span></span><br><span class="line"><span class="attribute">gap</span>: <span class="number">20px</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>响应式布局</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 元素最小宽度为260px，小于就会换行展示 */</span></span><br><span class="line"><span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(auto-fill, <span class="built_in">minmax</span>(<span class="number">260px</span>, <span class="number">1</span>fr));</span><br></pre></td></tr></table></figure>
+
+<p>需求： B站那样的第一个元素块占比两行两列如何实现？</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 要写在子元素上</span></span><br><span class="line"><span class="attribute">grid-row</span>: <span class="number">1</span>/<span class="number">3</span>    //占两行， 从第一行开始， 跨两行（<span class="number">1</span>+<span class="number">2</span>)</span><br><span class="line">grid-column: <span class="number">1</span>/<span class="number">3</span>	//占两列， 从第一列开始， 跨两列（<span class="number">1</span>+<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/blog/tags/%E5%B8%83%E5%B1%80/">布局</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/blog/2024/08/15/%E5%89%8D%E7%AB%AF%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B5%84%E6%BA%90%E7%BC%93%E5%AD%98%E7%AE%A1%E7%90%86/"
+                                   title="前端变量的使用和原理"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">前端变量的使用和原理</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
             </div>
+        </div>
+
         
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">基本知识</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
         
     </div>
 </div>
@@ -215,6 +362,23 @@
 
     <!-- post tools -->
     
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
 
     <!-- side tools -->
     <div class="side-tools">
@@ -241,6 +405,10 @@
     </ul>
 
     <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
         
 
         
@@ -298,6 +466,17 @@
 
     <!-- tablet toc -->
     
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">基本知识</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
 </main>
 
 
@@ -334,6 +513,24 @@
 
 
 <div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/blog/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/blog/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
     
 
     <!-- category-page -->

@@ -171,6 +171,315 @@
                 <div class="home-post-item-bottom border-box">
                     
                     <h3 class="home-post-title border-box">
+                        <a href="/blog/2024/05/12/react/react%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
+                            react基础语法（class组件）
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            组件与 jsx组件类型分为函数组件与类组件 ， 作为组件使用名称必须以大写字母开头
+1234567891011121314151617181920212223242526import React from &quot;react&quot;;expo...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Tue May 21 2024 21:37:04 GMT+0800">2024-05-21 21:37:04</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2024/05/12/react/react%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2024/05/10/vue3/ref%E4%B8%8Ereactive%E7%9A%84%E5%8C%BA%E5%88%AB/">
+                            ref与reactive的区别及原理
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            基本区别ref 可以接收基本值和引用值； reactive 只能接收引用值。
+那么我们到底该如何选择呢？
+直接赋值：
+1234567let state = reactive(&#123;&#125;);// 上面的 (&#123;&#125;) 引用...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Fri May 10 2024 22:40:00 GMT+0800">2024-05-10 22:40:00</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2024/05/10/vue3/ref%E4%B8%8Ereactive%E7%9A%84%E5%8C%BA%E5%88%AB/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2024/05/09/vue3/el-seelct%E7%9A%84%E6%94%B9%E9%80%A0%E5%8F%8A%E4%B8%87%E8%83%BD%E6%80%9D%E8%B7%AF/">
+                            el-select的改造及万能思路
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            
+本文所举例子实际在 element-ui 3.0 中已提供相关 API，但这里仍然使用通用思路以便深入理解组件改造
+
+需求element-ui 2.0 中的el-select组件，在选中多个后超出当前宽度会出现高度变形的情况， 如果加上collap...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Fri May 10 2024 22:41:45 GMT+0800">2024-05-10 22:41:45</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2024/05/09/vue3/el-seelct%E7%9A%84%E6%94%B9%E9%80%A0%E5%8F%8A%E4%B8%87%E8%83%BD%E6%80%9D%E8%B7%AF/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2024/05/08/vue3/%E6%94%B9%E9%80%A0%E6%97%A5%E5%8E%86%E7%BB%84%E4%BB%B6%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0/">
+                            改造日历组件——渲染函数
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            
+这篇文章描述了日历组件的二次改造， 在某个存在事项的日期底部显示圆点以及点击可以弹框显示；
+在使用模板时我们会遇到一些问题，最终应该如何去解决。
+
+模板实现12345678910111213141516171819&lt;template&gt; ...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Fri May 10 2024 22:43:47 GMT+0800">2024-05-10 22:43:47</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2024/05/08/vue3/%E6%94%B9%E9%80%A0%E6%97%A5%E5%8E%86%E7%BB%84%E4%BB%B6%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2024/05/07/vue3/%E5%89%8D%E7%AB%AF%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E6%8C%87%E5%8D%97/">
+                            前端富文本编辑器指南——tinymce
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            安装注意事项
+
+有两种方案分别是安装对应的 vue&#x2F;react 组件，然后直接用组件；或者直接使用 tinymce 去按原生操作
+1npm install tinymce @tinymce/tinymce-vue
+
+原生方式会报找不到文件的...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Thu May 09 2024 20:52:47 GMT+0800">2024-05-09 20:52:47</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2024/05/07/vue3/%E5%89%8D%E7%AB%AF%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E6%8C%87%E5%8D%97/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2024/04/28/mobile/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/">
+                            移动端适配
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            核心思想
+基本原则： 布局更多地使用 flex， 然后尺寸使用 rem，vw，vh 为单位
+如果是根据不同的屏幕需要有不同的布局了，一般通过检测屏幕尺寸
+
+如何监听屏幕？
+尺寸remhtml 标签的font-size属性大小就为 1rem，比如 fo...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Tue May 07 2024 22:09:52 GMT+0800">2024-05-07 22:09:52</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2024/04/28/mobile/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
                         <a href="/blog/2024/04/15/file-operation/excel%E4%B8%8Eword%E8%A7%A3%E6%9E%90%E4%B8%8E%E9%A2%84%E8%A7%88/">
                             文件预览与解析
                         </a>
@@ -379,328 +688,6 @@ base64 传输
 
     
         <a class="home-read-more" href="/blog/2024/04/11/file-operation/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/blog/2024/03/18/vue3/i18n-%E5%9B%BD%E9%99%85%E5%8C%96/">
-                            i18n-国际化
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            基于 vue-i18n V9 的国际化实现方案分析基础用法vue-i18n 的使用可以分为四个部分：
-
-创建 messages 数据源
-创建 locale 语言变量
-初始化 i18n 实例
-注册 i18n 实例
-
-那么接下来我们就去实现以下：
-
-安装...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Thu May 09 2024 20:52:47 GMT+0800">2024-05-09 20:52:47</span>
-            </span>
-        
-
-        
-
-        
-
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/blog/2024/03/18/vue3/i18n-%E5%9B%BD%E9%99%85%E5%8C%96/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/blog/2023/12/30/typescript/ts%E7%9A%84%E6%84%8F%E4%B9%89%E4%B8%8E%E9%BA%BB%E7%83%A6/">
-                            ts的意义与麻烦
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            意义最大的意义就是避免写错变量名，方法名，屏蔽掉低级错误
-
-编写一些公用方法和全局配置对象，用于提醒使用者传参的 key 值和 value 类型等
-12345678//apis/users.tsexport interface ListParamsT...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Mon Mar 18 2024 20:48:53 GMT+0800">2024-03-18 20:48:53</span>
-            </span>
-        
-
-        
-
-        
-
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/blog/2023/12/30/typescript/ts%E7%9A%84%E6%84%8F%E4%B9%89%E4%B8%8E%E9%BA%BB%E7%83%A6/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/blog/2023/12/15/%E6%90%9E%E6%87%82%E5%89%8D%E7%AB%AF%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%8E%9F%E7%90%86/">
-                            前端变量的使用和原理
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            不同的环境使用不同的服务器
-开发环境请求的是公司局域网的服务器
-生产环境请求的是真正的服务器，比如云服务
-使用使用 .env.环境名字 定义，运行命令的时候指定环境
-Vite + vue3 项目存值：VITE_变量名 &#x3D; xxx
-12345...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Tue May 21 2024 21:18:15 GMT+0800">2024-05-21 21:18:15</span>
-            </span>
-        
-
-        
-
-        
-
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/blog/2023/12/15/%E6%90%9E%E6%87%82%E5%89%8D%E7%AB%AF%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%8E%9F%E7%90%86/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/blog/2023/06/17/webpack/webpack%E5%AE%9E%E6%88%98/">
-                            webpack实战
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            环境为什么需要区分环境?
-生产模式：
-
-需要：代码压缩、tree-shaking、代码混淆等
-不需要：详细的 source-map、开启开发模式
-
-开发模式则相反。
-区分要点：
-
-根据不同环境进行不同的打包，一般在 process.env 中设置
-有...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Wed Feb 28 2024 20:57:11 GMT+0800">2024-02-28 20:57:11</span>
-            </span>
-        
-
-        
-
-        
-
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/blog/2023/06/17/webpack/webpack%E5%AE%9E%E6%88%98/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/blog/2023/06/15/webpack/webpack%E6%8A%80%E5%B7%A7%E6%80%A7%E9%85%8D%E7%BD%AE/">
-                            webpack的技巧性配置
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            hash 值的意义
-浏览器加载了文件后会缓存资源，每次去加载时如果发现文件名一样就会直接使用缓存资源，这就会导致我们重新打包后的文件如果跟之前同名，就会出现浏览器还是读取的以前缓存的问题。
-
-如果我们每次为生成的文件名中附带当次打包的 hash 值，...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Wed Feb 28 2024 20:59:07 GMT+0800">2024-02-28 20:59:07</span>
-            </span>
-        
-
-        
-
-        
-
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/blog/2023/06/15/webpack/webpack%E6%8A%80%E5%B7%A7%E6%80%A7%E9%85%8D%E7%BD%AE/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/blog/2023/06/14/webpack/%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2/">
-                            webpack的技巧性配置
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            单入口文件的处理
-单入口意味着所有代码在一个文件里，这样会导致代码过大，所以我们需要把一些不是马上用到并且体积过大的代码拆分出来，以加快首屏渲染速度
-
-这里以引入loadsh为例子：
-12345678import _ from &quot;lodas...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Wed Feb 28 2024 20:56:47 GMT+0800">2024-02-28 20:56:47</span>
-            </span>
-        
-
-        
-
-        
-
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/blog/2023/06/14/webpack/%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
     
 </div>
 

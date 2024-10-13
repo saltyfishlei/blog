@@ -171,6 +171,349 @@
                 <div class="home-post-item-bottom border-box">
                     
                     <h3 class="home-post-title border-box">
+                        <a href="/blog/2024/06/15/typescript/ts%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E7%BC%96%E8%AF%91/">
+                            Ts的工程化编译
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            
+本节中所举例的构建工具为 webpack
+
+要实现 TS 编译有两个关键点：
+
+Ts-loader 用来在打包的时候处理 TS 文件(实质上就是调用typescript这个库)
+tsconfig 用来调控如何编译 TS
+
+基础实现
+npm初始化
+1...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Sat Jun 29 2024 16:02:06 GMT+0800">2024-06-29 16:02:06</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2024/06/15/typescript/ts%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E7%BC%96%E8%AF%91/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2024/06/15/typescript/Ts%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E6%9C%BA%E5%88%B6/">
+                            Ts中的一些特殊机制
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            类型推断
+如果你没有定义类型，TypeScript 会根据值推断一个类型
+会根据你的代码执行结果上下文推断代码是否正确
+
+12let a = 1; // 被推断为number类型a = &quot;1&quot;; // Type &#x27;str...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Sat Jun 15 2024 13:06:38 GMT+0800">2024-06-15 13:06:38</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2024/06/15/typescript/Ts%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E6%9C%BA%E5%88%B6/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2024/06/13/typescript/typescript%E5%9F%BA%E7%A1%80/">
+                            TypeScript基础语法
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            
+记哪些？
+
+各种类型的写法和操作
+Typescript 一些机制
+一些关键字怎么用
+
+理解哪些？
+
+工程化的配置
+一些实战中常见需求怎么去描述类型
+编写一些常见的东西
+
+
+为什么需要 TypeScript？项目需要编写一个全局数组排序方法
+写了一个...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Sat Jun 29 2024 16:01:40 GMT+0800">2024-06-29 16:01:40</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2024/06/13/typescript/typescript%E5%9F%BA%E7%A1%80/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2024/06/11/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82import%E5%88%B0%E5%BA%95%E5%9C%A8%E5%BC%95%E5%85%A5%E4%BB%80%E4%B9%88/">
+                            一文搞懂import到底在引入什么
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            
+通过这篇文章，你可以学会：
+
+搞懂 package.json 的几个重要字段
+明白 import 引入模块时的机制，引入一个模块到底引入的是哪个文件
+
+
+文件夹查找机制
+如果加了“.&#x2F;“, “&#x2F;“这样的具体路径， 那么就直接按照...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Thu Aug 15 2024 12:01:40 GMT+0800">2024-08-15 12:01:40</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2024/06/11/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82import%E5%88%B0%E5%BA%95%E5%9C%A8%E5%BC%95%E5%85%A5%E4%BB%80%E4%B9%88/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2024/06/11/node/node-%E5%9F%BA%E7%A1%80/">
+                            node基础
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            
+可以说，node 改变了前端的开发方式：
+
+为前端提供开发工具（vue-cli, webpack 等）
+提供线上环境模拟
+提供中间层服务器渲染（ssr，高流量项目）
+做后端服务（极少）
+
+
+常用工具模块核心操作
+
+读写文件
+开启服务
+
+path-路...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Sat Jun 29 2024 16:00:05 GMT+0800">2024-06-29 16:00:05</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2024/06/11/node/node-%E5%9F%BA%E7%A1%80/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/blog/2024/06/08/react/React%E5%BF%85%E8%B8%A9%E5%9D%91%E5%8F%8A%E5%85%B6%E8%83%8C%E5%90%8E%E5%8E%9F%E7%90%86/">
+                            React必踩坑及其背后原理
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            基础知识react 的存在一个更新问题——state 的更新会重新执行整个函数以及更新子组件
+我们可以使用React.memo来阻止子组件的更新
+1export default React.memo(Component);
+
+但是上面我们提到，组件状...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Sat Jun 08 2024 23:14:59 GMT+0800">2024-06-08 23:14:59</span>
+            </span>
+        
+
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/blog/2024/06/08/react/React%E5%BF%85%E8%B8%A9%E5%9D%91%E5%8F%8A%E5%85%B6%E8%83%8C%E5%90%8E%E5%8E%9F%E7%90%86/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
                         <a href="/blog/2024/05/31/react/react-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
                             react-性能优化
                         </a>
@@ -363,315 +706,6 @@ We do not currently have official React Native templates, but recommend these te
 
     
         <a class="home-read-more" href="/blog/2024/05/22/react/%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%20&&%20%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/blog/2024/05/12/react/react%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
-                            react基础语法（class组件）
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            组件与 jsx组件类型分为函数组件与类组件 ， 作为组件使用名称必须以大写字母开头
-1234567891011121314151617181920212223242526import React from &quot;react&quot;;expo...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Tue May 21 2024 21:37:04 GMT+0800">2024-05-21 21:37:04</span>
-            </span>
-        
-
-        
-
-        
-
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/blog/2024/05/12/react/react%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/blog/2024/05/10/vue3/ref%E4%B8%8Ereactive%E7%9A%84%E5%8C%BA%E5%88%AB/">
-                            ref与reactive的区别及原理
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            基本区别ref 可以接收基本值和引用值； reactive 只能接收引用值。
-那么我们到底该如何选择呢？
-直接赋值：
-1234567let state = reactive(&#123;&#125;);// 上面的 (&#123;&#125;) 引用...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Fri May 10 2024 22:40:00 GMT+0800">2024-05-10 22:40:00</span>
-            </span>
-        
-
-        
-
-        
-
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/blog/2024/05/10/vue3/ref%E4%B8%8Ereactive%E7%9A%84%E5%8C%BA%E5%88%AB/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/blog/2024/05/09/vue3/el-seelct%E7%9A%84%E6%94%B9%E9%80%A0%E5%8F%8A%E4%B8%87%E8%83%BD%E6%80%9D%E8%B7%AF/">
-                            el-select的改造及万能思路
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            
-本文所举例子实际在 element-ui 3.0 中已提供相关 API，但这里仍然使用通用思路以便深入理解组件改造
-
-需求element-ui 2.0 中的el-select组件，在选中多个后超出当前宽度会出现高度变形的情况， 如果加上collap...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Fri May 10 2024 22:41:45 GMT+0800">2024-05-10 22:41:45</span>
-            </span>
-        
-
-        
-
-        
-
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/blog/2024/05/09/vue3/el-seelct%E7%9A%84%E6%94%B9%E9%80%A0%E5%8F%8A%E4%B8%87%E8%83%BD%E6%80%9D%E8%B7%AF/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/blog/2024/05/08/vue3/%E6%94%B9%E9%80%A0%E6%97%A5%E5%8E%86%E7%BB%84%E4%BB%B6%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0/">
-                            改造日历组件——渲染函数
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            
-这篇文章描述了日历组件的二次改造， 在某个存在事项的日期底部显示圆点以及点击可以弹框显示；
-在使用模板时我们会遇到一些问题，最终应该如何去解决。
-
-模板实现12345678910111213141516171819&lt;template&gt; ...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Fri May 10 2024 22:43:47 GMT+0800">2024-05-10 22:43:47</span>
-            </span>
-        
-
-        
-
-        
-
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/blog/2024/05/08/vue3/%E6%94%B9%E9%80%A0%E6%97%A5%E5%8E%86%E7%BB%84%E4%BB%B6%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/blog/2024/05/07/vue3/%E5%89%8D%E7%AB%AF%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E6%8C%87%E5%8D%97/">
-                            前端富文本编辑器指南——tinymce
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            安装注意事项
-
-有两种方案分别是安装对应的 vue&#x2F;react 组件，然后直接用组件；或者直接使用 tinymce 去按原生操作
-1npm install tinymce @tinymce/tinymce-vue
-
-原生方式会报找不到文件的...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Thu May 09 2024 20:52:47 GMT+0800">2024-05-09 20:52:47</span>
-            </span>
-        
-
-        
-
-        
-
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/blog/2024/05/07/vue3/%E5%89%8D%E7%AB%AF%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E6%8C%87%E5%8D%97/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/blog/2024/04/28/mobile/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/">
-                            移动端适配
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            核心思想
-基本原则： 布局更多地使用 flex， 然后尺寸使用 rem，vw，vh 为单位
-如果是根据不同的屏幕需要有不同的布局了，一般通过检测屏幕尺寸
-
-如何监听屏幕？
-尺寸remhtml 标签的font-size属性大小就为 1rem，比如 fo...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fas fa-history"></i>&nbsp;<span class="home-post-history" data-updated="Tue May 07 2024 22:09:52 GMT+0800">2024-05-07 22:09:52</span>
-            </span>
-        
-
-        
-
-        
-
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/blog/2024/04/28/mobile/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
     
 </div>
 

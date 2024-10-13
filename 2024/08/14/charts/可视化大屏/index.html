@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="leihy">
+    
+    <title>
+        
+            大屏可视化及地图扩展 |
+        
+        leihy&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/blog/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/blog/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"saltyfishlei.github.io","root":"/blog/","language":"cn","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"leihy's blog","author":"leihy","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"面朝大海，春暖花开。","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":false,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"jsdelivr"},"pjax":{"enable":false},"footer":{"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"/blog","version":"4.0.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/blog/">
+                    <img src="/blog/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/blog/">
+               leihy&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/blog/"
+                        >首页</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/archives"
+                            >归档</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/tags"
+                            >标签</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/about"
+                            >关于</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/blog/"
+                >首页</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/archives"
+                    >归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/tags"
+                    >标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/about"
+                    >关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        大屏可视化及地图扩展
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">leihy</span>
+                                
+                                    <span class="author-badge">Lv4</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2024-08-14 00:00:00</span>
+                <span class="mobile">2024-08-14 00:00</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Wed Aug 14 2024 17:46:08 GMT+0800">2024-08-14 17:46:08</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/blog/tags/%E5%9B%BE%E8%A1%A8/">图表</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <h1 id="方案适配"><a href="#方案适配" class="headerlink" title="方案适配"></a>方案适配</h1><p>可视化大屏的适配方案一般分为<strong>始终满屏适配</strong>与<strong>始终保持比例适配</strong></p>
+<h2 id="始终满屏"><a href="#始终满屏" class="headerlink" title="始终满屏"></a>始终满屏</h2><p>这种方案一般用在屏幕变化不会特别的大项目，项目基本上不会用在比例非常不协调的大屏，设计图按 1920*1080 标准电脑屏幕比，所用的屏幕也基本在这个比例左右</p>
+<p><strong>实现思路</strong></p>
+<p>1．核心： <strong>宽度</strong>使用<code>vw</code>，<strong>高度</strong>使用<code>vh</code>，严格按照设计图换算，并且利用 flex 布局留出缓冲空间。</p>
+<p>2．具体算法，如果设计图为 1920*1080：</p>
+<p>高度上：</p>
+<pre><code>1. 图表高度/ 设计图整体高度 （ 某个值/1080）
+</code></pre>
+<ol start="2">
+<li><p>得到的结果 *100,</p>
+<pre><code>    3. 计算结果加上`vh`单位
+</code></pre>
+</li>
+</ol>
+<p>宽度上：</p>
+<p>换成对应的宽度即可，与高度计算同理。</p>
+<blockquote>
+<p>tips1 :</p>
+<p>特别提醒： 因为大屏项目的高度始终要保持一屏， 一般移动端项目不用一屏，是可以滚动的，所以移动端高宽统一用<code>vw</code></p>
+</blockquote>
+<blockquote>
+<p>tips2:</p>
+<p>大屏可视化获取数据的时候在需要对数据进行复杂操作时， 建议一次性将所有数据拿回来进行处理，然后再传递给展示数据的组件</p>
+<p>如果后端返回的数据按照图表进行返回的，那么就可以在对应的图表组件中进行接口处理</p>
+</blockquote>
+<h2 id="始终保持比例适配"><a href="#始终保持比例适配" class="headerlink" title="始终保持比例适配"></a>始终保持比例适配</h2><p><strong>核心：用按比例用 scale 适配</strong></p>
+<ol>
+<li>开发项目直接使用设计图量出的尺寸填写大小</li>
+<li>页面打开，读取当前屏幕宽高</li>
+<li>按当前屏幕宽高，通过 scale 缩放整个项目<ol>
+<li>屏幕宽高比大于设计图，则根据高度进行缩放</li>
+</ol>
+</li>
+<li>让项目高度，横向竖向始终居中</li>
+</ol>
+<p><strong>基本步骤</strong></p>
+<p>计算屏幕比例并监听窗口大小变化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">setScale</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> designWidth = <span class="number">4350</span>;</span><br><span class="line">    <span class="keyword">let</span> designHeight = <span class="number">1538</span>;</span><br><span class="line">    <span class="keyword">let</span> screenWidth = <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">clientWidth</span>;</span><br><span class="line">    <span class="keyword">let</span> screenHeight = <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">clientHeight</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> designRatio = designWidth / designHeight;</span><br><span class="line">    <span class="comment">// 获取当前屏幕比</span></span><br><span class="line">    <span class="keyword">let</span> screenRatio = screenWidth / screenHeight;</span><br><span class="line">    <span class="keyword">let</span> scale =</span><br><span class="line">        screenRatio &lt; designRatio</span><br><span class="line">    ? screenWidth / designWidth</span><br><span class="line">    : screenHeight / designHeight;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> app = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;app&quot;</span>);</span><br><span class="line">    app.<span class="property">style</span>.<span class="property">transform</span> = <span class="string">`scale(<span class="subst">$&#123;scale&#125;</span>) translate(-50%,-50%)`</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">setScale</span>();</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;resize&quot;</span>, setScale);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>css 处理</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#app</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">4350px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">1538px</span>;</span><br><span class="line">  <span class="attribute">transform-origin</span>: <span class="number">0px</span> <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">&quot;../image/backf.jpg&quot;</span>);</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="扩展：-地图处理"><a href="#扩展：-地图处理" class="headerlink" title="扩展： 地图处理"></a>扩展： 地图处理</h1><p>用 echarts 绘制地图的三种方案</p>
+<ol>
+<li><p>使用 map 图表</p>
+<p>用<code>json</code>数注册为地图。就可以画出一片地图</p>
+</li>
+<li><p>使用 geo 坐标系</p>
+<p>地图注册后不直接绘图 ，而是作为坐标系</p>
+</li>
+<li><p>直接使用百度地图，高德地图</p>
+<p>直接用百度地图或者高德地图作为坐标系，不用自己注册地图</p>
+</li>
+</ol>
+<blockquote>
+<p>前两种方法都需要注册地图到 Echarts 库上</p>
+</blockquote>
+<h2 id="map-地图"><a href="#map-地图" class="headerlink" title="map 地图"></a>map 地图</h2><blockquote>
+<p>这种方式需要自己处理 json 数据，搜索<strong>阿里云数据可视化 datav</strong></p>
+</blockquote>
+<p><strong>使用场景：</strong>通常来说，如果单纯的要可视化的说明每个地区的数据，用这种方案即可</p>
+<p>1,地图也有 label，legend 等的调节, 和其他图表一样，用<code>itemStyle</code>可以调节地图每个区域的几何图形的样式</p>
+<p>2，相对于其他图表，地图特有的属性有</p>
+<ul>
+<li>数据映射-<code>nameMap</code></li>
+<li>缩放相关-<code>scaleLimit</code>，<code>zoom</code></li>
+</ul>
+<h3 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> chinaMap <span class="keyword">from</span> <span class="string">&quot;./chinaMap.json&quot;</span>;</span><br><span class="line"></span><br><span class="line">echarts.<span class="title function_">registerMap</span>(<span class="string">&quot;chinaMap&quot;</span>, chinaMap); <span class="comment">// 不是echarts实例</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">series</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&quot;map&quot;</span>,</span><br><span class="line">        <span class="attr">map</span>: <span class="string">&quot;chinaMap&quot;</span>,</span><br><span class="line">        <span class="attr">data</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">name</span>: <span class="string">&quot;浙江省&quot;</span>,</span><br><span class="line">                <span class="attr">value</span>: <span class="number">10</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        ],</span><br><span class="line">    &#125;,</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+<h3 id="visualMap-组件"><a href="#visualMap-组件" class="headerlink" title="visualMap 组件"></a>visualMap 组件</h3><p><code>visualMap</code>一般配合热力图或者地图，根据数值显示不同的颜色</p>
+<p>1，inRange 调控颜色变化范围</p>
+<p>2，min，max 调控最大最小值</p>
+<p>3，left 调节组件位置</p>
+<p>4，text 调节组件最高最低文本</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">options</span>: &#123;</span><br><span class="line">    <span class="attr">visualMap</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">type</span>: <span class="string">&quot;continuous&quot;</span>,</span><br><span class="line">            <span class="attr">min</span>: <span class="number">0</span>,</span><br><span class="line">            <span class="attr">max</span>: <span class="number">40</span>,</span><br><span class="line">            <span class="attr">right</span>: <span class="number">0</span>,</span><br><span class="line">            <span class="attr">text</span>: [<span class="string">&quot;40度&quot;</span>, <span class="string">&quot;0度&quot;</span>],</span><br><span class="line">            <span class="attr">inRange</span>: &#123;</span><br><span class="line">                <span class="attr">color</span>: [</span><br><span class="line">					...</span><br><span class="line">                ],</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="geo-地理坐标系绘制地图"><a href="#geo-地理坐标系绘制地图" class="headerlink" title="geo 地理坐标系绘制地图"></a>geo 地理坐标系绘制地图</h2><p>如果我们以地图为基础，在地图的某个位置绘制一些东西，这个时候可以用 geo 地理坐标系来绘图</p>
+<p>1，调节基本上 map 图表一致</p>
+<p>2，如果需要对某一个区域特殊配置，要使用<code>regions</code>，而 map 里是在 data 里写</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">options</span>: &#123;</span><br><span class="line">    <span class="attr">geo</span>: &#123;</span><br><span class="line">      <span class="attr">map</span>: <span class="string">&quot;chinaMap&quot;</span>,</span><br><span class="line">      <span class="attr">roam</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">width</span>: <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">clientWidth</span> / <span class="number">2</span> - <span class="number">200</span>,</span><br><span class="line">      <span class="attr">height</span>: <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">clientHeight</span> / <span class="number">2</span>,</span><br><span class="line">      <span class="comment">// 对某一个区域特殊配置</span></span><br><span class="line">      <span class="attr">regions</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">name</span>: <span class="string">&quot;湖北省&quot;</span>,</span><br><span class="line">          <span class="attr">itemStyle</span>: &#123;</span><br><span class="line">            <span class="attr">areaColor</span>: <span class="string">&quot;yellow&quot;</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">      ],</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">series</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">type</span>: <span class="string">&quot;graph&quot;</span>,</span><br><span class="line">            <span class="attr">coordinateSystem</span>: <span class="string">&quot;geo&quot;</span>,  <span class="comment">// 坐标系统一定要切换</span></span><br><span class="line">            <span class="attr">data</span>: [</span><br><span class="line">                [<span class="number">116.405285</span>, <span class="number">39.904989</span>],  <span class="comment">// geo只接收坐标数据</span></span><br><span class="line">                [<span class="number">117.190182</span>, <span class="number">39.125596</span>],</span><br><span class="line">            ],</span><br><span class="line">        &#125;,</span><br><span class="line">     ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="搭配-lines-绘制路线"><a href="#搭配-lines-绘制路线" class="headerlink" title="搭配 lines 绘制路线"></a><strong>搭配 lines 绘制路线</strong></h3><p><code>lines</code>是一种图表类型，我们经常使用 geo 搭配 lines 绘制路线图</p>
+<p>1,lines 线条受 lineStyle 调节</p>
+<p>2, 区别于 line 折线图，lines 主要用来绘制多个线条，数据的写法也不一样，而且 line 是不用用于 geo 坐标系的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">series</span>: [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&quot;lines&quot;</span>,</span><br><span class="line">    <span class="attr">lineStyle</span>: &#123;</span><br><span class="line">      <span class="attr">width</span>: <span class="number">3</span>,</span><br><span class="line">      <span class="attr">color</span>: <span class="string">&quot;pink&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">effect</span>: &#123;</span><br><span class="line">      <span class="attr">show</span>: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">data</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">coords</span>: [</span><br><span class="line">          [<span class="number">112.549248</span>, <span class="number">37.857014</span>], <span class="comment">// 起点</span></span><br><span class="line">          [<span class="number">111.670801</span>, <span class="number">40.818311</span>], <span class="comment">// 终点</span></span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="comment">//一条线</span></span><br><span class="line">        <span class="attr">coords</span>: [</span><br><span class="line">          <span class="comment">//可以有很多点</span></span><br><span class="line">          [<span class="number">116.405285</span>, <span class="number">39.904989</span>],</span><br><span class="line">          [<span class="number">113.54909</span>, <span class="number">22.198951</span>],</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<h2 id="百度-高德地图"><a href="#百度-高德地图" class="headerlink" title="百度&#x2F;高德地图"></a>百度&#x2F;高德地图</h2><p>百度高德地图等于直接引入百度地图作为你的 geo 坐标系，可以让地图更好看。也不用引入 json 了</p>
+<p>1,需要引入百度地图 js，百度地图内置支持，高德地图需要引入对应插件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// index.html</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">&quot;https://api.map.baidu.com/api?v=3.0&amp;ak=p4Ta6T7mupEzjLk7q8IUShnvc2UWT3wZ&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2,使用 bmap 配置，配置项和 geo 差不多</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;echarts/extension/bmap/bmap&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="attr">series</span>: &#123;</span><br><span class="line">    <span class="attr">bmap</span>: &#123;</span><br><span class="line">      <span class="attr">center</span>: [<span class="number">112.549248</span>, <span class="number">37.857014</span>],</span><br><span class="line">      <span class="attr">roam</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">zoom</span>: <span class="number">5</span>,</span><br><span class="line">      <span class="attr">mapoStyle</span>: &#123;&#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">      ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>高德地图省略….</p>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/blog/tags/%E5%9B%BE%E8%A1%A8/">图表</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/blog/2024/08/15/%E5%89%8D%E7%AB%AF%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B5%84%E6%BA%90%E7%BC%93%E5%AD%98%E7%AE%A1%E7%90%86/"
+                                   title="前端变量的使用和原理"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">前端变量的使用和原理</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/blog/2024/07/31/charts/%E5%9B%BE%E8%A1%A8%E5%9F%BA%E7%A1%80%20+%20Echarts%E5%9F%BA%E7%A1%80%E5%8F%8Alegend,tooltip/"
+                                   title="Echarts基础"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Echarts基础</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E9%80%82%E9%85%8D"><span class="nav-number">1.</span> <span class="nav-text">方案适配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A7%8B%E7%BB%88%E6%BB%A1%E5%B1%8F"><span class="nav-number">1.1.</span> <span class="nav-text">始终满屏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A7%8B%E7%BB%88%E4%BF%9D%E6%8C%81%E6%AF%94%E4%BE%8B%E9%80%82%E9%85%8D"><span class="nav-number">1.2.</span> <span class="nav-text">始终保持比例适配</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%EF%BC%9A-%E5%9C%B0%E5%9B%BE%E5%A4%84%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">扩展： 地图处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#map-%E5%9C%B0%E5%9B%BE"><span class="nav-number">2.1.</span> <span class="nav-text">map 地图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.1.</span> <span class="nav-text">基础配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#visualMap-%E7%BB%84%E4%BB%B6"><span class="nav-number">2.1.2.</span> <span class="nav-text">visualMap 组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#geo-%E5%9C%B0%E7%90%86%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%98%E5%88%B6%E5%9C%B0%E5%9B%BE"><span class="nav-number">2.2.</span> <span class="nav-text">geo 地理坐标系绘制地图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%AD%E9%85%8D-lines-%E7%BB%98%E5%88%B6%E8%B7%AF%E7%BA%BF"><span class="nav-number">2.2.1.</span> <span class="nav-text">搭配 lines 绘制路线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BE%E5%BA%A6-%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE"><span class="nav-number">2.3.</span> <span class="nav-text">百度&#x2F;高德地图</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/blog/">leihy</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E9%80%82%E9%85%8D"><span class="nav-number">1.</span> <span class="nav-text">方案适配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A7%8B%E7%BB%88%E6%BB%A1%E5%B1%8F"><span class="nav-number">1.1.</span> <span class="nav-text">始终满屏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A7%8B%E7%BB%88%E4%BF%9D%E6%8C%81%E6%AF%94%E4%BE%8B%E9%80%82%E9%85%8D"><span class="nav-number">1.2.</span> <span class="nav-text">始终保持比例适配</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%EF%BC%9A-%E5%9C%B0%E5%9B%BE%E5%A4%84%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">扩展： 地图处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#map-%E5%9C%B0%E5%9B%BE"><span class="nav-number">2.1.</span> <span class="nav-text">map 地图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.1.</span> <span class="nav-text">基础配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#visualMap-%E7%BB%84%E4%BB%B6"><span class="nav-number">2.1.2.</span> <span class="nav-text">visualMap 组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#geo-%E5%9C%B0%E7%90%86%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%98%E5%88%B6%E5%9C%B0%E5%9B%BE"><span class="nav-number">2.2.</span> <span class="nav-text">geo 地理坐标系绘制地图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%AD%E9%85%8D-lines-%E7%BB%98%E5%88%B6%E8%B7%AF%E7%BA%BF"><span class="nav-number">2.2.1.</span> <span class="nav-text">搭配 lines 绘制路线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BE%E5%BA%A6-%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE"><span class="nav-number">2.3.</span> <span class="nav-text">百度&#x2F;高德地图</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/header-shrink.js"></script>
+
+<script src="/blog/js/back2top.js"></script>
+
+<script src="/blog/js/toggle-theme.js"></script>
+
+<script src="/blog/js/code-block.js"></script>
+
+<script src="/blog/js/main.js"></script>
+
+<script src="/blog/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/blog/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/blog/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/blog/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/blog/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

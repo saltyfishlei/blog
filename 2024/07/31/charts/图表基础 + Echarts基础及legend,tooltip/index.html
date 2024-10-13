@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="leihy">
+    
+    <title>
+        
+            Echarts基础 |
+        
+        leihy&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/blog/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/blog/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/blog/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"saltyfishlei.github.io","root":"/blog/","language":"cn","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"leihy's blog","author":"leihy","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"面朝大海，春暖花开。","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":false,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"jsdelivr"},"pjax":{"enable":false},"footer":{"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"/blog","version":"4.0.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/blog/">
+                    <img src="/blog/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/blog/">
+               leihy&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/blog/"
+                        >首页</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/archives"
+                            >归档</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/tags"
+                            >标签</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/about"
+                            >关于</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/blog/"
+                >首页</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/archives"
+                    >归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/tags"
+                    >标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/about"
+                    >关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Echarts基础
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">leihy</span>
+                                
+                                    <span class="author-badge">Lv4</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2024-07-31 00:00:00</span>
+                <span class="mobile">2024-07-31 00:00</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Wed Aug 14 2024 17:46:13 GMT+0800">2024-08-14 17:46:13</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/blog/tags/%E5%9B%BE%E8%A1%A8/">图表</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <blockquote>
+<p>图表的本质： 先建立一个坐标系，然后把数据转化到坐标系中的</p>
+</blockquote>
+<h2 id="图表基础单词速记"><a href="#图表基础单词速记" class="headerlink" title="图表基础单词速记"></a>图表基础单词速记</h2><p>不同图表的相同元素都是使用的相同的单词，记住对应的单词就能触类旁通。</p>
+<p><strong>legend**</strong>: 图例</p>
+<p><strong>xAxis</strong>： X 轴</p>
+<ol>
+<li><p>label - 轴上的文字</p>
+<ol start="2">
+<li>line - 轴线</li>
+<li>tick - 刻度</li>
+<li>name - 名字</li>
+</ol>
+</li>
+</ol>
+<p><strong>YAxis</strong>： Y 轴</p>
+<p><strong>tooltip</strong>: （鼠标悬停某点的）提示</p>
+<p>line：（折线）图的线</p>
+<h2 id="图表分类"><a href="#图表分类" class="headerlink" title="图表分类"></a>图表分类</h2><p><strong>折线图</strong></p>
+<p>通常叫<code>line</code> ，通常用于展示走势</p>
+<p><strong>柱状图</strong></p>
+<p>通常叫<code>bar</code>, 也常用于展示走势</p>
+<p><strong>饼图</strong></p>
+<p>通常叫<code>pie</code>, 常用于展示占比</p>
+<p><strong>其他</strong></p>
+<p>散点图<code>scatter</code>, 雷达图<code>radar</code>, 漏斗图-<code>funnel</code>， 热力图-<code>heatmap</code>, 水波图-<code>liquid</code>, 进度条-<code>progress</code>，地图-<code>map</code>，旭日图-<code>sunburst</code>等等</p>
+<h2 id="Echarts"><a href="#Echarts" class="headerlink" title="Echarts"></a>Echarts</h2><p>优点：简单易上手，图表功能全</p>
+<p>缺点：配置项处理，不利于高度自定义的图表</p>
+<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p><strong>绘制图表都需要遵循的步骤</strong></p>
+<ol>
+<li>写一个 div 或者 canvas 元素作为容器</li>
+<li>准备好配置</li>
+<li>准备并转化数据</li>
+<li>渲染</li>
+</ol>
+<p><strong>图表大小如何决定</strong></p>
+<p>如果 init 方法中有在第三个参数配置，那就按 init 的来，否则读取挂载 dom 的宽高。最终仍然要配合设备像素比决定最终宽高。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> echarts <span class="keyword">from</span> <span class="string">&#x27;echarts&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 基于准备好的dom，初始化echarts实例</span></span><br><span class="line"><span class="comment">// vue</span></span><br><span class="line"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> myChart = echarts.<span class="title function_">init</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;main&#x27;</span>), <span class="literal">null</span>, &#123;</span><br><span class="line">        <span class="comment">// 其他配置</span></span><br><span class="line">        ...</span><br><span class="line">        <span class="attr">devicePixelRatio</span>: <span class="variable language_">window</span>.<span class="property">devicePixelRatio</span> <span class="comment">// 设备像素比，移动端需要考虑</span></span><br><span class="line">        <span class="comment">// 宽高的设置如果要设置百分比，需要使用js计算：document.body.clentWidth</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// react</span></span><br><span class="line"><span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> myChart = echarts.<span class="title function_">init</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;main&#x27;</span>));</span><br><span class="line">&#125;, [])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--canvas的宽高不受css影响--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;main&quot;</span> <span class="attr">width</span>=<span class="string">&quot;400&quot;</span> <span class="attr">height</span>=<span class="string">&quot;400&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>设备像素比（Device Pixel Ratio，简称 DPR 或 dpr），是描述屏幕物理像素与逻辑像素之间关系的一个比率，在早期的低分辨率屏幕上，物理像素和逻辑像素通常是 1:1 的关系</p>
+</blockquote>
+<p><strong>init 方法的其他次要配置项</strong></p>
+<ol>
+<li><code>renderer</code>- 渲染模式，可以使用 svg 或者 canvas</li>
+<li><code>useDirtyRect</code>- 脏矩形渲染，部分更新，用来提升性能</li>
+<li><code>useCoarsePointer</code>和<code>pointerSize</code>- 扩大点击范围</li>
+<li><code>ssr</code> - 是否服务端渲染，开启后不会自动渲染</li>
+</ol>
+<h4 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h4><p><strong>哪些配置项是必要的？</strong></p>
+<ol>
+<li><code>series</code>-数组，用于定义画哪些图表，图表的数据，图表是什么类型（必填）</li>
+<li><code>xAxis</code>- x 轴配置，定义 x 轴的取值和类型（如果是直角坐标系的图形必填）</li>
+<li><code>yAxis</code>-y 轴配置，定义 y 轴的取值和类型（如果是直角坐标系的图形必填）</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> options = &#123;</span><br><span class="line">  <span class="attr">xAxis</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&quot;category&quot;</span>,</span><br><span class="line">    <span class="attr">data</span>: [<span class="string">&quot;Matcha Latte&quot;</span>, <span class="string">&quot;Milk Tea&quot;</span>, <span class="string">&quot;Cheese Cocoa&quot;</span>, <span class="string">&quot;Walnut Brownie&quot;</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">yAxis</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">series</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="string">&quot;bar&quot;</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&quot;2015&quot;</span>, <span class="comment">// 使用legend一定要写name</span></span><br><span class="line">      <span class="attr">data</span>: [<span class="number">89.3</span>, <span class="number">92.1</span>, <span class="number">94.4</span>, <span class="number">85.4</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="string">&quot;bar&quot;</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&quot;2016&quot;</span>,</span><br><span class="line">      <span class="attr">data</span>: [<span class="number">95.8</span>, <span class="number">89.4</span>, <span class="number">91.2</span>, <span class="number">76.9</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="string">&quot;bar&quot;</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&quot;2017&quot;</span>,</span><br><span class="line">      <span class="attr">data</span>: [<span class="number">97.7</span>, <span class="number">83.1</span>, <span class="number">92.5</span>, <span class="number">78.1</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="绘制"><a href="#绘制" class="headerlink" title="绘制"></a>绘制</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myChart.<span class="title function_">setOption</span>(options);</span><br></pre></td></tr></table></figure>
+
+<p>关于<code>setOption</code>:</p>
+<ol>
+<li>如果要重绘图表，只需要传入部分配置，不传第二个参数，会进行合并</li>
+<li>如果只想保留传入的配置，那就将第二个参数（notMerge）设为<code>true</code></li>
+<li>重绘时，<strong>如果配置有 id</strong>，那么就会去覆盖相同 id 的数据，否则就会新增数据</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">handleCharts</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 会重置series中的第一个对象</span></span><br><span class="line">  myChart.<span class="title function_">setOption</span>(&#123;</span><br><span class="line">    <span class="attr">series</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&quot;bar&quot;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;2015&quot;</span>,</span><br><span class="line">        <span class="attr">data</span>: [<span class="number">29.3</span>, <span class="number">42.1</span>, <span class="number">23.4</span>, <span class="number">23.4</span>],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>无论是 Vue 还是 React，组件的更新都是不会触发 echart 的更新（就算是响应式数据）， 我们需要主动调用<code>setOption</code>方法更新图表</p>
+</blockquote>
+<h4 id="配置-echarts-的主题"><a href="#配置-echarts-的主题" class="headerlink" title="配置 echarts 的主题"></a>配置 echarts 的主题</h4><p>Echarts 是可以配置主题的，内置了默认和暗黑模式，我们也可以自定义，或者下载别人写好的主题</p>
+<p><code>Echarts.init(目标挂载dom节点, 主题)</code></p>
+<p><strong>自定义主题：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> customEchart <span class="keyword">from</span> <span class="string">&#x27;@/assets/customed.project.json&#x27;</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">echarts.<span class="title function_">registerTheme</span>(<span class="string">&#x27;zhuiyi&#x27;</span>, customEchart.<span class="property">theme</span>)</span><br><span class="line">myChart = echarts.<span class="title function_">init</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myEcharts&#x27;</span>), <span class="string">&#x27;zhuiyi&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置语言"><a href="#配置语言" class="headerlink" title="配置语言"></a>配置语言</h4><p>Echarts 默认语言使用英文的，可以给他切成中文，配置配置项里的 locale 为 ZH 就好</p>
+<p><code>Echarts.init(目标挂载dom节点, 主题, 配置项)</code></p>
+<h3 id="legend"><a href="#legend" class="headerlink" title="legend"></a>legend</h3><blockquote>
+<p>想要 legend 显示一定要在 series 中配置<code>name</code></p>
+</blockquote>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="C:\Users\14596\AppData\Roaming\Typora\typora-user-images\image-20240724122359170.png"
+                        alt="image-20240724122359170"
+                 ></p>
+<p>这是一个图例</p>
+<ol>
+<li>前面图形是 item</li>
+<li>文字内容是 text</li>
+<li>此外还有红色边框 border</li>
+<li>和黄色背景</li>
+</ol>
+<h4 id="item-图例的样式调节"><a href="#item-图例的样式调节" class="headerlink" title="item 图例的样式调节"></a><strong>item 图例的样式调节</strong></h4><blockquote>
+<p>Item 图例实际分为<code>item</code>与<code>line</code></p>
+</blockquote>
+<ol>
+<li>图形的大小与间距: <code>itemWidth</code>, <code>itemHeight</code>, <code>itemGap</code></li>
+<li>图形的形状，自定义图形，使用图片作为 item： <code>icon</code></li>
+<li>图形的样式： <code>itemStyle</code></li>
+<li>线条的调节</li>
+</ol>
+<p><strong>通过 legend 文字 调节，其实我们可以总结出 echarts 中文字调节的规律</strong></p>
+<ol>
+<li>基本上各个元素的文字部分都会是<code>text</code>，所以其实 textStyle 基本上都是针对这部分组件文字的调节</li>
+<li>文字的内容的自定义，基本上都会叫做<code>formatter</code>， 分为字符串与方法两种写法</li>
+</ol>
+<p><strong>案例：文字显示总和，最高值图例文字颜色为红色</strong></p>
+<p>计算每个图例的总数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">legend</span>: &#123;</span><br><span class="line">    <span class="attr">formatter</span>: <span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> total = data[name].<span class="title function_">reduce</span>(<span class="function">(<span class="params">calculator, currentValue</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> calculator + currentValue</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">return</span> name + <span class="string">&#x27;:&#x27;</span> + total</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>监听图表数据得变化并重绘：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">watch</span>(</span><br><span class="line">  data,</span><br><span class="line">  <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> nameArr = <span class="title class_">Object</span>.<span class="title function_">keys</span>(data);</span><br><span class="line">    <span class="comment">// 排序</span></span><br><span class="line">    nameArr.<span class="title function_">sort</span>(<span class="function">(<span class="params">before, after</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> beforeTotal = data[before].<span class="title function_">reduce</span>(<span class="function">(<span class="params">cal, cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> cal + cur;</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">let</span> afterTotal = data[after].<span class="title function_">reduce</span>(<span class="function">(<span class="params">cal, cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> cal + cur;</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span> afterTotal - beforeTotal; <span class="comment">// 降序</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 处理要渲染的数据</span></span><br><span class="line">    <span class="keyword">const</span> dataArr = nameArr.<span class="title function_">map</span>(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (index === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          <span class="comment">// 此时必须使用 name 属性对应表示系列的 name</span></span><br><span class="line">          <span class="attr">name</span>: item,</span><br><span class="line">          <span class="attr">textStyle</span>: &#123;</span><br><span class="line">            <span class="attr">color</span>: <span class="string">&quot;red&quot;</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          <span class="attr">name</span>: item,</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    myechart.<span class="title function_">setOption</span>(&#123;</span><br><span class="line">      <span class="attr">legend</span>: &#123;</span><br><span class="line">        <span class="attr">data</span>: dataArr,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; <span class="attr">immediate</span>: <span class="literal">true</span> &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h4 id="图例整体位置和样式调节"><a href="#图例整体位置和样式调节" class="headerlink" title="图例整体位置和样式调节"></a>图例整体位置和样式调节</h4><ol>
+<li>基本上都会有 width 和 height 调节大小</li>
+<li>有 border 系列调节边框，shadow 系列增加阴影</li>
+<li>Left，right，top，bottom，position，offset 等<strong>调节位置</strong>，不同的组件可能用的不同</li>
+<li>颜色等相关样式，都会有 color，backgroundColor 等字段</li>
+</ol>
+<blockquote>
+<p>legend 的<code>width</code>最大长度实际上是 itemWidth+itemHeight + itemGap , 最小宽度实际上也要保证一个 itemWidth</p>
+</blockquote>
+<h4 id="图例的一些特殊需要"><a href="#图例的一些特殊需要" class="headerlink" title="图例的一些特殊需要"></a>图例的一些特殊需要</h4><ol>
+<li><p>竖向排列图例</p>
+<p>一定要注意图例的宽度与间距，不能超出图表高度，否则无法实现效果</p>
+</li>
+<li><p>图例太多可滚动</p>
+<p>设置<code>type</code>为<code>scroll</code>（最好设置高度<code>height</code>）</p>
+</li>
+</ol>
+<h3 id="tooltip"><a href="#tooltip" class="headerlink" title="tooltip"></a>tooltip</h3><p>主要分为<code>content</code>与<code>axisPointer</code></p>
+<h4 id="content-的本质"><a href="#content-的本质" class="headerlink" title="content 的本质"></a>content 的本质</h4><ul>
+<li>content 部分默认是用 html 去绘制的，使用一定要使用 div 作为<strong>整个图表的容器</strong></li>
+<li>如果使用 canvas 去绘制，必须使用 canvas 模式</li>
+</ul>
+<blockquote>
+<p>为什么建议用 html 模式去绘制？ —— 可以直接使用 css 调节样式</p>
+</blockquote>
+<h4 id="触发设置"><a href="#触发设置" class="headerlink" title="触发设置"></a>触发设置</h4><p>一般图表里的行为触发都叫 trigger</p>
+<ul>
+<li>触发方式-<code>triggerOn</code></li>
+<li>触发位置-<code>trigger</code></li>
+</ul>
+<h4 id="tooltip-样式和位置修改"><a href="#tooltip-样式和位置修改" class="headerlink" title="tooltip 样式和位置修改"></a>tooltip 样式和位置修改</h4><ul>
+<li>className 调节（必须是 html 模式），如果是 canvas 模式，就得用富文本来调节了</li>
+<li>也有<code>backgroundColor</code>，<code>textStyle</code>，<code>border</code>，<code>borderColor</code>等基础配置调节</li>
+</ul>
+<p><strong>案例 1： 设置顶部固定居中</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tooltip: &#123;</span><br><span class="line">    className: &quot;content1&quot;,</span><br><span class="line">	position: [0, 0],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置 css 样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content1</span> &#123;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span> <span class="meta">!important</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-<span class="number">50%</span>) <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>案例 2：固定在鼠标右下方</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tooltip</span>: &#123;</span><br><span class="line">    <span class="attr">position</span>: <span class="keyword">function</span> (<span class="params">pointer, data, dom, rect, size</span>) &#123;</span><br><span class="line">    	<span class="keyword">return</span> [pointer[<span class="number">0</span>] + <span class="number">10</span>, pointer[<span class="number">1</span>] + <span class="number">10</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种方法也可以实现所有位置的调整</p>
+<h4 id="数值的调节"><a href="#数值的调节" class="headerlink" title="数值的调节"></a>数值的调节</h4><p>数值分为两部分，上面的<code>标题部分和前面的固定名字</code>，下面的<code>值</code>部分</p>
+<ul>
+<li><code>formatter </code>调节整个文字</li>
+<li><code>valueFormatter </code>单独调节 value</li>
+</ul>
+<p><strong>案例:</strong> <strong>根据每天的销售业绩显示不同的排行</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tooltip</span>: &#123;</span><br><span class="line">      <span class="attr">formatter</span>: <span class="keyword">function</span> (<span class="params">params</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;params&quot;</span>, params);</span><br><span class="line">        <span class="comment">// 生成排行榜</span></span><br><span class="line">        params.<span class="title function_">sort</span>(<span class="function">(<span class="params">pre, cur</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> cur - pre;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">let</span> images = &#123;</span><br><span class="line">          <span class="number">0</span>: <span class="string">&quot;./first.png&quot;</span>,</span><br><span class="line">          <span class="number">1</span>: <span class="string">&quot;./second.png&quot;</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">let</span> rankData = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        params.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">          rankData += <span class="string">`&lt;div class=&quot;toolrow&quot;&gt;</span></span><br><span class="line"><span class="string">              &lt;img src=&#x27;<span class="subst">$&#123;images[index]&#125;</span>&#x27;/&gt;</span></span><br><span class="line"><span class="string">              &lt;span&gt;<span class="subst">$&#123;item.seriesName&#125;</span> :&lt;/span&gt;</span></span><br><span class="line"><span class="string">              &lt;span&gt;<span class="subst">$&#123;item.data&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">            &lt;/div&gt;`</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`</span></span><br><span class="line"><span class="string">          &lt;b5&gt;排行日期：<span class="subst">$&#123;params[<span class="number">0</span>].axisValue&#125;</span>&lt;/b5&gt;</span></span><br><span class="line"><span class="string">         <span class="subst">$&#123;rankData&#125;</span></span></span><br><span class="line"><span class="string">        `</span>;</span><br><span class="line">      &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>案例 2： 两根折线图的 tooltip 有不同的表现</strong></p>
+<blockquote>
+<p>series 定义的图表，每个都可以有自己的 tooltip 设置。 图表自己的设置权重大于 tooltip 公共设置的，<strong>但是不能冲突</strong></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">series</span>: &#123;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;mary&quot;</span>,</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&quot;line&quot;</span>,</span><br><span class="line">        <span class="attr">data</span>: [<span class="number">12</span>, <span class="number">32</span>, <span class="number">42</span>, <span class="number">123</span>, <span class="number">21</span>, <span class="number">45</span>, <span class="number">76</span>],</span><br><span class="line">        <span class="attr">tooltip</span>: &#123;</span><br><span class="line">          <span class="attr">show</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">position</span>: [<span class="number">10</span>, <span class="number">10</span>],  <span class="comment">// 触发方式triggerOn不可冲突</span></span><br><span class="line">          <span class="attr">className</span>: <span class="string">&quot;content2&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/blog/tags/%E5%9B%BE%E8%A1%A8/">图表</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/blog/2024/08/14/charts/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%A7%E5%B1%8F/"
+                                   title="大屏可视化及地图扩展"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">大屏可视化及地图扩展</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/blog/2024/07/31/vue3/%E9%80%9A%E8%BF%87canvas%E5%AE%9E%E7%8E%B0%E7%AD%BE%E5%90%8D%E6%9D%BF/"
+                                   title="通过canvas实现签名板绘制"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">通过canvas实现签名板绘制</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E8%A1%A8%E5%9F%BA%E7%A1%80%E5%8D%95%E8%AF%8D%E9%80%9F%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">图表基础单词速记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E8%A1%A8%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">图表分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Echarts"><span class="nav-number">3.</span> <span class="nav-text">Echarts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">3.1.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">3.1.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="nav-number">3.1.2.</span> <span class="nav-text">配置项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6"><span class="nav-number">3.1.3.</span> <span class="nav-text">绘制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-echarts-%E7%9A%84%E4%B8%BB%E9%A2%98"><span class="nav-number">3.1.4.</span> <span class="nav-text">配置 echarts 的主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%AF%AD%E8%A8%80"><span class="nav-number">3.1.5.</span> <span class="nav-text">配置语言</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#legend"><span class="nav-number">3.2.</span> <span class="nav-text">legend</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#item-%E5%9B%BE%E4%BE%8B%E7%9A%84%E6%A0%B7%E5%BC%8F%E8%B0%83%E8%8A%82"><span class="nav-number">3.2.1.</span> <span class="nav-text">item 图例的样式调节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E4%BE%8B%E6%95%B4%E4%BD%93%E4%BD%8D%E7%BD%AE%E5%92%8C%E6%A0%B7%E5%BC%8F%E8%B0%83%E8%8A%82"><span class="nav-number">3.2.2.</span> <span class="nav-text">图例整体位置和样式调节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E4%BE%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E9%9C%80%E8%A6%81"><span class="nav-number">3.2.3.</span> <span class="nav-text">图例的一些特殊需要</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tooltip"><span class="nav-number">3.3.</span> <span class="nav-text">tooltip</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#content-%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">3.3.1.</span> <span class="nav-text">content 的本质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.3.2.</span> <span class="nav-text">触发设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tooltip-%E6%A0%B7%E5%BC%8F%E5%92%8C%E4%BD%8D%E7%BD%AE%E4%BF%AE%E6%94%B9"><span class="nav-number">3.3.3.</span> <span class="nav-text">tooltip 样式和位置修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E7%9A%84%E8%B0%83%E8%8A%82"><span class="nav-number">3.3.4.</span> <span class="nav-text">数值的调节</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/blog/">leihy</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E8%A1%A8%E5%9F%BA%E7%A1%80%E5%8D%95%E8%AF%8D%E9%80%9F%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">图表基础单词速记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E8%A1%A8%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">图表分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Echarts"><span class="nav-number">3.</span> <span class="nav-text">Echarts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">3.1.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">3.1.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="nav-number">3.1.2.</span> <span class="nav-text">配置项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6"><span class="nav-number">3.1.3.</span> <span class="nav-text">绘制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-echarts-%E7%9A%84%E4%B8%BB%E9%A2%98"><span class="nav-number">3.1.4.</span> <span class="nav-text">配置 echarts 的主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%AF%AD%E8%A8%80"><span class="nav-number">3.1.5.</span> <span class="nav-text">配置语言</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#legend"><span class="nav-number">3.2.</span> <span class="nav-text">legend</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#item-%E5%9B%BE%E4%BE%8B%E7%9A%84%E6%A0%B7%E5%BC%8F%E8%B0%83%E8%8A%82"><span class="nav-number">3.2.1.</span> <span class="nav-text">item 图例的样式调节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E4%BE%8B%E6%95%B4%E4%BD%93%E4%BD%8D%E7%BD%AE%E5%92%8C%E6%A0%B7%E5%BC%8F%E8%B0%83%E8%8A%82"><span class="nav-number">3.2.2.</span> <span class="nav-text">图例整体位置和样式调节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E4%BE%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E9%9C%80%E8%A6%81"><span class="nav-number">3.2.3.</span> <span class="nav-text">图例的一些特殊需要</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tooltip"><span class="nav-number">3.3.</span> <span class="nav-text">tooltip</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#content-%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">3.3.1.</span> <span class="nav-text">content 的本质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.3.2.</span> <span class="nav-text">触发设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tooltip-%E6%A0%B7%E5%BC%8F%E5%92%8C%E4%BD%8D%E7%BD%AE%E4%BF%AE%E6%94%B9"><span class="nav-number">3.3.3.</span> <span class="nav-text">tooltip 样式和位置修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E7%9A%84%E8%B0%83%E8%8A%82"><span class="nav-number">3.3.4.</span> <span class="nav-text">数值的调节</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/header-shrink.js"></script>
+
+<script src="/blog/js/back2top.js"></script>
+
+<script src="/blog/js/toggle-theme.js"></script>
+
+<script src="/blog/js/code-block.js"></script>
+
+<script src="/blog/js/main.js"></script>
+
+<script src="/blog/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/blog/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/blog/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/blog/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/blog/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
